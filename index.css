@@ -1,0 +1,48 @@
+body {
+    position: relative;
+    height: 100vh;
+}
+
+form {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+form>div {
+    position: relative;
+}
+
+form>div>input {
+    width: 30vw;
+    height: 5vh;
+    border-radius: 5vh;
+    margin: 5% auto;
+    padding-left: 10%;
+    border: solid 2px #888;
+}
+
+form>div>i {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #888;
+}
+
+#submit {
+    display: none;
+}
+
+#sub-lab {
+    width: 50%;
+}
+
+#sub-lab>i {
+    font-size: 30px;
+    margin-top: 5%;
+    margin-left: 100%;
+    cursor: pointer;
+    color: #206;
+}
