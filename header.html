@@ -6,17 +6,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <link rel="stylesheet" href="./css/header.css">
+    <script src="./js/platform.js"></script>
+    <script src="./js/google-login.js"></script>
+
     <title>header</title>
 </head>
 <body>
     <header>
+    <script src="./js/api.js"></script>
+    <script>  
+    //IPアドレス保存処理  ((document.cookie + ';').match('IP=([^¥S;]*)') || [])[1] に
+    fetch('https://api.ipify.org/?format=json')
+        .then((response) => response.json())
+        .then((data) => document.cookie = 'IP=' + data.ip + '; max-age=86400;')//86400 = 1日
+
+    //ログインセッション確認
+    if(cheak()){
+        systems()
+        //ログイン確認済み
+    }else{
+        //再ログイン必要
+        window.location.href = "./error.html?E2"
+    }
+    </script>
         <img src="https://studiogram.jp/studiogram/wp-content/uploads/2021/08/muji_logo.png" alt="">
         <input type="text">
         <ul>
             <li><a href="./mypage.html">マイページ</a></li>
             <li><a href="#">お問い合わせ</a></li>
             <li><a href="#">設定</a></li>
+            <li><button onclick="logout()">ログアウト</button></li>
         </ul>
+
     </header>
 </body>
 </html>
