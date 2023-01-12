@@ -1,15 +1,56 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer">
     <link rel="stylesheet" href="./css/index.css">
+
+    <script src="https://unpkg.com/jwt-decode/build/jwt-decode.js"></script>
+    <script src="./js/platform.js"></script>
+    <script src="./js/google-login.js"></script>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script src="https://unpkg.com/jwt-decode/build/jwt-decode.js"></script>
+    <script>
+        //ログインセッション確認
+        if (cheak()) {
+            //ログイン確認済み
+            window.location.href = "./mypage.html"
+        } else {
+            //再ログイン必要
+        }
+
+        function handleCredentialResponse(response) {
+            document.cookie = 'sessionID=' + (JSON.stringify(jwt_decode(response.credential))) + '; max-age=86400;';//86400
+            window.location.href = "./mypage.html"
+        }
+        window.onload = function () {
+            google.accounts.id.initialize({
+                client_id: "727467662943-93kq0n9ngaod4rbdqi070sgh78b1si54.apps.googleusercontent.com",
+                callback: handleCredentialResponse
+            });
+            google.accounts.id.renderButton(
+                document.getElementById("buttonDiv"),
+                { theme: "outline", size: "large" }  // customization attributes
+            );
+            google.accounts.id.prompt(); // also display the One Tap dialog
+        }
+
+    </script>
+
     <title>ログインページ</title>
 </head>
+
 <body>
+
+    <!--Googleログインボタン-->
+    <div id="buttonDiv"></div>
+
     <form action="./library.html" method="post">
         <div>
             <input type="text" placeholder="Name">
@@ -29,6 +70,6 @@
         <input type="submit" value="" id="submit">
         <label for="submit" id="sub-lab"><i class="fa-regular fa-paper-plane"></i></label>
     </form>
-    
+
 </body>
 </html>
