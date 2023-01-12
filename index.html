@@ -14,20 +14,22 @@
     <script src="https://unpkg.com/jwt-decode/build/jwt-decode.js"></script>
     <script src="./js/platform.js"></script>
     <script src="./js/google-login.js"></script>
+
+    <script src="./js/api.js"></script>
     <script src="https://accounts.google.com/gsi/client" async defer></script>
     <script src="https://unpkg.com/jwt-decode/build/jwt-decode.js"></script>
     <script>
         //ログインセッション確認
         if (cheak()) {
             //ログイン確認済み
-            window.location.href = "./mypage.html"
+            systems()
         } else {
             //再ログイン必要
         }
 
         function handleCredentialResponse(response) {
             document.cookie = 'sessionID=' + (JSON.stringify(jwt_decode(response.credential))) + '; max-age=86400;';//86400
-            window.location.href = "./mypage.html"
+            systems()
         }
         window.onload = function () {
             google.accounts.id.initialize({
