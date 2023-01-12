@@ -2,9 +2,11 @@
 
 /* ここの処理は仮なので表示システムに応じて新しくプログラムしてください */
 
+/*
+現在　test(jsonObj)が自動的に実行されるので（./js/api.js:21）
+jsonObjに蔵書のデータが格納されています。
 
-
-
+*/
 function test(jsonObj) {
     var table = document.getElementById('foo-table');  //表のオブジェクトを取得
 
@@ -48,9 +50,7 @@ function test(jsonObj) {
                 { targets: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 24], visible: false },
                 { targets:[0], width: "20px"},
                 {targets:1,"width":"80%"},
-                { targets:[23,25], "width": "10%"},
-                
-                
+                { targets:[23,25], "width": "10%"},              
             ]
         });
         $("#foo-table").DataTable();
