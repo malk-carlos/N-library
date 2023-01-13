@@ -14,6 +14,7 @@
     <script src="https://unpkg.com/jwt-decode/build/jwt-decode.js"></script>
     <script src="./js/platform.js"></script>
     <script src="./js/google-login.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js"></script>
 
     <script src="./js/api.js"></script>
     <script src="https://accounts.google.com/gsi/client" async defer></script>
@@ -43,6 +44,11 @@
             google.accounts.id.prompt(); // also display the One Tap dialog
         }
 
+   function onSubmit(token) {
+     document.getElementById("demo-form").submit();
+   }
+
+
     </script>
 
     <title>ログインページ</title>
@@ -51,7 +57,10 @@
 <body>
 
     <!--Googleログインボタン-->
-    <div id="buttonDiv"></div>
+    <div id="buttonDiv"  class="g-recaptcha" 
+    data-sitekey="6LdVN_MjAAAAALeGoQ2na_Pprw-EDcZTJppbDh78" 
+    data-callback='onSubmit' 
+    data-action='submit'></div>
 
     <form action="./library.html" method="post">
         <div>
