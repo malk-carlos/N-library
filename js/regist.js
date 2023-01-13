@@ -82,6 +82,9 @@ function cheanges() {
     send("register", datas_arry[18], datas_arry[2], datas_arry[3], datas_arry[4], datas_arry[5], datas_arry[6], datas_arry[7], datas_arry[8], datas_arry[9], datas_arry[10], datas_arry[11], datas_arry[12], datas_arry[13], datas_arry[14], datas_arry[15], datas_arry[16], datas_arry[17], Data[0].onix.CollateralDetail.SupportingResource[0].ResourceVersion[0].ResourceLink, encodeURIComponent(document.getElementById("options").value), document.getElementById("number").value)
 }
 
+function deletes(){
+    send("delete",datas_arry[18])
+}
 
 
 
