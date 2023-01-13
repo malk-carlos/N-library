@@ -1,0 +1,36 @@
+table {
+    background-color: #ffe;
+    border-collapse: collapse;
+}
+
+table th {
+    width: 100px;
+    background-color: #eee;
+}
+
+table th,
+table td {
+    border: solid 1px #aaa;
+    padding: 15px;
+}
+
+table td {
+    width: 80vw;
+}
+
+#changes_button{
+display: none
+}
+.box{
+min-width: 90%;
+max-width: 90%;
+height: 30px;
+}
+
+#books14,#books15,#books16{
+height: 150px;
+
+}
+.box:read-only{
+    background-color: rgba(0, 0, 0, 0.265);
+}

@@ -12,20 +12,27 @@ function send(mode, key1, key2, key3, key4, key5, key6, key7, key8, key9, key10,
                 if (xhr.readyState == 4 && xhr.status == 200) {
                         // jsonをオブジェクトに変更
                         jsonObj = JSON.parse(xhr.responseText);
+                        console.log(jsonObj)
                         if (mode == "register") {
 
                         } else if (mode == "book_num") {
                                 okk(jsonObj, key1)
 
-                        }else if(mode =="book_cheak"){
+                        } else if (mode == "book_cheak") {
                                 test(jsonObj)
-                        }else if(mode=="log"){
+                        } else if (mode == "log") {
                                 systems()
+                        } else if (mode == "admin_cheak") {
+                                if (jsonObj == "complete") {
+                                        window.location.href = "./regist.html"
+                                } else {
+                                        //
+                                }
                         }
                 }
+
+
         }
-
-
 }
 
 function okk(jsonObj, isbn) {
