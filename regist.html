@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script> 
+    <link rel="stylesheet" href="./css/oi.css" />
+    <script src="./js/regist.js"></script>   
+    <title>書籍登録</title>
+
+</head>
+
+<body>
+    <header>
+        <script src="./js/header.js"></script>
+        <script>header();</script>
+    </header>
+    <textarea id="keyview"></textarea>
+    <button onclick="book_autocomplete(document.getElementById('keyview').value)">検索</button>
+
+    <div id="img"></div>
+    <table id="books_tbl">
+        <tr>
+            <th></th>
+            <td></td>
+        </tr>
+        <tr>
+            <th></th>
+            <td></td>
+        </tr>
+        <tr>
+            <th></th>
+            <td></td>
+        </tr>
+        <tr>
+            <th></th>
+            <td></td>
+        </tr>
+        <tr>
+            <th></th>
+            <td></td>
+        </tr>
+        <tr>
+            <th></th>
+            <td></td>
+        </tr>
+        <tr>
+            <th></th>
+            <td></td>
+        </tr>
+        <tr>
+            <th></th>
+            <td></td>
+        </tr>
+        <tr>
+            <th></th>
+            <td></td>
+        </tr>
+        <tr>
+            <th></th>
+            <td></td>
+        </tr>
+        <tr>
+            <th></th>
+            <td></td>
+        </tr>
+        <tr>
+            <th></th>
+            <td></td>
+        </tr>
+        <tr>
+            <th></th>
+            <td></td>
+        </tr>
+        <tr>
+            <th></th>
+            <td></td>
+        </tr>
+        <tr>
+            <th></th>
+            <td></td>
+        </tr>
+        <tr>
+            <th></th>
+            <td></td>
+        </tr>
+        <tr>
+            <th></th>
+            <td></td>
+        </tr>
+        <tr>
+            <th>貸出許可</th>
+            <td><select id="options">
+                    <option>許可</option>
+                    <option>禁止</option>
+                </select></td>
+        </tr>
+        <tr>
+            <th>登録数</th>
+            <td><input id="number" type="text"></td>
+        </tr>
+        </tbody>
+    </table>
+    <button id="register_button" onclick="register()">登録</button>
+    <button id="changes_button" onclick="cheanges()">変更</button>
+</body>
+</html>

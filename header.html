@@ -13,6 +13,8 @@
 <body>
     <header>
     <script src="./js/api.js"></script>
+
+    
     <script>  
     //IPアドレス保存処理  ((document.cookie + ';').match('IP=([^¥S;]*)') || [])[1] に
     fetch('https://api.ipify.org/?format=json')
@@ -27,16 +29,21 @@
         //再ログイン必要
         window.location.href = "./error.html?E2"
     }
+
+    function admin(){
+        let loginData = cheak()
+        send("admin_cheak",new Date().toLocaleString(), ((document.cookie + ';').match('IP=([^¥S;]*)') || [])[1], loginData.email, platform.name, platform.version, platform.os.toString(), navigator.userAgent, "",encodeURIComponent(loginData.name),encodeURIComponent(loginData.sub))
+    }
     </script>
         <img src="https://studiogram.jp/studiogram/wp-content/uploads/2021/08/muji_logo.png" alt="">
         <input type="text">
-        <ul>
+        <ul id="nav">
             <li><a href="./mypage.html">マイページ</a></li>
             <li><a href="#">お問い合わせ</a></li>
-            <li><a href="#">設定</a></li>
             <li><a href="./library.html">ライブラリ</a></li>
             <li><button onclick="logout()">ログアウト</button></li>
         </ul>
+        <a href="#" onclick="admin()">管理者</a>
     </header>
 </body>
 </html>
