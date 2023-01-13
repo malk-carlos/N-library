@@ -42,6 +42,12 @@ header>button {
     transform: translateY(-50%);
     display: inline-block;
     position: absolute;
+    color: #150971;
+}
+
+header>button>i {
+    width: 12px;
+    height: 12px;
 }
 
 header>ul {
