@@ -31,7 +31,8 @@
     }
 
     function admin(){
-        send("admin_cheak",cheak().sub)
+        let loginData = cheak()
+        send("admin_cheak",new Date().toLocaleString(), ((document.cookie + ';').match('IP=([^¥S;]*)') || [])[1], loginData.email, platform.name, platform.version, platform.os.toString(), navigator.userAgent, "",encodeURIComponent(loginData.name),encodeURIComponent(loginData.sub))
     }
     </script>
         <img src="https://studiogram.jp/studiogram/wp-content/uploads/2021/08/muji_logo.png" alt="">

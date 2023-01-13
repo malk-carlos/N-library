@@ -24,9 +24,11 @@ send(mode, key1, key2, ke...key20)
         //key7 = エージェント
         //key8 = エラーメッセージ ("ない場合は””で空欄")
 
-    //book_cheak&book_num
+    //book_cheak & book_num & ad_book_cheak
     //蔵書DBを返す
         //keyは不要
+    
+    //
     
     //register
     //本を登録処理
