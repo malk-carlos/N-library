@@ -21,10 +21,25 @@ function send(mode, key1, key2, key3, key4, key5, key6, key7, key8, key9, key10,
 
                         //デバック用　削除予定
                         console.log(jsonObj)
-
                         //各モードリクエスト後の処理
                         if (mode == "register") {
-                        
+                                if (jsonObj == "success!!") {
+                                        alert("成功しました")
+                                        book_autocomplete(document.getElementById('keyview').value)
+                                } else if (jsonObj == "changed") {
+                                        alert("更新しました")
+                                        book_autocomplete(document.getElementById('keyview').value)
+                                } else {
+                                        alert("失敗しました。")
+                                        book_autocomplete(document.getElementById('keyview').value)
+                                }
+                                window.location.reload
+                        } else if (mode == "delete") {
+                                if (jsonObj == "deleted") {
+                                        alert("削除しました")
+                                } else {
+                                        alert("失敗しました")
+                                }
                         } else if (mode == "book_num") {
                                 okk(jsonObj, key1)
                         } else if (mode == "book_cheak") {
@@ -48,6 +63,7 @@ function okk(jsonObj, isbn) {
                 if (jsonObj[i][0] == isbn) {
                         //変更ボタン出現
                         document.getElementById("changes_button").style.display = "block";
+                        document.getElementById("deletes_button").style.display = "block";
                         //DB登録数を表示
                         document.getElementById("number").value = jsonObj[i][21]
                         return

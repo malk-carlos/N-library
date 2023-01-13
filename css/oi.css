@@ -18,7 +18,7 @@ table td {
     width: 80vw;
 }
 
-#changes_button{
+#changes_button,#deletes_button{
 display: none
 }
 .box{
