@@ -1,14 +1,13 @@
-
-
 /* ここの処理は仮なので表示システムに応じて新しくプログラムしてください */
 
 /*
-現在　test(jsonObj)が自動的に実行されるので（./js/api.js:21）
+現在　test(jsonObj)が自動的に実行されるので（./js/api.js:31）
 jsonObjに蔵書のデータが格納されています。
 
 */
+
 function test(jsonObj) {
-    var table = document.getElementById('foo-table');  //表のオブジェクトを取得
+    const table = document.getElementById('foo-table');  //表のオブジェクトを取得
 
     //DB分繰り返し表作成
     for (j = 1; j < jsonObj.length; j++) {

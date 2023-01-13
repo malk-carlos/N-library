@@ -1,6 +1,7 @@
 /*ログイン情報関連*/
 
 //　ログイン情報はCookieに保存済み
+//cheak()の返り値
 loginData.name //名前
 loginData.family_name //姓
 loginData.given_name //名
@@ -13,7 +14,7 @@ loginData.sub //アカウントID
 send(mode, key1, key2, ke...key20)
 
 //仕様
-    //log
+    //log & admin_cheak
     //ログイン試行履歴送信モード
         //key1 = 日付
         //key2 = IPアドレス
@@ -23,6 +24,8 @@ send(mode, key1, key2, ke...key20)
         //key6 = os
         //key7 = エージェント
         //key8 = エラーメッセージ ("ない場合は””で空欄")
+        //key9 = 名前
+        //key10 = GoogleID
 
     //book_cheak & book_num & ad_book_cheak
     //蔵書DBを返す
