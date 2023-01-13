@@ -28,7 +28,9 @@ send(mode, key1, key2, ke...key20)
     //蔵書DBを返す
         //keyは不要
     
-    //
+    //delete
+    //蔵書削除機能
+    //key1 = ISBN
     
     //register
     //本を登録処理
