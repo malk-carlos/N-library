@@ -11,10 +11,8 @@ function book_autocomplete(isbns) {
         fetch('https://api.openbd.jp/v1/get?isbn=' + isbns)
             .then((response) => response.json())
             .then((data) => Data = data)
-
-        setTimeout(() => {
+            .then(response => {
             console.log(Data)
-
             for (i = 2; i < 19; i++) {
                 try {
                     datas_arry[i] = eval(datas[i])
@@ -35,10 +33,10 @@ function book_autocomplete(isbns) {
                     datas_arry[i] = "-"
                 }
                 if (i == 18) {
-                    document.getElementById("books_tbl").rows[i - 2].cells[1].innerHTML = datas_arry[i]
+                    document.getElementById("books_tbl").rows[i - 2].cells[1].innerHTML = '<div id="books'+i+'">'+datas_arry[i]+'</div>'
 
                 } else {
-                    document.getElementById("books_tbl").rows[i - 2].cells[1].innerHTML = datas_arry[i]
+                    document.getElementById("books_tbl").rows[i - 2].cells[1].innerHTML = '<div id="books'+i+'">'+datas_arry[i]+'</div>'
                 }
                 document.getElementById("books_tbl").rows[i - 2].cells[0].innerHTML = subject[i]
 
@@ -51,14 +49,15 @@ function book_autocomplete(isbns) {
             }
             register()
 
-        }, 2000);
+        })
+        
     }
 }
 
 
 function register() {
     for (i = 2; i < 19; i++) {
-        datas_arry[i] = encodeURIComponent(document.getElementById("books" + i).value)
+        datas_arry[i] = encodeURIComponent(document.getElementById("books" + i).innerHTML)
         console.log(datas_arry[i])
     }
     send("register", datas_arry[18], datas_arry[2], datas_arry[3], datas_arry[4], datas_arry[5], datas_arry[6], datas_arry[7], datas_arry[8], datas_arry[9], datas_arry[10], datas_arry[11], datas_arry[12], datas_arry[13], datas_arry[14], datas_arry[15], datas_arry[16], datas_arry[17], document.img.src, encodeURIComponent(document.getElementById("options").value), Number(document.getElementById("number").value) + 1)
