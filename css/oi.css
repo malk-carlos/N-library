@@ -18,9 +18,6 @@ table td {
     width: 80vw;
 }
 
-#changes_button,#deletes_button{
-display: none
-}
 .box{
 min-width: 90%;
 max-width: 90%;
@@ -33,4 +30,12 @@ height: 150px;
 }
 .box:read-only{
     background-color: rgba(0, 0, 0, 0.265);
+}
+
+img{
+    height: 200px;
+}
+
+#keyview{
+    visibility:hidden
 }

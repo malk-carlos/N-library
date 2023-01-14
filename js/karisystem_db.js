@@ -30,7 +30,7 @@ function test(jsonObj) {
             eval('cell' + i + '.innerHTML= "<div class=table"+' + i + ' +">" + jsonObj[' + j + '][' + (i - 2) + ']+" </div>"')
         }
 
-        cell25.innerHTML = ""
+        cell25.innerHTML = '<a href="./change.html?'+jsonObj[j][0]+'">編集</a>'
         /* 行作成エリアここまで　↑↑↑↑↑↑ */
     }
 

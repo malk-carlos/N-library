@@ -4,18 +4,7 @@ const subject = ["", "", "タイトル", "タイトルカナ", "サブタイト�
 let datas_arry = []
 
 
-function mode_changes(id) {
-    if (eval('document.getElementById("books' + id + '").readOnly')) {
 
-        eval('document.getElementById("books' + id + '").readOnly = false;')
-        eval('document.getElementById("mode_change_button' + id + '").innerHTML ="完了";')
-    } else {
-
-        eval('document.getElementById("books' + id + '").readOnly = true;')
-        eval('document.getElementById("mode_change_button' + id + '").innerHTML = "修正";')
-    }
-
-}
 
 
 
@@ -43,7 +32,7 @@ function book_autocomplete(isbns) {
                         }
                     }
                     if (i == 11) {
-                        if (!datas_arry[i] || datas_arry[i] != "-") {
+                        if (!datas_arry[i] || datas_arry[i] != "-" || datas_arry[i]=="") {
                             datas_arry[11] = datas_arry[11].substring(0, 4) + "/" + datas_arry[11].substring(4, 6) + "/" + datas_arry[11].substring(6)
                         }
                     }
@@ -51,17 +40,23 @@ function book_autocomplete(isbns) {
                     datas_arry[i] = "-"
                 }
                 if (i == 18) {
-                    document.getElementById("books_tbl").rows[i - 2].cells[1].innerHTML = '<textarea readonly class="box" id=books' + i + ' type="text" >' + datas_arry[i] + '</textarea>'
+                    document.getElementById("books_tbl").rows[i - 2].cells[1].innerHTML = datas_arry[i]
 
                 } else {
-                    document.getElementById("books_tbl").rows[i - 2].cells[1].innerHTML = '<textarea readonly class="box" id=books' + i + ' type="text" >' + datas_arry[i] + '</textarea><button id="mode_change_button' + i + '" onclick="mode_changes(' + i + ')">修正</button>'
+                    document.getElementById("books_tbl").rows[i - 2].cells[1].innerHTML =datas_arry[i]
                 }
                 document.getElementById("books_tbl").rows[i - 2].cells[0].innerHTML = subject[i]
 
             }
-            document.getElementById("")
-            document.getElementById("img").innerHTML = "<img src=" + Data[0].onix.CollateralDetail.SupportingResource[0].ResourceVersion[0].ResourceLink + ">"
-        }, 3000);
+            
+            try{
+                document.getElementById("img").innerHTML = "<img name='img'  src=" + Data[0].onix.CollateralDetail.SupportingResource[0].ResourceVersion[0].ResourceLink + ">"  
+            }catch(e){
+                document.getElementById("img").innerHTML = "<img name='img' src=../img/noimage.png>" 
+            }
+            register()
+            
+        }, 2000);
     }
 }
 
@@ -71,22 +66,8 @@ function register() {
         datas_arry[i] = encodeURIComponent(document.getElementById("books" + i).value)
         console.log(datas_arry[i])
     }
-    send("register", datas_arry[18], datas_arry[2], datas_arry[3], datas_arry[4], datas_arry[5], datas_arry[6], datas_arry[7], datas_arry[8], datas_arry[9], datas_arry[10], datas_arry[11], datas_arry[12], datas_arry[13], datas_arry[14], datas_arry[15], datas_arry[16], datas_arry[17], Data[0].onix.CollateralDetail.SupportingResource[0].ResourceVersion[0].ResourceLink, encodeURIComponent(document.getElementById("options").value), Number(document.getElementById("number").value) + 1)
+    send("register", datas_arry[18], datas_arry[2], datas_arry[3], datas_arry[4], datas_arry[5], datas_arry[6], datas_arry[7], datas_arry[8], datas_arry[9], datas_arry[10], datas_arry[11], datas_arry[12], datas_arry[13], datas_arry[14], datas_arry[15], datas_arry[16], datas_arry[17], document.img.src, encodeURIComponent(document.getElementById("options").value), Number(document.getElementById("number").value) + 1)
 }
-
-function cheanges() {
-    for (i = 2; i < 19; i++) {
-        datas_arry[i] = encodeURIComponent(document.getElementById("books" + i).value)
-        console.log(datas_arry[i])
-    }
-    send("register", datas_arry[18], datas_arry[2], datas_arry[3], datas_arry[4], datas_arry[5], datas_arry[6], datas_arry[7], datas_arry[8], datas_arry[9], datas_arry[10], datas_arry[11], datas_arry[12], datas_arry[13], datas_arry[14], datas_arry[15], datas_arry[16], datas_arry[17], Data[0].onix.CollateralDetail.SupportingResource[0].ResourceVersion[0].ResourceLink, encodeURIComponent(document.getElementById("options").value), document.getElementById("number").value)
-}
-
-function deletes(){
-    send("delete",datas_arry[18])
-}
-
-
 
 let texts
 document.addEventListener('keypress', keypress_ivent);
