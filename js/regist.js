@@ -47,7 +47,7 @@ function book_autocomplete(isbns) {
             try {
                 document.getElementById("img").innerHTML = "<img name='img'  src=" + Data[0].onix.CollateralDetail.SupportingResource[0].ResourceVersion[0].ResourceLink + ">"
             } catch (e) {
-                document.getElementById("img").innerHTML = "<img name='img' src=../img/noimage.png>"
+                document.getElementById("img").innerHTML = "<img name='img' src=./img/noimage.png>"
             }
             register()
 
