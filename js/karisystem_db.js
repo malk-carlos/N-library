@@ -46,7 +46,7 @@ function test(jsonObj) {
             displayLength: 30,
             columnDefs: [
                 // 1列目を消す(visibleをfalseにすると消えます)
-                { targets: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 24], visible: false },
+                { targets: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 24], visible: false },
                 { targets:[0], width: "20px"},
                 {targets:1,"width":"80%"},
                 { targets:[23,25], "width": "10%"},              

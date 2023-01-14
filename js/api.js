@@ -20,7 +20,7 @@ function send(mode, key1, key2, key3, key4, key5, key6, key7, key8, key9, key10,
                         jsonObj = JSON.parse(xhr.responseText);
 
                         //デバック用　削除予定
-                        console.log(jsonObj)
+                        //console.log(jsonObj)
                         //各モードリクエスト後の処理
                         if (mode == "register") {
                                 if (jsonObj == "success!!") {
@@ -51,7 +51,7 @@ function send(mode, key1, key2, key3, key4, key5, key6, key7, key8, key9, key10,
                                 systems()
                         } else if (mode == "admin_cheak") {
                                 if (jsonObj == "complete") {
-                                        window.location.href = "./regist.html"
+                                        window.location.href = "./admin.html"
                                 }
                 }
 

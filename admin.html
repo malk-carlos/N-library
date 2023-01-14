@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="./css/library.css">
+    <title>書籍検索</title>
+
+    <script src="./js/api.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.css" />
+    <script src="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.js"></script>
+    <script src="./js/karisystem_db.js"></script>
+    <link rel="stylesheet" href="./css/karisystem_db.css" />
+</head>
+
+<body>
+    <header>
+        <script src="./js/header.js"></script>
+        <script>header();</script>
+    </header>
+    <h1>管理者様</h1>
+    <a href="./regist.html">蔵書を追加</a>
+    <div id="tables">
+    <table id="foo-table" class="table table-bordered">
+        <thead>
+            <tr>
+                <th class="th_img">本の画像</th>
+                <th class="th_text">一覧</th>
+                <th>ISBN</th>
+                <th>タイトル</th>
+                <th>タイトルかな</th>
+                <th>サブタイトル</th>
+                <th>サブタイトルかな</th>
+                <th>シリーズ</th>
+                <th>シリーズかな</th>
+                <th>著者</th>
+                <th>著者かな</th>
+                <th>出版社</th>
+                <th>出版日</th>
+                <th>ページ数</th>
+                <th>分類</th>
+                <th>内容紹介</th>
+                <th>著者紹介</th>
+                <th>キーワード</th>
+                <th>価格</th>
+                <th>画像</th>
+                <th>登録数</th>
+                <th>予約数</th>
+                <th>貸出数</th>
+                <th>在庫数</th>
+                <th>貸出許可</th>
+                <th> </th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+        </tbody>
+    </table>
+</div>
+    <script>
+        //ページ読み込み後　DBへ蔵書DBの照会
+        window.onload = function () {
+            send("book_cheak")
+            console.log("読み込み完了")
+        }
+    </script>
+</body>
+
+</html>
