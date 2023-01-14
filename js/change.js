@@ -79,5 +79,5 @@ function cheanges() {
 
 
 function deletes() {
-    send("delete", datas_arry[18])
+    send("delete", document.getElementById("books20").value)
 }
