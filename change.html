@@ -8,8 +8,9 @@
 
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script> 
     <link rel="stylesheet" href="./css/oi.css" />
-    <script src="./js/regist.js"></script>   
-    <title>書籍登録</title>
+   
+    
+    <title>書籍hennkou</title>
 
 </head>
 
@@ -19,9 +20,13 @@
         <script>header();</script>
     </header>
     <textarea id="keyview"></textarea>
-    <h2>書籍登録</h2>
-    <div id="img"></div>
-    <table id="books_tbl">
+    <h2>書籍情報変更</h2>
+    
+    <table id="books_tbl2">
+        <tr>
+            <th></th>
+            <td></td>
+        </tr>
         <tr>
             <th></th>
             <td></td>
@@ -92,17 +97,26 @@
         </tr>
         <tr>
             <th>貸出許可</th>
-            <td><select id="options">
-                    <option>許可</option>
-                    <option>禁止</option>
-                </select></td>
+            <td></td>
         </tr>
         <tr>
-            <th>登録数</th>
-            <td><input id="number" type="text"></td>
+            <th>ISBN</th>
+            <td></td>
         </tr>
         </tbody>
-    </table>  
-</body>
+    </table>
+    <button id="changes_button" onclick="cheanges()">変更</button>
+    <button id="deletes_button" onclick="deletes()">削除</button>
+    <script src="./js/change.js"></script>
+    <script src="./js/api.js"></script>
+    <script>
 
+        //ページ読み込み後　DBへ蔵書DBの照会
+        window.onload = function () {
+            send("db_cheak",(new URL(window.location.href).search).replace("?",""))
+
+        }
+    </script>
+    
+</body>
 </html>

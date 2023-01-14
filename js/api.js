@@ -28,7 +28,7 @@ function send(mode, key1, key2, key3, key4, key5, key6, key7, key8, key9, key10,
                                         book_autocomplete(document.getElementById('keyview').value)
                                 } else if (jsonObj == "changed") {
                                         alert("更新しました")
-                                        book_autocomplete(document.getElementById('keyview').value)
+                                        window.location.reload
                                 } else {
                                         alert("失敗しました。")
                                         book_autocomplete(document.getElementById('keyview').value)
@@ -44,13 +44,15 @@ function send(mode, key1, key2, key3, key4, key5, key6, key7, key8, key9, key10,
                                 okk(jsonObj, key1)
                         } else if (mode == "book_cheak") {
                                 test(jsonObj)
+                        }else if(mode == "db_cheak"){
+                                db_cheak(jsonObj)
+                        }
                         } else if (mode == "log") {
                                 systems()
                         } else if (mode == "admin_cheak") {
                                 if (jsonObj == "complete") {
                                         window.location.href = "./regist.html"
                                 }
-                        }
                 }
 
 
@@ -66,7 +68,7 @@ function okk(jsonObj, isbn) {
                         document.getElementById("deletes_button").style.display = "block";
                         //DB登録数を表示
                         document.getElementById("number").value = jsonObj[i][21]
-                        return
+                        return 
                 }
         }
         //新規登録登録「1」
