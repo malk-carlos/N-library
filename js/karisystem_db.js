@@ -30,7 +30,7 @@ function test(jsonObj) {
             eval('cell' + i + '.innerHTML= "<div class=table"+' + i + ' +">" + jsonObj[' + j + '][' + (i - 2) + ']+" </div>"')
         }
 
-        cell25.innerHTML = '<a href="./change.html?'+jsonObj[j][0]+'">編集</a>'
+        cell25.innerHTML = '<a href="./change.html?' + jsonObj[j][0] + '">編集</a>'
         /* 行作成エリアここまで　↑↑↑↑↑↑ */
     }
 
@@ -47,9 +47,9 @@ function test(jsonObj) {
             columnDefs: [
                 // 1列目を消す(visibleをfalseにすると消えます)
                 { targets: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 24], visible: false },
-                { targets:[0], width: "20px"},
-                {targets:1,"width":"80%"},
-                { targets:[23,25], "width": "10%"},              
+                { targets: [0], width: "20px" },
+                { targets: 1, "width": "80%" },
+                { targets: [23, 25], "width": "10%" },
             ]
         });
         $("#foo-table").DataTable();

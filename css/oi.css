@@ -18,24 +18,27 @@ table td {
     width: 80vw;
 }
 
-.box{
-min-width: 90%;
-max-width: 90%;
-height: 30px;
+.box {
+    min-width: 90%;
+    max-width: 90%;
+    height: 30px;
 }
 
-#books14,#books15,#books16{
-height: 150px;
+#books14,
+#books15,
+#books16 {
+    height: 150px;
 
 }
-.box:read-only{
+
+.box:read-only {
     background-color: rgba(0, 0, 0, 0.265);
 }
 
-img{
+img {
     height: 200px;
 }
 
-#keyview{
-    visibility:hidden
+#keyview {
+    visibility: hidden
 }

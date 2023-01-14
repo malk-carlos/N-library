@@ -1,18 +1,18 @@
 let loginData
 
-function cheak(){
+function cheak() {
     //cookie照会処理
     const sessionid = cookieVal('sessionID');
     function cookieVal(key) { return ((document.cookie + ';').match(key + '=([^¥S;]*)') || [])[1]; }
-    if(sessionid){
+    if (sessionid) {
         loginData = JSON.parse(sessionid)
     }
     return loginData
 }
 
-function logout(){
+function logout() {
     //Cookie削除
-    document.cookie = "sessionID=; max-age=0";window.location.href = "./index.html"
+    document.cookie = "sessionID=; max-age=0"; window.location.href = "./index.html"
 }
 
 function systems() {
@@ -27,7 +27,7 @@ function systems() {
         if (loginData.hd !== "nnn.ed.jp") {
             //ログ出力
             //モード,日付,IPアドレス,メールアドレス,利用ブラウザ,利用ブラウザバージョン,OS名,ユーザーエージェント,エラー情報(NotSupportAccount)
-            send("log",new Date().toLocaleString(), ((document.cookie + ';').match('IP=([^¥S;]*)') || [])[1], loginData.email, platform.name, platform.version, platform.os.toString(), navigator.userAgent, "NotSupportAccount")
+            send("log", new Date().toLocaleString(), ((document.cookie + ';').match('IP=([^¥S;]*)') || [])[1], loginData.email, platform.name, platform.version, platform.os.toString(), navigator.userAgent, "NotSupportAccount")
             //エラー発生
             throw "対応していないアカウント"
         }
@@ -37,14 +37,14 @@ function systems() {
 
         //ログ出力
         //モード,日付,IPアドレス,メールアドレス,利用ブラウザ,利用ブラウザバージョン,OS名,ユーザーエージェント,エラー情報(なし)
-        send("log",new Date().toLocaleString(), ((document.cookie + ';').match('IP=([^¥S;]*)') || [])[1], loginData.email, platform.name, platform.version, platform.os.toString(), navigator.userAgent, "",encodeURIComponent(loginData.name),encodeURIComponent(loginData.sub))
+        send("log", new Date().toLocaleString(), ((document.cookie + ';').match('IP=([^¥S;]*)') || [])[1], loginData.email, platform.name, platform.version, platform.os.toString(), navigator.userAgent, "", encodeURIComponent(loginData.name), encodeURIComponent(loginData.sub))
         setTimeout(() => {
             window.location.href = "./mypage.html"
-            }, 1000);
-        
+        }, 1000);
+
 
         //URLバーpath削除
-//        history.replaceState('', '', new URL(window.location.href).pathname);
+        //        history.replaceState('', '', new URL(window.location.href).pathname);
 
     } catch (e) {
         if (e == "対応していないアカウント") {
@@ -58,9 +58,9 @@ function systems() {
             //エラーページへ移行
             //ログ出力
             //モード,日付,IPアドレス,メールアドレス,利用ブラウザ,利用ブラウザバージョン,OS名,ユーザーエージェント,エラー情報(LoginUrlError)
-            send("log",new Date().toLocaleString(), ((document.cookie + ';').match('IP=([^¥S;]*)') || [])[1], "", platform.name, platform.version, platform.os.toString(), navigator.userAgent, "LoginUrlError")
+            send("log", new Date().toLocaleString(), ((document.cookie + ';').match('IP=([^¥S;]*)') || [])[1], "", platform.name, platform.version, platform.os.toString(), navigator.userAgent, "LoginUrlError")
             setTimeout(() => {
-            window.location.href = "./error.html?E2"
+                window.location.href = "./error.html?E2"
             }, 1000);
 
 

@@ -6,10 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script> 
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <link rel="stylesheet" href="./css/oi.css" />
-   
-    
+
+
     <title>書籍hennkou</title>
 
 </head>
@@ -21,7 +21,7 @@
     </header>
     <textarea id="keyview"></textarea>
     <h2>書籍情報変更</h2>
-    
+
     <table id="books_tbl2">
         <tr>
             <th></th>
@@ -113,10 +113,11 @@
 
         //ページ読み込み後　DBへ蔵書DBの照会
         window.onload = function () {
-            send("db_cheak",(new URL(window.location.href).search).replace("?",""))
+            send("db_cheak", (new URL(window.location.href).search).replace("?", ""))
 
         }
     </script>
-    
+
 </body>
+
 </html>

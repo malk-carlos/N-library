@@ -3,11 +3,6 @@ const datas = ["", "", 'Data[0].onix.DescriptiveDetail.TitleDetail.TitleElement.
 const subject = ["", "", "タイトル", "タイトルカナ", "サブタイトル", "サブタイトルかな", "シリーズ", "シリーズかな", "著者", "著者かな", "出版社", "出版日", "ページ数", "分類", "内容紹介", "著者紹介", "キーワード", "価格", "ISBN"]
 let datas_arry = []
 
-
-
-
-
-
 function book_autocomplete(isbns) {
     send("book_num", isbns)
     if (isbns == "") {
@@ -32,7 +27,7 @@ function book_autocomplete(isbns) {
                         }
                     }
                     if (i == 11) {
-                        if (!datas_arry[i] || datas_arry[i] != "-" || datas_arry[i]=="") {
+                        if (!datas_arry[i] || datas_arry[i] != "-" || datas_arry[i] == "") {
                             datas_arry[11] = datas_arry[11].substring(0, 4) + "/" + datas_arry[11].substring(4, 6) + "/" + datas_arry[11].substring(6)
                         }
                     }
@@ -43,19 +38,19 @@ function book_autocomplete(isbns) {
                     document.getElementById("books_tbl").rows[i - 2].cells[1].innerHTML = datas_arry[i]
 
                 } else {
-                    document.getElementById("books_tbl").rows[i - 2].cells[1].innerHTML =datas_arry[i]
+                    document.getElementById("books_tbl").rows[i - 2].cells[1].innerHTML = datas_arry[i]
                 }
                 document.getElementById("books_tbl").rows[i - 2].cells[0].innerHTML = subject[i]
 
             }
-            
-            try{
-                document.getElementById("img").innerHTML = "<img name='img'  src=" + Data[0].onix.CollateralDetail.SupportingResource[0].ResourceVersion[0].ResourceLink + ">"  
-            }catch(e){
-                document.getElementById("img").innerHTML = "<img name='img' src=../img/noimage.png>" 
+
+            try {
+                document.getElementById("img").innerHTML = "<img name='img'  src=" + Data[0].onix.CollateralDetail.SupportingResource[0].ResourceVersion[0].ResourceLink + ">"
+            } catch (e) {
+                document.getElementById("img").innerHTML = "<img name='img' src=../img/noimage.png>"
             }
             register()
-            
+
         }, 2000);
     }
 }

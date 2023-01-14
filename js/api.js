@@ -2,7 +2,7 @@
 
 //宣言
 let jsonObj, flag = false;
-let mode,key1,key2,key3,key4,key5,key6,key7,key8,key9,key10,key11,key12,key13,key14,key15,key16,key17,key18,key19,key20;
+let mode, key1, key2, key3, key4, key5, key6, key7, key8, key9, key10, key11, key12, key13, key14, key15, key16, key17, key18, key19, key20;
 const apiurl = 'https://script.google.com/macros/s/AKfycbyOBgvJG2v2xqtAHXU_wmFixyYxRHEPsyykDd5disH6zVmxMY4SUE6QcwGn9fOkGA1e/exec'
 
 function send(mode, key1, key2, key3, key4, key5, key6, key7, key8, key9, key10, key11, key12, key13, key14, key15, key16, key17, key18, key19, key20) {
@@ -44,15 +44,15 @@ function send(mode, key1, key2, key3, key4, key5, key6, key7, key8, key9, key10,
                                 okk(jsonObj, key1)
                         } else if (mode == "book_cheak") {
                                 test(jsonObj)
-                        }else if(mode == "db_cheak"){
+                        } else if (mode == "db_cheak") {
                                 db_cheak(jsonObj)
                         }
-                        } else if (mode == "log") {
-                                systems()
-                        } else if (mode == "admin_cheak") {
-                                if (jsonObj == "complete") {
-                                        window.location.href = "./admin.html"
-                                }
+                } else if (mode == "log") {
+                        systems()
+                } else if (mode == "admin_cheak") {
+                        if (jsonObj == "complete") {
+                                window.location.href = "./admin.html"
+                        }
                 }
 
 
@@ -68,7 +68,7 @@ function okk(jsonObj, isbn) {
                         document.getElementById("deletes_button").style.display = "block";
                         //DB登録数を表示
                         document.getElementById("number").value = jsonObj[i][21]
-                        return 
+                        return
                 }
         }
         //新規登録登録「1」

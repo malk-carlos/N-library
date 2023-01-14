@@ -44,9 +44,9 @@
             google.accounts.id.prompt(); // also display the One Tap dialog
         }
 
-   function onSubmit(token) {
-     document.getElementById("demo-form").submit();
-   }
+        function onSubmit(token) {
+            document.getElementById("demo-form").submit();
+        }
 
 
     </script>
@@ -57,10 +57,8 @@
 <body>
 
     <!--Googleログインボタン-->
-    <div id="buttonDiv"  class="g-recaptcha" 
-    data-sitekey="6LdVN_MjAAAAALeGoQ2na_Pprw-EDcZTJppbDh78" 
-    data-callback='onSubmit' 
-    data-action='submit'></div>
+    <div id="buttonDiv" class="g-recaptcha" data-sitekey="6LdVN_MjAAAAALeGoQ2na_Pprw-EDcZTJppbDh78"
+        data-callback='onSubmit' data-action='submit'></div>
 
     <form action="./library.html" method="post">
         <div>
@@ -83,4 +81,5 @@
     </form>
 
 </body>
+
 </html>
