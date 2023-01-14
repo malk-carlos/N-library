@@ -23,7 +23,8 @@
             fetch('https://api.ipify.org/?format=json')
                 .then((response) => response.json())
                 .then((data) => document.cookie = 'IP=' + data.ip + '; max-age=86400;')//86400 = 1日
-
+                .then(response =>{
+                    
             //ログインセッション確認
             if (cheak()) {
                 //systems()
@@ -31,7 +32,7 @@
             } else {
                 //再ログイン必要
                 window.location.href = "./error.html?E2"
-            }
+            } })
 
             function admin() {
                 let loginData = cheak()
