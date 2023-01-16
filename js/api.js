@@ -22,6 +22,9 @@ function send(mode, key1, key2, key3, key4, key5, key6, key7, key8, key9, key10,
                         //デバック用　削除予定
                         //console.log(jsonObj)
                         //各モードリクエスト後の処理
+                        if (jsonObj == "complete") {
+                                window.location.href = "./admin.html"
+                        }
                         if (mode == "register") {
                                 if (jsonObj == "success!!") {
                                         alert("成功しました")
@@ -46,16 +49,13 @@ function send(mode, key1, key2, key3, key4, key5, key6, key7, key8, key9, key10,
                                 test(jsonObj)
                         } else if (mode == "db_cheak") {
                                 db_cheak(jsonObj)
+                        } else if (mode = "LendingData") {
+                                console.log(jsonObj)
+                                mydata(jsonObj)
                         }
                 } else if (mode == "log") {
                         systems()
-                } else if (mode == "admin_cheak") {
-                        if (jsonObj == "complete") {
-                                window.location.href = "./admin.html"
-                        }
-                }
-
-
+                } 
         }
 }
 
