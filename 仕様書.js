@@ -27,7 +27,7 @@ send(mode, key1, key2, ke...key20)
         //key9 = 名前
         //key10 = GoogleID
 
-    //book_cheak & book_num & ad_book_cheak
+    //book_cheak & book_num & db_cheak
     //蔵書DBを返す
         //keyは不要
     

@@ -1,0 +1,19 @@
+table {
+    width: 80vw;
+    background-color: #ffe;
+    border-collapse: collapse;
+}
+
+table th {
+    width: 10px;
+    background-color: #eee;
+}
+
+table th,
+table td {
+    border: solid 1px #aaa;
+
+}
+img{
+    height: 120px;
+}
