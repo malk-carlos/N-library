@@ -1,0 +1,24 @@
+h1 {
+    text-align: center;
+    width: 80%;
+    margin: 5vh auto;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #333;
+}
+
+#container {
+    text-align: center;
+}
+
+.book {
+    display: inline-block;
+    width: 20vw;
+    height: 25vw;
+    margin: 2%;
+}
+
+.coverimg {
+    width: 80%;
+    height: 80%;
+    object-fit: contain;
+}
