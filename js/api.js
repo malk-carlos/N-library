@@ -22,6 +22,9 @@ function send(mode, key1, key2, key3, key4, key5, key6, key7, key8, key9, key10,
                         //デバック用　削除予定
                         //console.log(jsonObj)
                         //各モードリクエスト後の処理
+                        if (jsonObj == "complete") {
+                                window.location.href = "./admin.html"
+                        }
                         if (mode == "register") {
                                 if (jsonObj == "success!!") {
                                         alert("成功しました")
@@ -33,6 +36,7 @@ function send(mode, key1, key2, key3, key4, key5, key6, key7, key8, key9, key10,
                                         alert("失敗しました。")
                                         book_autocomplete(document.getElementById('keyview').value)
                                 }
+                                flags ="off"
                                 window.location.reload
                         } else if (mode == "delete") {
                                 if (jsonObj == "deleted") {
@@ -41,36 +45,29 @@ function send(mode, key1, key2, key3, key4, key5, key6, key7, key8, key9, key10,
                                         alert("失敗しました")
                                 }
                         } else if (mode == "book_num") {
-                                okk(jsonObj, key1)
+                                return okk(jsonObj, key1)
                         } else if (mode == "book_cheak") {
                                 test(jsonObj)
                         } else if (mode == "db_cheak") {
                                 db_cheak(jsonObj)
+                        } else if (mode = "LendingData") {
+                                console.log(jsonObj)
+                                mydata(jsonObj)
                         }
                 } else if (mode == "log") {
                         systems()
-                } else if (mode == "admin_cheak") {
-                        if (jsonObj == "complete") {
-                                window.location.href = "./admin.html"
-                        }
-                }
-
-
+                } 
         }
 }
 
-function okk(jsonObj, isbn) {
+function okk(books, isbn) {
         //DB検索
-        for (i = 1; i < jsonObj.length; i++) {
-                if (jsonObj[i][0] == isbn) {
-                        //変更ボタン出現
-                        document.getElementById("changes_button").style.display = "block";
-                        document.getElementById("deletes_button").style.display = "block";
-                        //DB登録数を表示
-                        document.getElementById("number").value = jsonObj[i][21]
-                        return
-                }
+        console.log(books,"books")
+        for (i = 1; i < books.length; i++) {
+                        document.getElementById("number").value = books[i][21]
+                        return       
         }
         //新規登録登録「1」
         document.getElementById("number").value = 1
+        return "ok"
 }
