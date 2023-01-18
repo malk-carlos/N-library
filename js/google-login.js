@@ -34,8 +34,16 @@ function logout() {
 
 function systems() {
     try {
-        const sessionid = cookieVal('sessionID');
+        let sessionid = cookieVal('sessionID');
         function cookieVal(key) { return ((document.cookie + ';').match(key + '=([^¥S;]*)') || [])[1]; }
+
+        if(sessionid.slice( -1 )!="}"){
+            console.log(sessionid.length)
+            sessionid = String(`${sessionid}`)+'"}'
+            document.cookie = 'sessionID=' + sessionid + '; max-age=86400;';//86400
+         }
+        
+        
 
         //cookieにログイン情報を照会
         loginData = JSON.parse(sessionid)
