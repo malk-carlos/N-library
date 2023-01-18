@@ -18,20 +18,16 @@ function test(jsonObj) {
         for (q = 1; q < 26; q++) {//表の数分設定
             // cell(q) = row.insertCell(q);の変数名宣言
             eval(`var cell${q} = row.insertCell(${q});`)
-            console.log("j",j,"q",q)
         }
         /* 初期設定エリアここまで　↑↑↑↑↑↑ */
 
 
         /* 行作成エリア　↓↓↓↓↓↓↓ */
-        // cell.innerHTML = "<img class='book_img' src='" + jsonObj[j][17] + "'>"
         cell.innerHTML = `<img class='book_img' src='${jsonObj[j][17]}'>`
         // cell1.innerHTML = "<div class='book_view'><div class='book_title'>" + jsonObj[j][1] + "</div><div class='book_name'>" + jsonObj[j][7] + "</div><div class='book_cp'> " + jsonObj[j][9] + "</div><div class='book_data'>" + jsonObj[1][10].substr(0, 10) + "</div></div>"
-        cell1.innerHTML = `<div class='book_view'><div class='book_title'>${jsonObj[j][1]}</div><div class='book_name'>${jsonObj[j][7]}</div><div class='book_cp'> ${jsonObj[j][9]}</div><div class='book_data'>${jsonObj[1][10].substr(0, 10)}</div></div>`
-
+        cell1.innerHTML = `<div class='book_view'><div class='book_title'>${jsonObj[j][1]}</div><div class='book_name'>${jsonObj[j][7]}</div><div class='book_cp'> ${jsonObj[j][9]}</div><div class='book_data'>${jsonObj[j][10].substr(0, 10)}</div></div>`
         for (i = 2; i < 25; i++) {//自動セル書き込み
             eval('cell' + i + '.innerHTML= "<div class=table"+' + i + ' +">" + jsonObj[' + j + '][' + (i - 2) + ']+" </div>"')
-            console.log("i",i)
         }
 
         cell25.innerHTML = '<a href="./change.html?' + jsonObj[j][0] + '">編集</a>'

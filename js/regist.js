@@ -25,8 +25,12 @@ function book_autocomplete(isbns) {
                             }
                         }
                         if (i == 11) {
-                            if (!datas_arry[i] || datas_arry[i] != "-" || datas_arry[i] == "") {
-                                datas_arry[11] = datas_arry[11].substring(0, 4) + "/" + datas_arry[11].substring(4, 6) + "/" + datas_arry[11].substring(6)
+                            if (!datas_arry[i] || datas_arry[i] != "-" || !datas_arry[i] == Number) {
+                                datas_arry[i] = datas_arry[11].substring(0, 4) + "/" + datas_arry[11].substring(4, 6) + "/" + datas_arry[11].substring(6)
+                                if(datas_arry[i]=="//"){
+                                    datas_arry[i] = Data[0].summary.pubdate.replace("-","/")
+                                }
+                                console.warn(datas_arry[11])
                             }
                         }
                     } catch (e) {
