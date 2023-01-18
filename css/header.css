@@ -11,7 +11,7 @@ header {
 }
 
 header>img {
-    height: 7.5vmin;
+    height: 60%;
     left: 2.5%;
     top: 50%;
     transform: translateY(-50%);
@@ -19,33 +19,38 @@ header>img {
     position: absolute;
 }
 
-header>input {
-    width: 300px;
-    height: 5vh;
-    border: none;
-    border-radius: 50px;
-    left: 15%;
+#search {
+    width: 30%;
+    height: calc(100vw * 0.03);
+    left: 12.5%;
     top: 50%;
     transform: translateY(-50%);
     display: inline-block;
     position: absolute;
+    vertical-align: middle;
+}
+
+#search>input {
+    width: 80%;
+    height: 100%;
+    border: none;
+    border-radius: 50px;
+    display: inline-block;
     padding-left: 15px;
 }
 
-header>button {
-    width: 5vh;
-    height: 5vh;
+#search>button {
+    width: 10%;
+    height: 100%;
     border: none;
     border-radius: 50px;
-    left: calc(15% + 330px);
-    top: 50%;
-    transform: translateY(-50%);
     display: inline-block;
-    position: absolute;
     color: #150971;
+    background-color: #fff;
+    margin-left: 10px;
 }
 
-header>button>i {
+#search>button>i {
     width: 12px;
     height: 12px;
 }
@@ -62,9 +67,38 @@ ul>li {
     margin-left: 2.5vw;
 }
 
-ul>li>a,ul>li>span {
+ul>li>a {
     color: #fff;
     text-decoration: none;
     font-size: large;
     cursor: pointer;
+}
+
+ul>li>button {
+    background-color: #fff;
+    color: #150971;
+    border: 1px solid #fff;
+    font-size: large;
+    transition: .2s;
+}
+
+ul>li>button:hover {
+    background-color: #fffd;
+    transform: scale(1.02);
+}
+
+ul>li>button:active {
+    background-color: #150971;
+    color: #fff;
+}
+
+#admin {
+    position: absolute;
+    padding: 0;
+    width: 10px;
+    height: 10px;
+    right: 0;
+    top: 0;
+    border: none;
+    background-color: #fff3;
 }
