@@ -1,6 +1,10 @@
 table {
+    
     background-color: #ffe;
     border-collapse: collapse;
+}
+.table_regi{
+display: none;
 }
 
 table th {
@@ -35,10 +39,17 @@ table td {
     background-color: rgba(0, 0, 0, 0.265);
 }
 
-img {
+#img {
+    display: none;
     height: 200px;
 }
-
 #keyview {
     visibility: hidden
+}
+
+.alertImg {
+    height: 150px;
+}
+.alertTitle{
+    font-size: 2vw;
 }

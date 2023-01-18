@@ -35,9 +35,14 @@ body {
     border: 0;
 }
 
-#buttonDiv {
+#buttonDiv,
+#recapucha {
     position: absolute;
     top: 60%;
     left: 50%;
     transform: translateX(-50%);
+}
+
+#buttonDiv{
+    display: none;
 }
