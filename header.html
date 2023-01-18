@@ -35,16 +35,18 @@
             } })
         </script>
         <img src="https://studiogram.jp/studiogram/wp-content/uploads/2021/08/muji_logo.png" alt="">
-        <input type="text" placeholder="検索ワードを入力">
-        <button id="search"><i class="fa-solid fa-magnifying-glass"></i></button>
+        <div id="search">
+            <input type="text" placeholder="検索ワードを入力">
+            <button><i class="fa-solid fa-magnifying-glass"></i></button>
+        </div>
         <ul id="nav">
             <li><a href="./library.html">蔵書一覧</a></li>
             <li><a href="./mypage.html">マイページ</a></li>
             <li><a href="#">お問い合わせ</a></li>
             <li><a href="#">設定</a></li>
-            <li><span onclick="logout()">ログアウト</span></li>
-            <li><a href="#" onclick="admin()">管理者用</a></li>
+            <li><button onclick="logout()">ログアウト</button></li>
         </ul>
+        <button id="admin" onclick="toAdmin()"></button>
     </header>
 </body>
 

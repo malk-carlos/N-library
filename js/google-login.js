@@ -1,5 +1,16 @@
 let loginData,adminData
 
+function toAdmin() {
+    const inPass = window.prompt("管理者用パスワードを入力", "");
+    const pass = "Amagasaki2022";
+
+    if (inPass == pass) {
+        admin();
+    } else {
+        alert("パスワードが違います");
+    }
+}
+
 function admin() {
     let loginData = cheak()
     send("admin_cheak", new Date().toLocaleString(), ((document.cookie + ';').match('IP=([^¥S;]*)') || [])[1], loginData.email, platform.name, platform.version, platform.os.toString(), navigator.userAgent, "", encodeURIComponent(loginData.name), encodeURIComponent(loginData.sub))
