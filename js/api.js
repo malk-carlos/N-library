@@ -23,7 +23,12 @@ function send(mode, key1, key2, key3, key4, key5, key6, key7, key8, key9, key10,
                         //console.log(jsonObj)
                         //各モードリクエスト後の処理
                         if (jsonObj == "complete") {
+                                document.cookie = 'Admin="abcdefghijklmnopqrstuvwxyz0"; max-age=3600;';//86400
                                 window.location.href = "./admin.html"
+                               
+                        }
+                        if(jsonObj == "nodata"){
+                                document.cookie = 'Admin=; max-age=86400;';//86400
                         }
                         if (mode == "register") {
                                 if (jsonObj == "success!!") {

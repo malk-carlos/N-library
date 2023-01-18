@@ -1,4 +1,9 @@
-let loginData
+let loginData,adminData
+
+function admin() {
+    let loginData = cheak()
+    send("admin_cheak", new Date().toLocaleString(), ((document.cookie + ';').match('IP=([^¥S;]*)') || [])[1], loginData.email, platform.name, platform.version, platform.os.toString(), navigator.userAgent, "", encodeURIComponent(loginData.name), encodeURIComponent(loginData.sub))
+}
 
 function cheak() {
     //cookie照会処理
@@ -8,6 +13,18 @@ function cheak() {
         loginData = JSON.parse(sessionid)
     }
     return loginData
+}
+function admin_cheak(){
+    //cookie照会処理
+    const sessionid = cookieVal('Admin');
+    function cookieVal(key) { return ((document.cookie + ';').match(key + '=([^¥S;]*)') || [])[1]; }
+    if (sessionid) {
+        adminData = JSON.parse(sessionid)
+    }
+
+    if(!adminData){
+        window.location.href = "/error.html?E3"
+    }
 }
 
 function logout() {
