@@ -8,7 +8,7 @@ function admin() {
 function cheak() {
     //cookie照会処理
     const sessionid = cookieVal('sessionID');
-    function cookieVal(key) { return ((document.cookie + ';').match(key + '=([^¥S;]*)') || [])[1]; }
+    function cookieVal(key) { return Cookies.get('sessionID'); }
     if (sessionid) {
         loginData = JSON.parse(sessionid)
     }
@@ -17,7 +17,7 @@ function cheak() {
 function admin_cheak(){
     //cookie照会処理
     const sessionid = cookieVal('Admin');
-    function cookieVal(key) { return ((document.cookie + ';').match(key + '=([^¥S;]*)') || [])[1]; }
+    function cookieVal(key) { return Cookies.get('sessionID'); }
     if (sessionid) {
         adminData = JSON.parse(sessionid)
     }
@@ -35,15 +35,7 @@ function logout() {
 function systems() {
     try {
         let sessionid = cookieVal('sessionID');
-        function cookieVal(key) { return ((document.cookie + ';').match(key + '=([^¥S;]*)') || [])[1]; }
-
-        if(sessionid.slice( -1 )!="}"){
-            console.log(sessionid.length)
-            sessionid = String(`${sessionid}`)+'"}'
-            document.cookie = 'sessionID=' + sessionid + '; max-age=86400;';//86400
-         }
-        
-        
+        function cookieVal(key) { return Cookies.get('sessionID') }        
 
         //cookieにログイン情報を照会
         loginData = JSON.parse(sessionid)
