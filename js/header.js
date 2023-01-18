@@ -7,7 +7,3 @@ function header() {
         }
     });
 }
-
-function search() {
-    
-}
