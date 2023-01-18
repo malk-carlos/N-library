@@ -27,22 +27,46 @@ function send(mode, key1, key2, key3, key4, key5, key6, key7, key8, key9, key10,
                                 window.location.href = "./admin.html"
                                
                         }
-                        if(jsonObj == "nodata"){
+                        if(jsonObj == "noadmindata"){
                                 document.cookie = 'Admin=; max-age=86400;';//86400
                         }
                         if (mode == "register") {
                                 if (jsonObj == "success!!") {
-                                        alert("成功しました")
-                                        book_autocomplete(document.getElementById('keyview').value)
+                                        Swal.fire({
+                                                position: 'top-end',
+                                                icon: 'success',
+                                                title: '登録完了',
+                                                html:
+                                                '<img class="alertImg" src="'+document.img.src+'"><div class="alertTitle">'+Data[0].onix.DescriptiveDetail.TitleDetail.TitleElement.TitleText.content+'</div>'+
+                                                Data[0].onix.DescriptiveDetail.Contributor[0].PersonName.content,
+                                                showConfirmButton: false,
+                                                timer: 1500
+                                              })
+                                        //book_autocomplete(document.getElementById('keyview').value)
                                 } else if (jsonObj == "changed") {
-                                        alert("更新しました")
-                                        window.location.reload
+                                        Swal.fire({
+                                                position: 'top-end',
+                                                icon: 'info',
+                                                title: '追加完了',
+                                                html:
+                                                '<img class="alertImg" src="'+document.img.src+'"><div class="alertTitle">'+Data[0].onix.DescriptiveDetail.TitleDetail.TitleElement.TitleText.content+'</div>'+
+                                                Data[0].onix.DescriptiveDetail.Contributor[0].PersonName.content,
+                                                showConfirmButton: false,
+                                                timer: 1500
+                                              })
                                 } else {
-                                        alert("失敗しました。")
-                                        book_autocomplete(document.getElementById('keyview').value)
+                                        Swal.fire({
+                                                position: 'top-end',
+                                                icon: 'error',
+                                                title: '失敗',
+                                                html:
+                                                '登録に失敗しました。何度も発生する場合は「手動登録を行う」もしくは「システム管理者にお問合せ」をしてください。',
+                                                showConfirmButton: false,
+                                                timer: 1500
+                                              })
+                                        //book_autocomplete(document.getElementById('keyview').value)
                                 }
                                 flags ="off"
-                                window.location.reload
                         } else if (mode == "delete") {
                                 if (jsonObj == "deleted") {
                                         alert("削除しました")
