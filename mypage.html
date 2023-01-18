@@ -41,36 +41,39 @@
         </table>
     </div>
     <script>
-        const logindata = cheak()
-        document.getElementById("name").innerHTML = logindata.name
+        //ログイン情報取得
+        const logindata = cheak() //データ取得
+        document.getElementById("name").innerHTML = logindata.name 
         document.getElementById("mail").innerHTML = logindata.email
-        document.getElementById("icom").innerHTML = "<img src='" + logindata.picture + "'>"
+        document.getElementById("icom").innerHTML = `<img src="${logindata.picture}">`
+        //バーコード表示
         $("#bcTarget").barcode(logindata.sub, "code39", { barWidth: 2.9, barHeight: 90 });
 
-        send("LendingData");
+        //貸出予約履歴照会
+        send("LendingData",logindata.sub);
 
+        //api.jsからの呼び出し（データが返ってきたら）
         function mydata(datas) {
-
             const table = document.getElementById('foo-table');  //表のオブジェクトを取得
-
-            for (let i = 1; i < datas.length; i++) {
+            for (let i = 0; i < datas.length-1; i++) {
                 if (logindata.sub == datas[i][0]) {
                     var row = table.insertRow(-1);  //行末に行(tr要素)を追加
-                    var cell0 = row.insertCell(0);  //セル(td要素)の追加
-                    var cell1 = row.insertCell(1);
-                    var cell2 = row.insertCell(2);
-                    var cell3 = row.insertCell(3);
-
-                    cell0.innerHTML = "<div><img src='" + datas[i][8] + "'</div><div>" + datas[i][7] + "</div>" + datas[i][1]
-                    cell1.innerHTML = datas[i][5]
-                    if (datas[i][5] == "返却済み") {
-                        cell2.innerHTML = datas[i][4].substr(0, 4) + "/" + datas[i][4].substr(5, 2) + "/" + datas[i][4].substr(8, 2) + "<br>" + datas[i][4].substr(11, 8)
-                    } else if (datas[i][5] == "貸出中") {
-                        cell2.innerHTML = datas[i][3].substr(0, 4) + "/" + datas[i][3].substr(5, 2) + "/" + datas[i][3].substr(8, 2) + "<br>" + datas[i][3].substr(11, 8)
-                    } else if (datas[i][5] == "予約中") {
-                        cell2.innerHTML = datas[i][2].substr(0, 4) + "/" + datas[i][2].substr(5, 2) + "/" + datas[i][2].substr(8, 2) + "<br>" + datas[i][2].substr(11, 8)
+                     //セル(td要素)の追加
+                    for(let i=0;i<4;i++){
+                        eval(`var cell${i}= row.insertCell(${i})`)
                     }
-                    cell3.innerHTML ='<div class="sys-no">'+datas[i][6]+'</div>'
+                    
+                    cell0.innerHTML = `<div><img src="${datas[i][8]}"></div><div>${datas[i][7]}</div>${datas[i][1]}`
+                    cell1.innerHTML = datas[i][5]
+
+                    if (datas[i][5] == "返却済み") {
+                        cell2.innerHTML = `${datas[i][4].substr(0, 4)} / ${datas[i][4].substr(5, 2)} / ${datas[i][4].substr(8, 2)} <br> ${datas[i][4].substr(11, 8)}`
+                    } else if (datas[i][5] == "貸出中") {
+                        cell2.innerHTML = `${datas[i][3].substr(0, 4)} / ${datas[i][3].substr(5, 2)} / ${datas[i][3].substr(8, 2)} <br> ${datas[i][3].substr(11, 8)}`
+                    } else if (datas[i][5] == "予約中") {
+                        cell2.innerHTML = `${datas[i][2].substr(0, 4)} / ${datas[i][2].substr(5, 2)} / ${datas[i][2].substr(8, 2)} <br> ${datas[i][2].substr(11, 8)}`
+                    }
+                    cell3.innerHTML =`<div class="sys-no">${datas[i][6]}</div>`
                 }
             }
         }
