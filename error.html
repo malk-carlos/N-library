@@ -7,13 +7,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Googleログインテストページ</title>
     <script src="./js/google-login.js"></script>
+    <link rel="stylesheet" href="/css/error.css">
 </head>
 
 <body>
-
+    <!-- ログイン失敗
+    <div id="errorviwe">失敗</div>
+    5秒後TOPページに戻ります -->
+    
+    <div class="error-message">
     ログイン失敗
     <div id="errorviwe">失敗</div>
     5秒後TOPページに戻ります
+    </div>
+
     <script>
         switch ((new URL(window.location.href).search)) {
             case '?E1':
@@ -23,7 +30,7 @@
                 document.getElementById("errorviwe").innerText = "アクセスが正しくありません。もう一度ログインをしてください。"
                 break;
             case '?E3':
-                document.getElementById("errorviwe").innerText ="管理者権限を確認できませんでした。もう一度ログインを行なってください"
+                document.getElementById("errorviwe").innerText = "管理者権限を確認できませんでした。もう一度ログインを行なってください"
                 break;
             default:
                 document.getElementById("errorviwe").innerText = "エラーが発生しました。"
@@ -32,7 +39,7 @@
         //URLバーpath削除
         history.replaceState('', '', new URL(window.location.href).pathname);
         setTimeout(() => {
-            logout()
+           // logout()
         }, 5000);
     </script>
 </body>
