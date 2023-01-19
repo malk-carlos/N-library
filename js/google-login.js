@@ -27,8 +27,7 @@ function cheak() {
 }
 function admin_cheak(){
     //cookie照会処理
-    const sessionid = cookieVal('Admin');
-    function cookieVal(key) { return Cookies.get('sessionID'); }
+    const sessionid = Cookies.get('Admin');
     if (sessionid) {
         adminData = JSON.parse(sessionid)
     }
