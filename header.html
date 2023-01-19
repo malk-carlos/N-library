@@ -1,40 +1,49 @@
 <!DOCTYPE html>
 <html lang="ja">
-
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>header</title>
 </head>
-
 <body>
     <header>
-        <script src="./js/platform.js"></script>
-        <script src="./js/google-login.js"></script>
+        <!--head-->
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="robots" content="noindex">
+
+        <!--CSS-->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
             integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
             crossorigin="anonymous" referrerpolicy="no-referrer">
+        <link rel="stylesheet" href="./css/header.css">
+        
+        <!--外部JS-->
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
+    
+
+        <!--自作JS-->
+        <script src="./js/platform.js"></script>
+        <script src="./js/google-login.js"></script>
         <script src="./js/api.js"></script>
         <script src="./js/search.js"></script>
-        <link rel="stylesheet" href="./css/header.css">
-        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 
         <script>
             //IPアドレス保存処理  ((document.cookie + ';').match('IP=([^¥S;]*)') || [])[1] に
             fetch('https://api.ipify.org/?format=json')
                 .then((response) => response.json())
                 .then((data) => document.cookie = 'IP=' + data.ip + '; max-age=86400;')//86400 = 1日
-                .then(response =>{
-                    
-            //ログインセッション確認
-            if (cheak()) {
-                //systems()
-                //ログイン確認済み
-            } else {
-                //再ログイン必要
-                window.location.href = "./error.html?E2"
-            } })
+                .then(response => {
+
+                    //ログインセッション確認
+                    if (cheak()) {
+                        //systems()
+                        //ログイン確認済み
+                    } else {
+                        //再ログイン必要
+                        window.location.href = "./error.html?E2"
+                    }
+                })
         </script>
         <img src="https://studiogram.jp/studiogram/wp-content/uploads/2021/08/muji_logo.png" alt="">
         <div id="search">

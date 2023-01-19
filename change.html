@@ -2,15 +2,17 @@
 <html lang="ja">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>書籍hennkou</title>
 
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <!--CSS-->
     <link rel="stylesheet" href="./css/oi.css" />
 
-
-    <title>書籍hennkou</title>
+    <!--外部JS-->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    
+    <!--自作JS-->
+    <script src="./js/change.js"></script>
+    <script src="./js/api.js"></script>
 
 </head>
 
@@ -107,14 +109,11 @@
     </table>
     <button id="changes_button" onclick="cheanges()">変更</button>
     <button id="deletes_button" onclick="deletes()">削除</button>
-    <script src="./js/change.js"></script>
-    <script src="./js/api.js"></script>
+    
     <script>
-
         //ページ読み込み後　DBへ蔵書DBの照会
         window.onload = function () {
             send("db_cheak", (new URL(window.location.href).search).replace("?", ""))
-
         }
     </script>
 

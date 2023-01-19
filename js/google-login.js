@@ -27,27 +27,21 @@ function cheak() {
 }
 function admin_cheak(){
     //cookie照会処理
-    const sessionid = cookieVal('Admin');
-    function cookieVal(key) { return Cookies.get('sessionID'); }
-    if (sessionid) {
-        adminData = JSON.parse(sessionid)
-    }
-
-    if(!adminData){
+    const sessionid = Cookies.get('Admin');
+    if (!sessionid) {
         window.location.href = "/error.html?E3"
     }
 }
 
 function logout() {
     //Cookie削除
-    document.cookie = "sessionID=; max-age=0"; window.location.href = "./index.html"
+    document.cookie = 'sessionID=""; max-age=3600;'
+    window.location.href = "./index.html"
 }
 
 function systems() {
     try {
-        let sessionid = cookieVal('sessionID');
-        function cookieVal(key) { return Cookies.get('sessionID') }        
-
+        let sessionid = Cookies.get('sessionID')    
         //cookieにログイン情報を照会
         loginData = JSON.parse(sessionid)
 
