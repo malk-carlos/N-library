@@ -34,7 +34,7 @@ function admin_cheak(){
 
 function logout() {
     //Cookie削除
-    document.cookie = 'sessionID=""; max-age=3600;'
+    document.cookie = 'sessionID=; max-age=3600;'
     window.location.href = "./index.html"
 }
 
