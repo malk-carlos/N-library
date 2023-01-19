@@ -7,9 +7,10 @@ if (cheak()) {
 }
 
 function handleCredentialResponse(response) {
-    document.cookie = 'sessionID=' + (JSON.stringify(jwt_decode(response.credential))) + '; max-age=86400;';//86400
+    Cookies.set('sessionID', (JSON.stringify(jwt_decode(response.credential))), {expires: 1});
     systems()
 }
+
 function testa() {
     google.accounts.id.initialize({
         client_id: "727467662943-93kq0n9ngaod4rbdqi070sgh78b1si54.apps.googleusercontent.com",

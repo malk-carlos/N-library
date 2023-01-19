@@ -40,14 +40,13 @@ function admin_cheak(){
 
 function logout() {
     //Cookie削除
-    document.cookie = "sessionID=; max-age=0"; window.location.href = "./index.html"
+    Cookies.set('sessionID', "", {expires: 1});
+    window.location.href = "./index.html"
 }
 
 function systems() {
     try {
-        let sessionid = cookieVal('sessionID');
-        function cookieVal(key) { return Cookies.get('sessionID') }        
-
+        let sessionid = Cookies.get('sessionID')    
         //cookieにログイン情報を照会
         loginData = JSON.parse(sessionid)
 
