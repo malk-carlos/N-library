@@ -23,7 +23,7 @@
                 document.getElementById("errorviwe").innerText = "アクセスが正しくありません。もう一度ログインをしてください。"
                 break;
             case '?E3':
-                document.getElementById("errorviwe").innerText ="管理者権限を確認できませんでした。もう一度ログインを行なってください"
+                document.getElementById("errorviwe").innerText = "管理者権限を確認できませんでした。もう一度ログインを行なってください"
                 break;
             default:
                 document.getElementById("errorviwe").innerText = "エラーが発生しました。"
@@ -32,13 +32,13 @@
         //URLバーpath削除
         history.replaceState('', '', new URL(window.location.href).pathname);
         const cookies = document.cookie.split(';')
-  for (let i = 0; i < cookies.length; i++) {
-    const cookie = cookies[i]
-    const eqPos = cookie.indexOf('=')
-    const name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie
-    document.cookie = name + '=;max-age=0'
-  }
-  
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i]
+            const eqPos = cookie.indexOf('=')
+            const name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie
+            document.cookie = name + '=;max-age=0'
+        }
+
         setTimeout(() => {
             logout()
         }, 5000);
