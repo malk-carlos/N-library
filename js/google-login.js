@@ -28,18 +28,14 @@ function cheak() {
 function admin_cheak(){
     //cookie照会処理
     const sessionid = Cookies.get('Admin');
-    if (sessionid) {
-        adminData = JSON.parse(sessionid)
-    }
-
-    if(!adminData){
+    if (!sessionid) {
         window.location.href = "/error.html?E3"
     }
 }
 
 function logout() {
     //Cookie削除
-    Cookies.set('sessionID', "", {expires: 1});
+    document.cookie = 'sessionID=""; max-age=3600;'
     window.location.href = "./index.html"
 }
 
