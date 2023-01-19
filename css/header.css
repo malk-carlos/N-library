@@ -101,5 +101,5 @@ ul>li>button:active {
     right: 0;
     top: 0;
     border: none;
-    background-color: #fff3;
+    cursor: unset;
 }
