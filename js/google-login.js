@@ -1,14 +1,11 @@
 let loginData,adminData
 
 function toAdmin() {
-    const inPass = window.prompt("管理者用パスワードを入力", "");
-    const pass = "Amagasaki2022";
+    const adminCheak = admin_cheak();
 
-    if (inPass == pass) {
-        admin();
-    } else {
-        alert("パスワードが違います");
-    }
+    if (adminCheak === "abcdefghijklmnopqrstuvwxyz0") {
+        window.location.href = "./admin.html";
+    } else {}
 }
 
 function admin() {
@@ -31,6 +28,8 @@ function admin_cheak(){
     if (!sessionid) {
         window.location.href = "/error.html?E3"
     }
+
+    return(adminData);
 }
 
 function logout() {
