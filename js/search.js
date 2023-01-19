@@ -1,17 +1,13 @@
 function path_check() {
     const url = new URL(window.location.href);
     const path = url.pathname;
-    console.log(path);
-    // var jsonObj = send();
-
+    
     if (path == "/library.html") {
         let key = $("#keyword").val();
-        console.log(key);
         search(key);
 
     } else {
         let key = $("#keyword").val();
-        console.log(key);
         search_move(key);
     }
 }
@@ -22,12 +18,16 @@ function search(key) { //library.htmlを開いている場合の検索
 
     for (let k = 1; k < jsonObj.length; k++) { // jsonObjの数（= 登録書籍の種類数）分検索
 
-        for (let l = 2; l <= 16; l++) { // jsonObjのパラメータ2-16に部分一致するか検索
-
+        for (let l = 1; l <= 15; l++) { // jsonObjのパラメータ1-9と15に部分一致するか検索
+            
+            console.log(k,l,String(jsonObj[k][l]).indexOf(key),String(jsonObj[k][l]))
             if(String(jsonObj[k][l]).indexOf(key) > -1){ // 検索ワードと一致する部分があるか
                 search_list.push(jsonObj[k]); // 一致したら配列をsearch_listに
-                l += 15; // 同一書籍を重ねて表示しないよう抜ける
-            } else {}
+                l = 16; // 同一書籍を重ねて表示しないよう抜ける
+            } 
+            else if(l == 9) {
+                l = 15; //出版社情報の検索後書籍のキーワードデータ検索まで移動（内容紹介の文章が長いため予期しない取得が多かった）
+            }
         }
     }
     reset_list(search_list);
@@ -37,28 +37,34 @@ function search_move(key) { //library.htmlへの遷移を伴う検索
     window.location.href = `library.html?key=${encodeURIComponent(key)}`;
 }
 
-function reset_list(list) {
+function reset_list(search_list) {
 
     $("#container").empty();
 
-    const jOl4 = Math.floor((list.length) / 4); // 4冊ごとに列を作る
+    const jOl4 = Math.ceil((search_list.length) / 4); // 4冊ごとに列を作る
 
     for (let i = 0; i < jOl4; i ++) {
 
         const $row = $(`<div id='row${String(i+1)}' class='book-row'></div>`) // 各書籍の表紙, タイトル, 著者を記載する要素
 
-        for (let j = 1; j < 5; j ++){
-            const $n = i*4+j;
+        for (let j = 0; j < 4; j ++){
+            const $n = i*4+j+1;
             const $div = $(`<div id='book${String($n)}' class='book'></div>`) // 各書籍の表紙, タイトル, 著者を記載する要素
             const $ps = $(`<div class='ps'><div>`)
 
-            const $cover = $(`<img src='${list[$n][17]}' class='coverimg' alt="${list[$n][1]}">`) // 表紙
-            const $title = $(`<p class='title'>${list[$n][1]}</p>`) // タイトル
-            const $writer = $(`<p class='writer'>${list[$n][7]}</p>`) // 著者名
+            const $cover = $(`<img src='${search_list[$n][17]}' class='coverimg' alt="${search_list[$n][1]}">`) // 表紙
+            const $title = $(`<p class='title'>${search_list[$n][1]}</p>`) // タイトル
+            const $writer = $(`<p class='writer'>${search_list[$n][7]}</p>`) // 著者名
 
             $ps.append($title).append($writer);
             $div.append($cover).append($ps);
             $row.append($div);
+
+            if ($n == search_list.length - 1) {
+                j = 5;
+            } else {
+                j = j;
+            }
         }
         $("#container").append($row);
     }
