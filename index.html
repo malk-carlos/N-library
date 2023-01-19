@@ -2,69 +2,32 @@
 <html lang="ja">
 
 <head>
-    <!-- あいうえお -->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+    <title>ログインページ</title>
+
+    <!--CSS-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
         integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
         crossorigin="anonymous" referrerpolicy="no-referrer">
     <link rel="stylesheet" href="./css/index.css">
 
+    <!--外部JS-->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="https://unpkg.com/jwt-decode/build/jwt-decode.js"></script>
-    <script src="./js/platform.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
-    <script src="./js/google-login.js"></script>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
     <script src="https://www.google.com/recaptcha/api.js"></script>
 
+
+    <!--自作JS-->
+    <script src="./js/platform.js"></script>
+    <script src="./js/google-login.js"></script>
     <script src="./js/api.js"></script>
-    <script src="https://accounts.google.com/gsi/client" async defer></script>
-    <script src="https://unpkg.com/jwt-decode/build/jwt-decode.js"></script>
-    <script>
-        //ログインセッション確認
-        if (cheak()) {
-            //ログイン確認済み
-            systems()
-        } else {
-            //再ログイン必要
-        }
+    <script src="./js/index.js"></script>
 
-        function handleCredentialResponse(response) {
-            document.cookie = 'sessionID=' + (JSON.stringify(jwt_decode(response.credential))) + '; max-age=86400;';//86400
-            systems()
-        }
-        window.onload = 
-
-        function onSubmit(token) {
-            document.getElementById("demo-form").submit();
-        }
-
-        function testa(){
-            google.accounts.id.initialize({
-                client_id: "727467662943-93kq0n9ngaod4rbdqi070sgh78b1si54.apps.googleusercontent.com",
-                callback: handleCredentialResponse
-            });
-            google.accounts.id.renderButton(
-                document.getElementById("buttonDiv"),
-                { theme: "outline", size: "large" }  // customization attributes
-            );
-            google.accounts.id.prompt(); // also display the One Tap dialog
-
-            setTimeout(() => {
-            document.getElementById("recapucha").style.display ="none"
-            document.getElementById("buttonDiv").style.display ="block"
-            }, 1000);
-            
-        }
-
-
-    </script>
-  </head>
-  <body>
-    
-
-    <title>ログインページ</title>
 </head>
 
 <body>
@@ -74,8 +37,10 @@
     </div>
 
     <!--Googleログインボタン-->
-    <div id="buttonDiv" class="g-recaptcha" data-sitekey="6LdVN_MjAAAAALeGoQ2na_Pprw-EDcZTJppbDh78" data-callback='onSubmit' data-action='submit'></div>
-    <div id="recapucha" class="g-recaptcha" data-sitekey="6LdvLPMjAAAAAO6hkx0opzcPHCktUQbPINPWYNyz" data-callback="testa"></div>
+    <div id="buttonDiv" class="g-recaptcha" data-sitekey="6LdVN_MjAAAAALeGoQ2na_Pprw-EDcZTJppbDh78"
+        data-callback='onSubmit' data-action='submit'></div>
+    <div id="recapucha" class="g-recaptcha" data-sitekey="6LdvLPMjAAAAAO6hkx0opzcPHCktUQbPINPWYNyz"
+        data-callback="testa"></div>
 </body>
 
 </html>
