@@ -16,6 +16,7 @@
             integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
             crossorigin="anonymous" referrerpolicy="no-referrer">
         <script src="./js/api.js"></script>
+        <script src="./js/search.js"></script>
         <link rel="stylesheet" href="./css/header.css">
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
@@ -37,8 +38,8 @@
         </script>
         <img src="https://studiogram.jp/studiogram/wp-content/uploads/2021/08/muji_logo.png" alt="">
         <div id="search">
-            <input type="text" placeholder="検索ワードを入力">
-            <button><i class="fa-solid fa-magnifying-glass"></i></button>
+            <input id="keyword" type="text" placeholder="検索ワードを入力">
+            <button onclick="path_check()"><i class="fa-solid fa-magnifying-glass"></i></button>
         </div>
         <ul id="nav">
             <li><a href="./library.html">蔵書一覧</a></li>
