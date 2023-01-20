@@ -1,9 +1,8 @@
 let loginData,adminData
 
 function toAdmin() {
-    const adminCheak = admin_cheak();
-
-    if (adminCheak === "abcdefghijklmnopqrstuvwxyz0") {
+    const adminCheak = admin();
+    if (adminCheak) {
         window.location.href = "./admin.html";
     } else {}
 }
