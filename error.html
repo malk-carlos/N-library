@@ -8,18 +8,24 @@
     <title>Googleログインテストページ</title>
     <script src="./js/google-login.js"></script>
     <link rel="stylesheet" href="/css/error.css">
+
+    <link href="https://fonts.googleapis.com/earlyaccess/nikukyu.css" rel="stylesheet">
 </head>
 
 <body>
-    <!-- ログイン失敗
-    <div id="errorviwe">失敗</div>
-    5秒後TOPページに戻ります -->
-    
-    <div class="error-message">
-    ログイン失敗
-    <div id="errorviwe">失敗</div>
-    5秒後TOPページに戻ります
+
+    <biv class="error-message">
+        <div class="text">
+            ログイン失敗
+            <div id="errorviwe">失敗</div>
+            5秒後TOPページに戻ります
+        </div>
     </div>
+
+    <button class="back-top" onclick="logout()">
+        <div class="text">TOPに戻る</div>
+    </button>
+  
 
     <script>
         switch ((new URL(window.location.href).search)) {
@@ -39,7 +45,7 @@
         //URLバーpath削除
         history.replaceState('', '', new URL(window.location.href).pathname);
         setTimeout(() => {
-           // logout()
+            logout()
         }, 5000);
     </script>
 </body>
