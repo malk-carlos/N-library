@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <title>lending and returning</title>
+
+    <!--CSS-->
+    <link rel="stylesheet" href="./css/lar.css">
+    <!--外部JS-->
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+    <!--自作JS-->
+    <script src="./js/google-login.js"></script>
+    <script src="./js/api.js"></script>
+    <script src="./js/jquery-barcode.js"></script>
+
+
+</head>
+
+<body>
+    <header>
+        <script src="./js/header.js"></script>
+        <script>header();</script>
+    </header>
+    <textarea id="keyview"></textarea>
+    <script>
+        let texts, system_mode
+        document.addEventListener('keypress', keypress_ivent);
+        document.addEventListener('keyup', keyup_ivent);
+        function keyup_ivent(e) {
+            if (e.key == "Backspace") {
+                texts = ""
+                document.getElementById("keyview").innerHTML = texts
+            }
+            return;
+        }
+
+        function keypress_ivent(e) {
+            //いずれかのキーが押された時の処理
+            if (e.key != 'Enter') {
+                if (texts) {
+                    texts = texts + e.key
+                } else {
+                    texts = e.key
+                }
+            } else if (e.key == "Enter") {
+                scan(texts)
+                texts = ""
+            }
+            document.getElementById("keyview").innerHTML = texts
+            return false;
+        }
+
+        function scan(texts) {
+            switch (texts) {
+                case "LENDING":
+                    system_mode = "lending"
+                    break;
+                case "RETRUN00":
+                    system_mode = "retrun"
+                    break;
+
+
+                default:
+                    if (!system_mode == "") {
+                        console.log(system_mode, texts)
+                    } else {
+                        console.log("モード選択")
+                    }
+                    break;
+            }
+        }
+
+
+
+    </script>
+</body>
+
+</html>
