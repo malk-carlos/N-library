@@ -17,29 +17,35 @@
         <script src="./js/header.js"></script>
         <script>header();</script>
     </header>
-
-    <div id="name"></div>
-    <div id="mail"></div>
-    <div id="icom"></div>
-    <div id="bcTarget"></div>
-    <div id="datas"></div>
-    <div id="tables">
-        <table id="foo-table" class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>本</th>
-                    <th>状態</th>
-                    <th>最終更新日</th>
-                    <th class="sys-no">処理番号</th>
-                </tr>
-            </thead>
-            <tbody>
-
-                <tr>
-                </tr>
-            </tbody>
-        </table>
+ <div class="frame_mypage flex">
+    <div class="frame-right">
+        <div id="icom"></div>
+        <div id="menu_mypage" class="frame_mypage"></div>
     </div>
+    <div class="frame-left">
+        <div id="name"></div>
+        <div id="mail"></div>
+    </div>
+     <!-- <div id="bcTarget"></div>
+     <div id="datas"></div> -->
+     <!-- <div id="tables">
+         <table id="foo-table" class="table table-bordered">
+             <thead>
+                 <tr>
+                     <th>本</th>
+                     <th>状態</th>
+                     <th>最終更新日</th>
+                     <th class="sys-no">処理番号</th>
+                 </tr>
+             </thead>
+             <tbody>
+ 
+                 <tr>
+                 </tr>
+             </tbody>
+         </table>
+     </div> -->
+ </div>
     <script>
         //ログイン情報取得
         const logindata = cheak() //データ取得
