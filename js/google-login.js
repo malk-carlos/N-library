@@ -26,7 +26,7 @@ function admin_cheak(){
     //cookie照会処理
     const sessionid = Cookies.get('Admin');
     if (!sessionid) {
-        window.location.href = "/error.html?E3"
+        window.location.href = "./error.html?E3"
     }
 
     return(adminData);
