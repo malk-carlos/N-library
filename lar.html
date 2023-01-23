@@ -25,7 +25,7 @@
     </header>
     <textarea id="keyview"></textarea>
     <script>
-        let texts, system_mode
+        let texts, system_mode, bookdata, reservationdata, userdata
         document.addEventListener('keypress', keypress_ivent);
         document.addEventListener('keyup', keyup_ivent);
         function keyup_ivent(e) {
@@ -56,15 +56,35 @@
             switch (texts) {
                 case "LENDING":
                     system_mode = "lending"
+                    userdata = undefined
+                    send("book_num")
                     break;
-                case "RETRUN00":
+                case "RETRUN0":
                     system_mode = "retrun"
+                    userdata = undefined
+                    send("book_num")
                     break;
-
 
                 default:
                     if (!system_mode == "") {
-                        console.log(system_mode, texts)
+                        if (system_mode == "retrun") {
+                            console.log(" hennkyakusyori")
+                            return
+                        }
+                        if (userdata < 3) {
+                            if (system_mode == "lending") {
+                                console.log("読み取り処理", texts)
+                                userdata++
+                            }
+                            if (userdata > 2) { alert("上限に達しました") }
+                        } else if (userdata > 2) {
+                            alert("上限に達しています")
+
+                        } else if (texts.length == 21) {
+                            send("user_cheak", texts)
+                        } else {
+                            console.log("ユーザーID SCAN")
+                        }
                     } else {
                         console.log("モード選択")
                     }

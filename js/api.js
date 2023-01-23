@@ -25,9 +25,9 @@ function send(mode, key1, key2, key3, key4, key5, key6, key7, key8, key9, key10,
                         if (jsonObj == "complete") {
                                 document.cookie = 'Admin="abcdefghijklmnopqrstuvwxyz0"; max-age=3600;';//86400
                                 window.location.href = "./admin.html"
-                               
+
                         }
-                        if(jsonObj == "noadmindata"){
+                        if (jsonObj == "noadmindata") {
                                 document.cookie = 'Admin=; max-age=86400;';//86400
                         }
                         if (mode == "register") {
@@ -37,11 +37,11 @@ function send(mode, key1, key2, key3, key4, key5, key6, key7, key8, key9, key10,
                                                 icon: 'success',
                                                 title: '登録完了',
                                                 html:
-                                                '<img class="alertImg" src="'+document.img.src+'"><div class="alertTitle">'+Data[0].onix.DescriptiveDetail.TitleDetail.TitleElement.TitleText.content+'</div>'+
-                                                Data[0].onix.DescriptiveDetail.Contributor[0].PersonName.content,
+                                                        '<img class="alertImg" src="' + document.img.src + '"><div class="alertTitle">' + Data[0].onix.DescriptiveDetail.TitleDetail.TitleElement.TitleText.content + '</div>' +
+                                                        Data[0].onix.DescriptiveDetail.Contributor[0].PersonName.content,
                                                 showConfirmButton: false,
                                                 timer: 1500
-                                              })
+                                        })
                                         //book_autocomplete(document.getElementById('keyview').value)
                                 } else if (jsonObj == "changed") {
                                         Swal.fire({
@@ -49,24 +49,24 @@ function send(mode, key1, key2, key3, key4, key5, key6, key7, key8, key9, key10,
                                                 icon: 'info',
                                                 title: '追加完了',
                                                 html:
-                                                '<img class="alertImg" src="'+document.img.src+'"><div class="alertTitle">'+Data[0].onix.DescriptiveDetail.TitleDetail.TitleElement.TitleText.content+'</div>'+
-                                                Data[0].onix.DescriptiveDetail.Contributor[0].PersonName.content,
+                                                        '<img class="alertImg" src="' + document.img.src + '"><div class="alertTitle">' + Data[0].onix.DescriptiveDetail.TitleDetail.TitleElement.TitleText.content + '</div>' +
+                                                        Data[0].onix.DescriptiveDetail.Contributor[0].PersonName.content,
                                                 showConfirmButton: false,
                                                 timer: 1500
-                                              })
+                                        })
                                 } else {
                                         Swal.fire({
                                                 position: 'top-end',
                                                 icon: 'error',
                                                 title: '失敗',
                                                 html:
-                                                '登録に失敗しました。何度も発生する場合は「手動登録を行う」もしくは「システム管理者にお問合せ」をしてください。',
+                                                        '登録に失敗しました。何度も発生する場合は「手動登録を行う」もしくは「システム管理者にお問合せ」をしてください。',
                                                 showConfirmButton: false,
                                                 timer: 1500
-                                              })
+                                        })
                                         //book_autocomplete(document.getElementById('keyview').value)
                                 }
-                                flags ="off"
+                                flags = "off"
                         } else if (mode == "delete") {
                                 if (jsonObj == "deleted") {
                                         alert("削除しました")
@@ -74,31 +74,40 @@ function send(mode, key1, key2, key3, key4, key5, key6, key7, key8, key9, key10,
                                         alert("失敗しました")
                                 }
                         } else if (mode == "book_num") {
-                                return okk(jsonObj, key1)
+                                return book_data(jsonObj)
                         } else if (mode == "book_cheak") {
                                 test(jsonObj)
                         } else if (mode == "db_cheak") {
                                 db_cheak(jsonObj)
-                        } else if (mode = "LendingData") {
+                        } else if (mode == "LendingData") {
                                 console.log(jsonObj)
                                 mydata(jsonObj)
+                        } else if (mode == "AllLendingdata") {
+                                reservationdata = jsonObj
+                                return
+                        } else if (mode == "user_cheak") {
+                                if(jsonObj=="nomatch"){
+                                        alert("DBにアカウントがありません")
+                                }else{
+                                        userdata =jsonObj
+                                        if(userdata < 3){
+                                        }else{
+                                                alert("貸出上限")
+                                        }
+                                }
+                                
+                                return
                         }
 
-                        return(jsonObj)
+                        return (jsonObj)
                 } else if (mode == "log") {
                         systems()
-                } 
+                }
         }
 }
 
-function okk(books, isbn) {
-        //DB検索
-        console.log(books,"books")
-        for (i = 1; i < books.length; i++) {
-                        document.getElementById("number").value = books[i][21]
-                        return       
-        }
-        //新規登録登録「1」
-        document.getElementById("number").value = 1
-        return "ok"
+function book_data(books) {
+        bookdata = books
+        send("AllLendingdata")
+        return books
 }
