@@ -70,25 +70,28 @@
                         if (system_mode == "retrun") {
                             console.log(" hennkyakusyori")
                             return
-                        }
-                        if (userdata < 3) {
-                            if (system_mode == "lending") {
+                        }else if (system_mode == "lending") {
+
+                            if (userdata < 3 && texts.length != 21) {
                                 console.log("読み取り処理", texts)
                                 userdata++
-                            }
-                            if (userdata > 2) { alert("上限に達しました") }
-                        } else if (userdata > 2) {
-                            alert("上限に達しています")
+                            } else if (userdata > 2  && texts.length != 21) {
+                                alert("上限に達しました")
 
-                        } else if (texts.length == 21) {
-                            send("user_cheak", texts)
-                        } else {
-                            console.log("ユーザーID SCAN")
+                            } else if (userdata > 2  && texts.length != 21) {
+                                alert("上限に達しています")
+
+                            } else if (texts.length == 21) {
+                                userdata = ""
+                                send("user_cheak", texts)
+                            } else {
+                                console.log("ユーザーID SCAN")
+                            }
                         }
-                    } else {
-                        console.log("モード選択")
-                    }
-                    break;
+                        break;
+                    }else {
+                            console.log("モード選択")
+                        }
             }
         }
 
