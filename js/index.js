@@ -18,7 +18,7 @@ function testa() {
     });
     google.accounts.id.renderButton(
         document.getElementById("buttonDiv"),
-        { theme: "outline", size: "large" }  // customization attributes
+        { theme: "filled_blue", size: "large" ,shape:"pill"}  // customization attributes
     );
     google.accounts.id.prompt(); // also display the One Tap dialog
 
