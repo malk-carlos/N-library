@@ -31,7 +31,13 @@ function admin_cheak(){
 
 function logout() {
     //Cookie削除
-    Cookies.set('sessionID', {expires: 1});
+    const cookies = document.cookie.split(';')
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i]
+            const eqPos = cookie.indexOf('=')
+            const name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie
+            document.cookie = name + '=;max-age=0'
+        }
     window.location.href = "./index.html"
 }
 
@@ -85,3 +91,12 @@ function systems() {
         }
     }
 }
+
+        //ページ読み込み後　DBへ蔵書DBの照会
+        window.onload = function () {
+            if(Cookies.get('Admin')){
+                document.getElementById("admin_group").style.display = "block"  
+                document.getElementById("admin").style.display = "none"     
+               }
+        }
+
