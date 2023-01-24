@@ -81,3 +81,9 @@ function cheanges() {
 function deletes() {
     send("delete", document.getElementById("books20").value)
 }
+
+//ページ読み込み後　DBへ蔵書DBの照会
+window.onload = function () {
+    admin_cheak()
+    console.log("読み込み完了")
+}

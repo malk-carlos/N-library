@@ -86,21 +86,34 @@ function send(mode, key1, key2, key3, key4, key5, key6, key7, key8, key9, key10,
                                 reservationdata = jsonObj
                                 return
                         } else if (mode == "user_cheak") {
-                                if(jsonObj=="nomatch"){
-                                        alert("DBにアカウントがありません")
-                                }else{
-                                        userdata =jsonObj[0]
-                                        namedata =jsonObj[1]
-                                        if(userdata < 3){
+                                if (jsonObj[0] == 'notmatch') {
+                                        Swal.fire({
+                                                position: 'top-end',
+                                                icon: 'question',
+                                                title: 'アカウントが見つかりません',
+                                                html: '不明',
+                                                showConfirmButton: false,
+                                                timer: 1500
+                                        })
+                                } else {
+                                        userdata = jsonObj[0]
+                                        namedata = jsonObj[1]
+                                        if (userdata < 3) {
                                                 console.log(namedata)
 
-                                        }else if(userdata =="notmatch"){
-                                                alert("アカウントがありません")
-                                        }else{
-                                                alert("貸出上限")
+                                        } else {
+                                                Swal.fire({
+                                                        position: 'top-end',
+                                                        icon: 'warning',
+                                                        title: '貸出可能上限に達しています',
+                                                        html: '返却してください',
+                                                        showConfirmButton: false,
+                                                        timer: 1500
+                                                })
+
                                         }
                                 }
-                                
+
                                 return
                         }
 
