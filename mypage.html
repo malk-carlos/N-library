@@ -61,7 +61,7 @@
         //api.jsからの呼び出し（データが返ってきたら）
         function mydata(datas) {
             const table = document.getElementById('foo-table');  //表のオブジェクトを取得
-            for (let i = 0; i < datas.length-1; i++) {
+            for (let i = 0; i < datas.length; i++) {
                 if (logindata.sub == datas[i][0]) {
                     var row = table.insertRow(-1);  //行末に行(tr要素)を追加
                      //セル(td要素)の追加

@@ -103,3 +103,7 @@ ul>li>button:active {
     border: none;
     cursor: unset;
 }
+
+#admin_group{
+    display: none;
+}
