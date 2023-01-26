@@ -22,10 +22,6 @@ img{
     height: 120px;       
     border-radius: 50% ;
     border: solid 3px #000000;
-
-}
-.test0{
- color: aqua;
 }
 .frame_mypage{
     padding: 0.5em 1em;
@@ -42,5 +38,15 @@ img{
     font-size: 3em;
 }
 .frame_right{
-    width: 100%;
+  width: 30%;
+    text-align: center ;
+}
+.frame_left{
+  width: 50%;
+}
+label{
+   display: block;
+}
+input[type="radio"]{
+    display: none;
 }

@@ -18,11 +18,17 @@
         <script>header();</script>
     </header>
  <div class="frame_mypage flex">
-    <div class="frame-right">
+    <div class="frame_right">
         <div id="icom"></div>
-        <div id="menu_mypage" class="frame_mypage"></div>
+        <div id="menu_mypage" class="frame_mypage">
+            <input id="profile" type="radio" name="tab_mypage" tab_myoageed><label for="tab_mypage">マイページ</label></input>
+            <input id="borrow-history" type="radio" name="tab_mypage"><label for="tab_mypage">借りた本の履歴</label></input>
+            <input id="near-returndate" type="radio" name="tab_mypage"><label for="tab_mypage">返却日が近い本</label></input>
+            <input id="reserve-book" type="radio" name="tab_mypage"><label for="tab_mypage">予約した本</label></input>
+        </div>
     </div>
-    <div class="frame-left">
+    <div class="frame_left">
+
         <div id="name"></div>
         <div id="mail"></div>
     </div>
