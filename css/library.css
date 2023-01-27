@@ -11,7 +11,7 @@ h1 {
 }
 
 .book-row {
-    height: 50vh;
+    height: 55vh;
     margin-bottom: -5%;
 }
 
@@ -39,4 +39,22 @@ h1 {
     top: 52.5%;
     left: 50%;
     transform: translateX(-50%);
+}
+
+.reserve_btn {
+    position: absolute;
+    bottom: 25%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #150971;
+    border: none;
+    color: #fff;
+    padding: 5px 15px;
+    border-radius: 5px;
+}
+
+.reserve_btn:hover {
+    background-color: #150971dd;
+    border-radius: 10px;
+    transition: .2s;
 }
