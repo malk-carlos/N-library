@@ -40,3 +40,11 @@ background-size: 100%;
     font-family: fui;
     src: url(../HuiFontP29.ttf)format(truetype);
 }
+#errorsecond{
+    margin-top: 20px;
+    font-size: 30px;
+}
+#errorlogin{
+    font-size: 40px;
+    margin-top: 50px;
+}
