@@ -1,5 +1,6 @@
 let loginData,adminData
 
+
 function toAdmin() {
     const adminCheak = admin();
     if (adminCheak) {
@@ -14,8 +15,7 @@ function admin() {
 
 function cheak() {
     //cookie照会処理
-    const sessionid = cookieVal('sessionID');
-    function cookieVal(key) { return Cookies.get('sessionID'); }
+    const sessionid = Cookies.get('sessionID');
     if (sessionid) {
         loginData = JSON.parse(sessionid)
     }
