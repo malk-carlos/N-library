@@ -33,10 +33,18 @@
     color: #333;
 }
 body{
-background-image: url(/img/17.png);
+background-image: url(../img/17.png);
 background-size: 100%;
 }
 @font-face {
     font-family: fui;
-    src: url(/HuiFontP29.ttf)format(truetype);
+    src: url(../HuiFontP29.ttf)format(truetype);
+}
+#errorsecond{
+    margin-top: 20px;
+    font-size: 30px;
+}
+#errorlogin{
+    font-size: 40px;
+    margin-top: 50px;
 }
