@@ -87,11 +87,3 @@ function systems() {
     }
 }
 
-        //ページ読み込み後　DBへ蔵書DBの照会
-        window.onload = function () {
-            if(Cookies.get('Admin')){
-                document.getElementById("admin_group").style.display = "block"  
-                document.getElementById("admin").style.display = "none"     
-               }
-        }
-

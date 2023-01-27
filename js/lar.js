@@ -183,10 +183,6 @@ function scan(texts) {
 
 //ページ読み込み後　DBへ蔵書DBの照会
 window.onload = function () {
-    if(Cookies.get('Admin')){
-        document.getElementById("admin_group").style.display = "block"  
-        document.getElementById("admin").style.display = "none"     
-       }
     admin_cheak()
     send("book_num")
     console.log("読み込み完了")

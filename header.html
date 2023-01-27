@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
 </head>
+
 <body>
     <header>
         <!--head-->
@@ -15,11 +17,11 @@
             integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
             crossorigin="anonymous" referrerpolicy="no-referrer">
         <link rel="stylesheet" href="./css/header.css">
-        
+
         <!--外部JS-->
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
-    
+
 
         <!--自作JS-->
         <script src="./js/platform.js"></script>
@@ -58,12 +60,19 @@
             <li><button onclick="logout()">ログアウト</button></li>
             <div id="admin_group">
                 <li><a href="./lar.html">貸出・返却</a></li>
-            <li><a href="./regist.html">登録処理</a></li>
-
-            <li><a href="./admin.html">管理者TOP</a></li>
+                <li><a href="./regist.html">登録処理</a></li>
+                <li><a href="./admin.html">管理者TOP</a></li>
             </div>
         </ul>
         <button id="admin" onclick="toAdmin()"></button>
+        <script>
+            window.onload = function () {
+                if (Cookies.get('Admin')) {
+                    document.getElementById("admin_group").style.display = "block"
+                    document.getElementById("admin").style.display = "none"
+                }
+            }
+        </script>
     </header>
 </body>
 
