@@ -88,8 +88,8 @@ function send(mode, key1, key2, key3, key4, key5, key6, key7, key8, key9, key10,
                                 return
                         } else if (mode == "index_search") {
                                 index_search(jsonObj)
-                        } else if (mode == "toReserve") {
-                                reserve(jsonObj,key1)
+                        } else if (mode == "reserve") {
+                                reserve(jsonObj,key4)
                         } else if (mode == "user_cheak") {
                                 if (jsonObj[0] == 'notmatch') {
                                         Swal.fire({
