@@ -1,7 +1,7 @@
 /*スプレッドシート送受信 */
 
 //宣言
-let jsonObj, flag = false;
+let jsonObj, flag = false,userdata,namedata;
 let mode, key1, key2, key3, key4, key5, key6, key7, key8, key9, key10, key11, key12, key13, key14, key15, key16, key17, key18, key19, key20;
 const apiurl = 'https://script.google.com/macros/s/AKfycbyOBgvJG2v2xqtAHXU_wmFixyYxRHEPsyykDd5disH6zVmxMY4SUE6QcwGn9fOkGA1e/exec'
 
@@ -76,6 +76,7 @@ function send(mode, key1, key2, key3, key4, key5, key6, key7, key8, key9, key10,
                         } else if (mode == "book_num") {
                                 return book_data(jsonObj)
                         } else if (mode == "book_cheak") {
+                                send("reserv_cheak",cheak().sub)
                                 test(jsonObj)
                         } else if (mode == "db_cheak") {
                                 db_cheak(jsonObj)
@@ -119,6 +120,10 @@ function send(mode, key1, key2, key3, key4, key5, key6, key7, key8, key9, key10,
                                 }
 
                                 return
+                        } else if(mode=="reserv_cheak"){
+                                userdata = jsonObj[0]
+                                namedata = jsonObj[1]
+
                         }
 
                         return (jsonObj)
