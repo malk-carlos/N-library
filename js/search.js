@@ -96,5 +96,7 @@ function index_search(jsonObj) {
             }
         }
     }
+    $("#totalResults").text(`${search_list.length - 1}`)
+    $("#result").css({display:"block"})
     reset_list(search_list);
 }

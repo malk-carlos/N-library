@@ -82,3 +82,14 @@ body {
     left: 50%;
     transform: translateX(-50%);
 }
+
+#result {
+    margin: 5% 15% .5%;
+    display: none;
+    font-size: 20px;
+}
+
+#totalResults {
+    font-size: large;
+    font-size: 28px;
+}
