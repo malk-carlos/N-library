@@ -9,10 +9,12 @@ body {
 }
 
 #search {
-    position: absolute;
+    position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
+    background-color: #fff;
+    z-index: 10;
 }
 
 #search>input {
@@ -35,14 +37,48 @@ body {
     border: 0;
 }
 
-#buttonDiv,
-#recapucha {
-    position: absolute;
+#buttonDiv{
+    display: none;
+}
+
+#login {
+    position: fixed;
     top: 60%;
     left: 50%;
     transform: translateX(-50%);
 }
 
-#buttonDiv{
-    display: none;
+#container {
+    text-align: center;
+}
+
+.book-row {
+    height: 55vh;
+    margin-bottom: -5%;
+}
+
+.book {
+    display: inline-block;
+    width: 20vw;
+    height: 100%;
+    margin: 2%;
+    position: relative;
+}
+
+.coverimg {
+    width: 70%;
+    height: 50%;
+    object-fit: contain;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.ps {
+    width: 100%;
+    position: absolute;
+    top: 52.5%;
+    left: 50%;
+    transform: translateX(-50%);
 }

@@ -13,6 +13,7 @@ function test(jsonObj) {
     
             for (let j = 1; j < 5; j ++){
                 const $n = i*4+j;
+                const $btn = $(`<button id='btn${String($n)}' class='reserve_btn' onClick='toReserve(${$n})'>予約する</button>`) //予約ボタン
                 const $div = $(`<div id='book${String($n)}' class='book'></div>`) // 各書籍の表紙, タイトル, 著者を記載する要素
                 const $ps = $(`<div class='ps'><div>`)
     
@@ -21,7 +22,7 @@ function test(jsonObj) {
                 const $writer = $(`<p class='writer'>${jsonObj[$n][7]}</p>`) // 著者名
     
                 $ps.append($title).append($writer);
-                $div.append($cover).append($ps);
+                $div.append($cover).append($ps).append($btn);
                 $row.append($div);
             }
             $("#container").append($row);
@@ -29,4 +30,16 @@ function test(jsonObj) {
     } else {
         search(search_key);
     }
+}
+
+function toReserve(book_num) {
+    send("toReserve",book_num);
+}
+
+function reserve(data,num) {
+    console.log(data,num);
+    const ISBN = data[num][0]
+    const title = data[num][1]
+    alert(`ISBNコード：${ISBN}
+タイトル：${title}`);
 }
