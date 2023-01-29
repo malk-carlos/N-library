@@ -18,18 +18,30 @@ img{
     height: 120px;       
 }
 #icom > img{
-    width:  120px;       
-    height: 120px;       
+    width:  17vw;       
+    height: 17vw;       
+    min-width: 120px;
+    min-height: 120px;
     border-radius: 50% ;
-    border: solid 3px #000000;
+    border: solid 3px #333;
 }
-.frame_mypage{
-    padding: 0.5em 1em;
+.mypage-frame{
+    padding: 1em 1.4em;
     margin: 2em 2em;
     font-weight: bold;
     background: #FFF;
-    border: solid 3px #000000;/*線*/
+    border: solid 3px #333;/*線*/
     border-radius: 10px;/*角の丸み*/
+}
+.tab-mypage{
+    padding: 1em 1.4em;
+    margin: 2em 2em;
+    width: 20vw;
+    font-weight: bold;
+    background: #FFF;
+    border: solid 3px #333;/*線*/
+    border-radius: 10px;/*角の丸み*/
+
 }
 .flex{
     display: flex;
@@ -38,15 +50,48 @@ img{
     font-size: 3em;
 }
 .frame_right{
-  width: 30%;
-    text-align: center ;
+  right: 5;
+  
 }
 .frame_left{
-  width: 50%;
+  left: 5;
+  text-align: center;
+  min-width: 220px;
 }
-label{
-   display: block;
+.tab-mypage_item{
+    margin: 8% 5% 8% 5%;
+    display: inline;
+    white-space: nowrap;
+    color: #333;
+    font-size:max(2vw,20px);
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+    }
+.tab-mypage_item:hover{
+    color: #000;
 }
-input[type="radio"]{
+.tab-mypage_item:focus{
+    color: #000;
+    border-bottom: 0.2em solid #000;
+
+}
+.tab_mypage-content{
     display: none;
+}
+.is-show{
+    display: block;
+}
+.acount-google{
+    padding: 4%;
+    background-color: #150971;
+    color: #FFF;
+    font-size: 2vw;
+
+    border-radius: 10px;
+    text-decoration: none;
+}
+.center{
+    text-align: center;
 }

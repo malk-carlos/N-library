@@ -17,40 +17,51 @@
         <script src="./js/header.js"></script>
         <script>header();</script>
     </header>
- <div class="frame_mypage flex">
-    <div class="frame_right">
-        <div id="icom"></div>
-        <div id="menu_mypage" class="frame_mypage">
-            <input id="profile" type="radio" name="tab_mypage" tab_myoageed><label for="tab_mypage">マイページ</label></input>
-            <input id="borrow-history" type="radio" name="tab_mypage"><label for="tab_mypage">借りた本の履歴</label></input>
-            <input id="near-returndate" type="radio" name="tab_mypage"><label for="tab_mypage">返却日が近い本</label></input>
-            <input id="reserve-book" type="radio" name="tab_mypage"><label for="tab_mypage">予約した本</label></input>
+ <div class="mypage-frame flex">
+        <div class="frame_left">
+            <div id="icom"></div>
+            <div class="tab-mypage">
+                <input id="profile" type="button" class="tab-mypage_item is-active"  value=" プロフィール " onclick="change()"/></input>
+                <input id="history" type="button" class="tab-mypage_item"  value="借りた本の履歴" onclick="change()"></input>
+                <input id="return" type="button" class="tab-mypage_item"  value="返却日が近い本" onclick="change()"></input>
+                <input id="reserve" type="button" class="tab-mypage_item"  value="予約した本" onclick="change()"></input>
+            </div>
         </div>
-    </div>
-    <div class="frame_left">
-
-        <div id="name"></div>
-        <div id="mail"></div>
-    </div>
-     <!-- <div id="bcTarget"></div>
-     <div id="datas"></div> -->
-     <!-- <div id="tables">
-         <table id="foo-table" class="table table-bordered">
-             <thead>
-                 <tr>
-                     <th>本</th>
-                     <th>状態</th>
-                     <th>最終更新日</th>
-                     <th class="sys-no">処理番号</th>
-                 </tr>
-             </thead>
-             <tbody>
- 
-                 <tr>
-                 </tr>
-             </tbody>
-         </table>
-     </div> -->
+        <div class="frame_right">
+            <div class="tab_mypage-content" id="content-01">
+                <div id="name"></div>
+                <div id="mail"></div>
+                <div id="bcTarget"></div>
+                <div id="datas"></div>
+                <a href="https://myaccount.google.com/" class="acount-google">編集</a>
+            </div>
+            <div class="tab_mypage-content" id="content-02">
+                <p>仮置き</p>
+            </div>
+            <div class="tab_mypage-content" id="content-03">
+                <p>仮置きに</p>
+            </div>
+            <div class="tab_mypage-content"  id="content-04">
+                <p>仮置き3</p>
+            </div>
+        </div>
+         <!-- <div id="tables">
+             <table id="foo-table" class="table table-bordered">
+                 <thead>
+                     <tr>
+                         <th>本</th>
+                         <th>状態</th>
+                         <th>最終更新日</th>
+                         <th class="sys-no">処理番号</th>
+                     </tr>
+                 </thead>
+                 <tbody>
+     
+                     <tr>
+                     </tr>
+                 </tbody>
+             </table>
+         </div> -->
  </div>
     <script>
         //ログイン情報取得
@@ -60,6 +71,44 @@
         document.getElementById("icom").innerHTML = `<img src="${logindata.picture}">`
         //バーコード表示
         $("#bcTarget").barcode(logindata.sub, "code39", { barWidth: 2.9, barHeight: 90 });
+
+        // タブ切り替え
+        function change(e) {
+            var e = e || window.event;
+            var elem = e.target || e.srcElement;
+            var elemId = elem.id;
+            var content01 = document.getElementById('content-01')
+            var content02 = document.getElementById('content-02')
+            var content03 = document.getElementById('content-03')
+            var content04 = document.getElementById('content-04')
+            switch (elemId) {
+                case 'profile' :
+                    content01.classList.add('is-show')
+                    content02.classList.remove('is-show')
+                    content03.classList.remove('is-show')
+                    content04.classList.remove('is-show')
+                    break;
+                case 'history':
+                    content01.classList.remove('is-show')
+                    content02.classList.add('is-show')
+                    content03.classList.remove('is-show')
+                    content04.classList.remove('is-show')
+                    break;
+                case 'return':
+                    content01.classList.remove('is-show')
+                    content02.classList.remove('is-show')
+                    content03.classList.add('is-show')
+                    content04.classList.remove('is-show')
+                    break;
+                case 'reserve':
+                    content01.classList.remove('is-show')
+                    content02.classList.remove('is-show')
+                    content03.classList.remove('is-show')
+                    content04.classList.add('is-show')
+                    break;
+            }
+            
+        }
 
         //貸出予約履歴照会
         send("LendingData",logindata.sub);
