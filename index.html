@@ -27,46 +27,51 @@
     <script src="./js/google-login.js"></script>
     <script src="./js/api.js"></script>
     <script src="./js/index.js"></script>
+    <script src="./js/search.js"></script>
 
 </head>
 
 <body>
     <div id="search">
-        <input type="text" placeholder="検索ワードを入力">
-        <button id="lupe"><i class="fa-solid fa-magnifying-glass"></i></button>
+        <input type="text" placeholder="検索ワードを入力" id="word">
+        <button id="lupe" onclick="toIndex_search()"><i class="fa-solid fa-magnifying-glass"></i></button>
     </div>
+    <div id="container"></div>
 
     <!--Googleログインボタン-->
-    <div id="buttonDiv" class="g-recaptcha" data-sitekey="6LdVN_MjAAAAALeGoQ2na_Pprw-EDcZTJppbDh78"
-        data-callback='onSubmit' data-action='submit'></div>
-    <div id="recapucha" class="g-recaptcha" data-sitekey="6LdvLPMjAAAAAO6hkx0opzcPHCktUQbPINPWYNyz"
-        data-callback="testa"></div>
+    <div id="login">
+        <p>Googleでログイン</p>
+        <div id="buttonDiv" class="g-recaptcha" data-sitekey="6LdVN_MjAAAAALeGoQ2na_Pprw-EDcZTJppbDh78"
+            data-callback='onSubmit' data-action='submit'></div>
+        <div id="recapucha" class="g-recaptcha" data-sitekey="6LdvLPMjAAAAAO6hkx0opzcPHCktUQbPINPWYNyz"
+            data-callback="testa"></div>
+    </div>
 </body>
 <script>
     //console.logイベントが発火した時に処理を実行
-    window.console.log = text => {
-      // 初回は表示用の要素を作成
-      if (!$('#console').length) {
-        // 画面下部に固定表示する
-    　　$('<div id="console"></div>') 
-         .appendTo($('body'))
-         .css({
-          position: 'fixed',
-          bottom: 0,
-          left: 0,
-          width: '100%',
-          height: '500px',
-          padding: '8px',
-          background: 'rgba(0,0,0,0.7)',
-          fontSize: '10px',
-          color: '#fff',
-          zIndex: 1000000
-        });
-      }
+    // window.console.log = text => {
+    //   // 初回は表示用の要素を作成
+    //   if (!$('#console').length) {
+    //     // 画面下部に固定表示する
+    // 　　$('<div id="console"></div>') 
+    //      .appendTo($('body'))
+    //      .css({
+    //       position: 'fixed',
+    //       bottom: 0,
+    //       left: 0,
+    //       width: '100%',
+    //       height: '500px',
+    //       padding: '8px',
+    //       background: 'rgba(0,0,0,0.7)',
+    //       fontSize: '10px',
+    //       color: '#fff',
+    //       zIndex: 1000000
+    //     });
+    //   }
     
-      //consoleに本来出力される内容を表示していく
-      $('#console').prepend(`${text}<br>`);
-    };
+    //   //consoleに本来出力される内容を表示していく
+    //   $('#console').prepend(`${text}<br>`);
+    // };
     </script>
     <noscript>
         <META HTTP-EQUIV=Refresh CONTENT="0; URL=./error.html?E10">
