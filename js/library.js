@@ -13,7 +13,7 @@ function test(jsonObj) {
     
             for (let j = 1; j < 5; j ++){
                 const $n = i*4+j;
-                const $btn = $(`<button id='btn${String($n)}' class='reserve_btn' onClick='toReserve(${$n})'>予約する</button>`) //予約ボタン
+                const $btn = $(`<button id='btn${String($n)}' class='reserve_btn' onClick='toReserve(${jsonObj[$n][0]})'>予約する</button>`) //予約ボタン
                 const $div = $(`<div id='book${String($n)}' class='book'></div>`) // 各書籍の表紙, タイトル, 著者を記載する要素
                 const $ps = $(`<div class='ps'><div>`)
     
@@ -33,7 +33,7 @@ function test(jsonObj) {
 }
 
 function toReserve(book_num) {
-    send("toReserve",book_num);
+    send("reserve",cheak().sub, book_num, new Date().toLocaleString())
 }
 
 function reserve(data,num) {
