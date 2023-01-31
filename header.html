@@ -65,8 +65,14 @@
             </div>
         </ul>
         <button id="admin" onclick="toAdmin()"></button>
+
+        <div id="overlay">
+            <div class="cv-spinner">
+              <span class="spinner"></span>
+            </div>
         <script>
             window.onload = function () {
+                $("#overlay").fadeIn(300);
                 if (Cookies.get('Admin')) {
                     document.getElementById("admin_group").style.display = "block"
                     document.getElementById("admin").style.display = "none"
