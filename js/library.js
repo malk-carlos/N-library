@@ -1,7 +1,7 @@
 function test(jsonObj) {
 
     const query = location.search.split('=');
-    console.log("query",query)
+    console.log("query",query,jsonObj)
     const search_key = decodeURIComponent(query[1]);
 
     if (query[0]=="") {
@@ -13,7 +13,7 @@ function test(jsonObj) {
     
             for (let j = 1; j < 5; j ++){
                 const $n = i*4+j;
-                const $btn = $(`<button id='btn${String($n)}' class='limit' onClick='toReserve(${jsonObj[$n][0]},${$n})'>予約不可</button>`) //予約ボタン
+                const $btn = $(`<button id='btn${String($n)}' class='limit' name='${jsonObj[$n][21]}' onClick='toReserve(${jsonObj[$n][0]},${$n})'>予約不可</button>`) //予約ボタン
                 const $div = $(`<div id='book${String($n)}' class='book ${jsonObj[$n][0]}'></div>`) // 各書籍の表紙, タイトル, 著者を記載する要素
                 const $ps = $(`<div class='ps'><div>`)
     
@@ -44,8 +44,19 @@ function reserve(data,n) {
     if (data == "予約完了") {
         $(`#btn${String(n)}`).removeClass('reserve_btn').addClass('reserved').removeAttr("onClick").text("予約済み");
         userdata += 1;
+        limit();
+    } else if (data == "予約できませんでした") {
+        swal.fire({
+            title: "予期しないエラー",
+            text: "エラーが発生しました！",
+            icon: "error",
+            // showConfirmButton : true,
+            confirmButtonText : "ページをリロードする",
+            allowOutsideClick : false
+        }).then(() => {
+            window.location.reload();
+        }) ;
     }
-    limit();
 }
 
 function limit() {
@@ -70,6 +81,8 @@ function mydata(datas) {
             if(dataJ[1] == $(`#book${i+1}`).attr("class").replace("book ","")){
                 if(dataJ[5] == "予約中")
                 $(`#btn${i+1}`).removeClass('limit').addClass('reserved').removeAttr("onClick").text("予約済み");
+            } else if (Number($(`#btn${i+1}`).attr("name")) <= 0){
+                $(`#btn${i+1}`).removeClass('reserve_btn').addClass('limit').text("予約不可");
             }
         }
     }
