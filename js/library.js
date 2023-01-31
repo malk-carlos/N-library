@@ -13,8 +13,8 @@ function test(jsonObj) {
     
             for (let j = 1; j < 5; j ++){
                 const $n = i*4+j;
-                const $btn = $(`<button id='btn${String($n)}' class='reserve_btn' onClick='toReserve(${jsonObj[$n][0]},${$n})'>予約する</button>`) //予約ボタン
-                const $div = $(`<div id='book${String($n)}' class='book'></div>`) // 各書籍の表紙, タイトル, 著者を記載する要素
+                const $btn = $(`<button id='btn${String($n)}' class='limit' onClick='toReserve(${jsonObj[$n][0]},${$n})'>予約不可</button>`) //予約ボタン
+                const $div = $(`<div id='book${String($n)}' class='book ${jsonObj[$n][0]}'></div>`) // 各書籍の表紙, タイトル, 著者を記載する要素
                 const $ps = $(`<div class='ps'><div>`)
     
                 const $cover = $(`<img src='${jsonObj[$n][17]}' class='coverimg' alt="${jsonObj[$n][1]}">`) // 表紙
@@ -33,7 +33,10 @@ function test(jsonObj) {
 }
 
 function toReserve(book_num,n) {
-    send("reserve",cheak().sub, book_num, new Date().toLocaleString(),n)
+    if ($(`#btn${String(n)}`).attr('class') == 'reserve_btn'){
+        console.log("tore")
+        send("reserve",cheak().sub, book_num, new Date().toLocaleString(),n)
+    }
 }
 
 function reserve(data,n) {
@@ -46,7 +49,28 @@ function reserve(data,n) {
 }
 
 function limit() {
-    if (userdata >= 3) {
+    if (userdata < 3) {
+        $(`.limit`).removeClass('limit').addClass('reserve_btn').text("予約する");
+    } else {
         $(`.reserve_btn`).removeClass('reserve_btn').addClass('limit').text("予約不可");
+    }
+
+    //貸出予約履歴照会
+    send("LendingData",cheak().sub)
+}
+
+function mydata(datas) {
+    console.log(datas,"mydata");
+
+    const book_length = $(".book:last").attr("id").replace("book","");
+    console.log(book_length,"Blen") 
+    for(let i = 0; book_length > i; i ++){
+        for(let j = 0; datas.length > j; j ++){
+            let dataJ = datas[j];
+            if(dataJ[1] == $(`#book${i+1}`).attr("class").replace("book ","")){
+                if(dataJ[5] == "予約中")
+                $(`#btn${i+1}`).removeClass('limit').addClass('reserved').removeAttr("onClick").text("予約済み");
+            }
+        }
     }
 }
