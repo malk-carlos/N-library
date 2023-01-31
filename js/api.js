@@ -80,6 +80,8 @@ function send(mode, key1, key2, key3, key4, key5, key6, key7, key8, key9, key10,
                         } else if (mode == "book_cheak") {
                                 send("reserv_cheak",cheak().sub,true)
                                 test(jsonObj)
+                        } else if (mode == "admin_book_cheak") {
+                                test(jsonObj)
                         } else if (mode == "db_cheak") {
                                 db_cheak(jsonObj)
                         } else if (mode == "LendingData") {
@@ -134,7 +136,9 @@ function send(mode, key1, key2, key3, key4, key5, key6, key7, key8, key9, key10,
                 } else if (mode == "log") {
                         systems()
                 }
-                $("#overlay").fadeOut(300);
+                if (mode != "book_cheak" && mode != "reserv_cheak"){
+                        $("#overlay").fadeOut(300);
+                }
         }
 }
 
