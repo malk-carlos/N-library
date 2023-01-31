@@ -2,10 +2,14 @@ let loginData,adminData
 
 
 function toAdmin() {
+    $("#overlay").fadeIn(300);
     const adminCheak = admin();
     if (adminCheak) {
         window.location.href = "./admin.html";
-    } else {}
+    } else {
+
+    $("#overlay").fadeOut(300);
+    }
 }
 
 function admin() {

@@ -15,7 +15,9 @@ function send(mode, key1, key2, key3, key4, key5, key6, key7, key8, key9, key10,
         xhr.onreadystatechange = function () {
                 // readyState XMLHttpRequest の状態 4: リクエストが終了して準備が完了
                 // status httpステータス
-                if (xhr.readyState == 4 && xhr.status == 200) {
+                if (xhr.readyState == 2 ){
+                        $("#overlay").fadeIn(300);
+                }else if (xhr.readyState == 4 && xhr.status == 200) {
                         // jsonをオブジェクトに変更
                         jsonObj = JSON.parse(xhr.responseText);
 
@@ -119,7 +121,6 @@ function send(mode, key1, key2, key3, key4, key5, key6, key7, key8, key9, key10,
                                         }
                                 }
 
-                                return
                         } else if(mode=="reserv_cheak"){
                                 userdata = jsonObj[0]
                                 namedata = jsonObj[1]
@@ -133,6 +134,7 @@ function send(mode, key1, key2, key3, key4, key5, key6, key7, key8, key9, key10,
                 } else if (mode == "log") {
                         systems()
                 }
+                $("#overlay").fadeOut(300);
         }
 }
 
