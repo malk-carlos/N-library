@@ -60,7 +60,7 @@ function reserve(data,n) {
 
 function limit () {
     if (userdata < 3) {
-        $(`.standby`).removeClass('standby').addClass('reserve_btn').text("予約する");
+        $(`.standby`).removeClass('standby limit').addClass('reserve_btn').text("予約する");
     } else {
         $(`.reserve_btn`).removeClass('reserve_btn').addClass('limit').text("予約不可");
     }
@@ -78,7 +78,7 @@ function mydata(datas) {
                 if(dataJ[5] == "予約中")
                 $(`#btn${i+1}`).removeClass('standby').addClass('reserved').removeAttr("onClick").text("予約済み");
             } else if (Number($(`#btn${i+1}`).attr("name")) <= 0){
-                $(`#btn${i+1}`).removeClass('reserve_btn').addClass('limit').text("予約不可");
+                $(`#btn${i+1}`).removeClass('standby reserve_btn').addClass('limit').text("予約不可");
             }
         }
     }
