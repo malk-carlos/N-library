@@ -71,14 +71,15 @@
               <span class="spinner"></span>
             </div>
         <script>
-            setTimeout(() => {
+            window.addEventListener('load', function() {
                 if (Cookies.get('Admin')) {
                     document.getElementById("admin_group").style.display = "block"
                     document.getElementById("admin").style.display = "none"
                 }
                 document.icom.src = cheak().picture
-            }, 100);
                 $("#overlay").fadeIn(300);
+})
+
                 
         </script>
     </header>
