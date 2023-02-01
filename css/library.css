@@ -51,6 +51,7 @@ h1 {
     color: #fff;
     padding: 5px 15px;
     border-radius: 5px;
+    cursor: pointer;
 }
 
 .reserve_btn:hover {
@@ -72,7 +73,7 @@ h1 {
     cursor: unset;
 }
 
-.limit {
+.limit,.standby {
     position: absolute;
     bottom: 25%;
     left: 50%;
