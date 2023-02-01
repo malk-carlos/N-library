@@ -52,7 +52,7 @@ function reset_list(search_list) {
             const $div = $(`<div id='book${String($n)}' class='book'></div>`) // 各書籍の表紙, タイトル, 著者を記載する要素
             const $ps = $(`<div class='ps'><div>`)
 
-            const $cover = $(`<img src='${search_list[$n][17]}' class='coverimg' alt="${search_list[$n][1]}">`) // 表紙
+            const $cover = $(`<img src='${search_list[$n][17]}' class='coverimg' alt="${search_list[$n][1]}"oncontextmenu="return false;">`) // 表紙
             const $title = $(`<p class='title'>${search_list[$n][1]}</p>`) // タイトル
             const $writer = $(`<p class='writer'>${search_list[$n][7]}</p>`) // 著者名
 

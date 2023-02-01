@@ -1,5 +1,5 @@
 //初期設定
-let texts, system_mode, bookdata, reservationdata, userdata, userid
+let texts, system_mode, bookdata, reservationdata, userid
 document.addEventListener('keypress', keypress_ivent);
 document.addEventListener('keyup', keyup_ivent);
 
