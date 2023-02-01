@@ -57,7 +57,7 @@
             <li><a href="./mypage.html">マイページ</a></li>
             <li><a href="#">お問い合わせ</a></li>
             <li><a href="#">設定</a></li>
-            <li><button onclick="logout()">ログアウト</button></li>
+            <li><button onclick="logout()" class="logout"><img src="" name="icom">ログアウト</button></li>
             <div id="admin_group">
                 <li><a href="./lar.html">貸出・返却</a></li>
                 <li><a href="./regist.html">登録処理</a></li>
@@ -71,11 +71,15 @@
               <span class="spinner"></span>
             </div>
         <script>
-                $("#overlay").fadeIn(300);
+            setTimeout(() => {
                 if (Cookies.get('Admin')) {
                     document.getElementById("admin_group").style.display = "block"
                     document.getElementById("admin").style.display = "none"
                 }
+                document.icom.src = cheak().picture
+            }, 100);
+                $("#overlay").fadeIn(300);
+                
         </script>
     </header>
 </body>
