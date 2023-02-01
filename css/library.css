@@ -73,7 +73,7 @@ h1 {
     cursor: unset;
 }
 
-.limit {
+.limit,.standby {
     position: absolute;
     bottom: 25%;
     left: 50%;

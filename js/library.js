@@ -13,7 +13,7 @@ function test(jsonObj) {
     
             for (let j = 1; j < 5; j ++){
                 const $n = i*4+j;
-                const $btn = $(`<button id='btn${String($n)}' class='limit' name='${jsonObj[$n][21]}' onClick='toReserve(${jsonObj[$n][0]},${$n})'>予約不可</button>`) //予約ボタン
+                const $btn = $(`<button id='btn${String($n)}' class='standby' name='${jsonObj[$n][21]}' onClick='toReserve(${jsonObj[$n][0]},${$n})'>予約不可</button>`) //予約ボタン
                 const $div = $(`<div id='book${String($n)}' class='book ${jsonObj[$n][0]}'></div>`) // 各書籍の表紙, タイトル, 著者を記載する要素
                 const $ps = $(`<div class='ps'><div>`)
     
@@ -50,7 +50,6 @@ function reserve(data,n) {
             title: "予期しないエラー",
             text: "エラーが発生しました！",
             icon: "error",
-            // showConfirmButton : true,
             confirmButtonText : "ページをリロードする",
             allowOutsideClick : false
         }).then(() => {
@@ -59,15 +58,12 @@ function reserve(data,n) {
     }
 }
 
-function limit() {
+function limit () {
     if (userdata < 3) {
-        $(`.limit`).removeClass('limit').addClass('reserve_btn').text("予約する");
+        $(`.standby`).removeClass('standby').addClass('reserve_btn').text("予約する");
     } else {
         $(`.reserve_btn`).removeClass('reserve_btn').addClass('limit').text("予約不可");
     }
-
-    //貸出予約履歴照会
-    send("LendingData",cheak().sub)
 }
 
 function mydata(datas) {
@@ -80,10 +76,11 @@ function mydata(datas) {
             let dataJ = datas[j];
             if(dataJ[1] == $(`#book${i+1}`).attr("class").replace("book ","")){
                 if(dataJ[5] == "予約中")
-                $(`#btn${i+1}`).removeClass('limit').addClass('reserved').removeAttr("onClick").text("予約済み");
+                $(`#btn${i+1}`).removeClass('standby').addClass('reserved').removeAttr("onClick").text("予約済み");
             } else if (Number($(`#btn${i+1}`).attr("name")) <= 0){
                 $(`#btn${i+1}`).removeClass('reserve_btn').addClass('limit').text("予約不可");
             }
         }
     }
+    limit();
 }
