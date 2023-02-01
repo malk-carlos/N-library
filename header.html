@@ -76,8 +76,10 @@
                     document.getElementById("admin_group").style.display = "block"
                     document.getElementById("admin").style.display = "none"
                 }
-                document.icom.src = cheak().picture
                 $("#overlay").fadeIn(300);
+                setTimeout(() => {
+                    document.icom.src = cheak().picture
+                }, 1000);
 })
 
                 
