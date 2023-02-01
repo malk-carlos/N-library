@@ -110,7 +110,7 @@ function keypress_ivent(e) {
 }
 
         //ページ読み込み後　DBへ蔵書DBの照会
-        window.onload = function () {
+        window.addEventListener('load', function() {
             admin_cheak()
             console.log("読み込み完了")
-        }
+        })
