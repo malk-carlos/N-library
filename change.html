@@ -9,7 +9,7 @@
 
     <!--外部JS-->
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    
+
     <!--自作JS-->
     <script src="./js/change.js"></script>
     <script src="./js/api.js"></script>
@@ -109,12 +109,12 @@
     </table>
     <button id="changes_button" onclick="cheanges()">変更</button>
     <button id="deletes_button" onclick="deletes()">削除</button>
-    
+
     <script>
         //ページ読み込み後　DBへ蔵書DBの照会
-        window.onload = function () {
+        window.addEventListener('load', function () {
             send("db_cheak", (new URL(window.location.href).search).replace("?", ""))
-        }
+        })
     </script>
 
 </body>
