@@ -108,9 +108,3 @@ function keypress_ivent(e) {
     document.getElementById("keyview").innerHTML = texts
     return false;
 }
-
-        //ページ読み込み後　DBへ蔵書DBの照会
-        window.addEventListener('load', function() {
-            admin_cheak()
-            console.log("読み込み完了")
-        })
