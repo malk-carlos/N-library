@@ -28,6 +28,7 @@ function cheak() {
 function admin_cheak(){
     //cookie照会処理
     const sessionid = Cookies.get('Admin');
+    $("#overlay").fadeOut(300);
     if (!sessionid) {
         window.location.href = "./error.html?E3"
     }
