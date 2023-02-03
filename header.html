@@ -74,15 +74,14 @@
             </div>
             <script>
                 window.addEventListener('load', function () {
-                  　console.log("header読み込み開始")
+                    console.log("header読み込み開始")
                     if (Cookies.get('Admin')) {
                         document.getElementById("admin_group").style.display = "block"
                         document.getElementById("admin").style.display = "none"
                     }
                     $("#overlay").fadeIn(300);
-                    const sessionid = Cookies.get('sessionID');
-                    if (sessionid) {
-                        document.icom.src = JSON.parse(sessionid).picture
+                    if (Cookies.get('sessionID')) {
+                        document.icom.src = JSON.parse(Cookies.get('sessionID')).picture
                     }
                 })
 
