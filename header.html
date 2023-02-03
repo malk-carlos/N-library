@@ -92,9 +92,8 @@
                     }
 
                     $("#overlay").fadeIn(300);
-                    const sessionid = Cookies.get('sessionID');
-                    if (sessionid) {
-                        document.icom.src = JSON.parse(sessionid).picture
+                    if (Cookies.get('sessionID')) {
+                        document.icom.src = JSON.parse(Cookies.get('sessionID')).picture
                     }
                     console.log("＝＝＝header読み込みここまで＝＝＝")
                 })
