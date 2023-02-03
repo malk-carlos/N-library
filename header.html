@@ -70,23 +70,24 @@
 
         <div id="overlay">
             <div class="cv-spinner">
-              <span class="spinner"></span>
+                <span class="spinner"></span>
             </div>
-        <script>
-            window.addEventListener('load', function() {
-                console.log("header読み込み開始")
-                if (Cookies.get('Admin')) {
-                    document.getElementById("admin_group").style.display = "block"
-                    document.getElementById("admin").style.display = "none"
-                }
-                $("#overlay").fadeIn(300);
-                setTimeout(() => {
-                    document.icom.src = cheak().picture
-                }, 1000);
-})
+            <script>
+                window.addEventListener('load', function () {
+                  　console.log("header読み込み開始")
+                    if (Cookies.get('Admin')) {
+                        document.getElementById("admin_group").style.display = "block"
+                        document.getElementById("admin").style.display = "none"
+                    }
+                    $("#overlay").fadeIn(300);
+                    const sessionid = Cookies.get('sessionID');
+                    if (sessionid) {
+                        document.icom.src = JSON.parse(sessionid).picture
+                    }
+                })
 
-                
-        </script>
+
+            </script>
     </header>
 </body>
 
