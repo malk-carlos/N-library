@@ -135,7 +135,10 @@ function send(mode, key1, key2, key3, key4, key5, key6, key7, key8, key9, key10,
 
                         return (jsonObj)
                 } else if (mode == "log") {
-                        systems()
+                        if (localStorage.getItem('debug') == 1) {
+                                Swal.fire("デバックモード","一時停止中").then((result) => {
+                                    systems()
+                                })}
                 }
                 if (mode != "book_cheak" && mode != "reserv_cheak"){
                         $("#overlay").fadeOut(300);
