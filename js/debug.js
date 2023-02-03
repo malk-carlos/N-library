@@ -18,7 +18,7 @@ if(localStorage.getItem('debug')==1){
           bottom: 0,
           left: 0,
           width: '100%',
-          height: '500px',
+          height: '300px',
           padding: '8px',
           background: 'rgba(0,0,0,0.7)',
           fontSize: '10px',
