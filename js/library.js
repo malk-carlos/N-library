@@ -74,10 +74,15 @@ function mydata(datas) {
     for(let i = 0; book_length > i; i ++){
         for(let j = 0; datas.length > j; j ++){
             let dataJ = datas[j];
+            console.log(dataJ[5],"dataJ5");
             if(dataJ[1] == $(`#book${i+1}`).attr("class").replace("book ","")){
-                if(dataJ[5] == "予約中")
                 $(`#btn${i+1}`).removeClass('standby').addClass('reserved').removeAttr("onClick").text("予約済み");
             } else if (Number($(`#btn${i+1}`).attr("name")) <= 0){
+                $(`#btn${i+1}`).removeClass('standby reserve_btn').addClass('limit').text("予約不可");
+            }
+        }
+        if(datas.length <= 0){ // 予約履歴なしの場合の処理
+            if (Number($(`#btn${i+1}`).attr("name")) <= 0){
                 $(`#btn${i+1}`).removeClass('standby reserve_btn').addClass('limit').text("予約不可");
             }
         }
