@@ -93,3 +93,14 @@ body {
     font-size: large;
     font-size: 28px;
 }
+
+#debug {
+    position: absolute;
+    padding: 0;
+    width: 80px;
+    height: 80px;
+    right: 0;
+    bottom:0;
+    border: none;
+    cursor: unset;
+}
