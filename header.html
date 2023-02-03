@@ -46,10 +46,11 @@
                     } else {
                         //再ログイン必要
                         if (localStorage.getItem('debug') == 1) {
-                    Swal.fire("デバックモード","一時停止中").then((result) => {
-                        window.location.href = "./error.html?E2"
-                    })}
-                       
+                            Swal.fire("デバックモード", "一時停止中").then((result) => {
+                                window.location.href = "./error.html?E2"
+                            })
+                        }
+
                     }
                 })
         </script>
@@ -78,23 +79,24 @@
             </div>
             <script>
                 window.addEventListener('load', function () {
-                  　console.log("＝＝＝header読み込み開始＝＝＝")
+                    console.log("＝＝＝header読み込み開始＝＝＝")
                     if (Cookies.get('Admin')) {
                         document.getElementById("admin_group").style.display = "block"
                         document.getElementById("admin").style.display = "none"
                     }
 
-                    if(localStorage.getItem('debug') == 1){
-        let element = document.querySelector('body');;
-        element.insertAdjacentHTML('afterbegin', '<h1>デバッグモード</h1>');
-    }
+                    if (localStorage.getItem('debug') == 1) {
+                        let element = document.querySelector('body');;
+                        element.insertAdjacentHTML('afterbegin', '<h1>デバッグモード</h1>');
+                        element.insertAdjacentHTML('beforeend', '<div class="air"></div>');
+                    }
 
                     $("#overlay").fadeIn(300);
                     const sessionid = Cookies.get('sessionID');
                     if (sessionid) {
                         document.icom.src = JSON.parse(sessionid).picture
                     }
-                    console.log("＝＝＝header読み込みここまで＝＝＝")   
+                    console.log("＝＝＝header読み込みここまで＝＝＝")
                 })
 
 

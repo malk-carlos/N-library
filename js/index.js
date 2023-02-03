@@ -1,36 +1,40 @@
 /*初期設定*/
-console.log("＝＝＝初期設定＝＝＝")
-
-//ログインセッション確認
-if (cheak()) {  //ログイン確認済み
-    console.log("Cookieログイン情報確認済み")
-    if (localStorage.getItem('debug') == 1) {
-        Swal.fire("デバックモード","一時停止中").then((result) => {
-            systems()
-        })}
-} else { //再ログイン必要
-    console.log("Cookieログイン情報が見当たりません")
-}
-console.log("＝＝＝初期設定ここまで＝＝＝")
-
-window.addEventListener('load', function() {
-    if(localStorage.getItem('debug') == 1){
-        let element = document.querySelector('body');;
-        element.insertAdjacentHTML('afterbegin', '<h1>デバッグモード</h1>');
+window.addEventListener('load', function () {
+    console.log("＝＝＝初期設定＝＝＝")
+    //ログインセッション確認
+    if (cheak()) {  //ログイン確認済み
+        console.log("Cookieログイン情報確認済み")
+        if (localStorage.getItem('debug') == 1) {
+            Swal.fire("デバックモード", "一時停止中").then((result) => {
+                systems()
+            })
+        }
+    } else { //再ログイン必要
+        console.log("Cookieログイン情報が見当たりません")
     }
+    if (localStorage.getItem('debug') == 1) {
+        let element = document.querySelector('body');;
+        element.insertAdjacentHTML('afterbegin', `<h1>デバッグモード</h1> <button onclick="localStorage.removeItem('debug');location.reload()">デバックモード解除</button>`);
+    }
+    console.log("＝＝＝初期設定ここまで＝＝＝")
 })
-
 /*初期設定ここまで*/
 
 
 /*Googleログイン認証後処理*/
 function handleCredentialResponse(response) {
     console.log("＝＝＝Googleログイン処理後開始＝＝＝")
-    console.log("sessionID",JSON.stringify(jwt_decode(response.credential)))
+    console.log("sessionID", JSON.stringify(jwt_decode(response.credential)))
     Cookies.set('sessionID', (JSON.stringify(jwt_decode(response.credential))), { expires: 1 }); //Cookie設定（有効期限1日）
     if (localStorage.getItem('agree') == 1) {//利用規約同意確認
         console.log("規約同意済み")
-        systems() //systems起動
+        if (localStorage.getItem('debug') == 1) {
+            Swal.fire("デバックモード", "一時停止中").then((result) => {
+                systems()
+            })
+        } else {
+            systems()
+        }
     } else {//初回利用
         console.log("初回利用")
         Swal.fire({
@@ -56,9 +60,11 @@ function handleCredentialResponse(response) {
                 console.log("同意")
                 localStorage.setItem('agree', 1);
                 if (localStorage.getItem('debug') == 1) {
-                    Swal.fire("デバックモード","一時停止中").then((result) => {
+                    Swal.fire("デバックモード", "一時停止中").then((result) => {
                         systems()
                     })
+                } else {
+                    systems()
                 }
             }
         })
@@ -108,13 +114,15 @@ function debugalert() {
 /*デバックモード*/
 function debug() {
     console.log("＝＝＝デバック開始＝＝＝")
-    if(localStorage.getItem('debug') == 1){
+    if (localStorage.getItem('debug') == 1) {
         console.log("デバックモードオフ")
         localStorage.removeItem('debug') //デバックモードOFF)
-    }else{
-    localStorage.removeItem('agree')
-    localStorage.setItem('debug', 1);
-    console.log("利用規約初期化....デバックモードオン")}
+    } else {
+        localStorage.removeItem('agree')
+        localStorage.setItem('debug', 1);
+        console.log("利用規約初期化....デバックモードオン")
+        location.reload()
+    }
     Swal.close()
     console.log("＝＝＝デバック開始ここまで＝＝＝")
 }
