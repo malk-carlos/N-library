@@ -24,22 +24,26 @@ function keypress_ivent(e) {
         scan(texts)
         texts = ""
     }
+    $("#overlay").fadeOut(300);
     document.getElementById("keyview").innerHTML = texts
     return false;
 }
 
 //スキャン処理
 function scan(texts) {
+    $("#overlay").fadeIn(300);
     switch (texts) {
         case "LENDING":
             system_mode = "lending"
             userdata = undefined
             send("book_num")
+            $("#back").css({ 'background-color' : '#5271FF' } );
             break;
         case "RETRUN0":
             system_mode = "retrun"
             userdata = undefined
             send("book_num")
+            $("#back").css({ 'background-color' : '#FF5757' } );
             break;
 
         default:
@@ -47,14 +51,6 @@ function scan(texts) {
                 if (system_mode == "retrun") {
                     console.log(" hennkyakusyori")
                     send("retrun", userid, texts, new Date().toLocaleString())
-                    Swal.fire({
-                                            position: 'top-end',
-                                            icon: 'success',
-                                            title: '返却処理が完了',
-                                            html: '完了しました',
-                                            showConfirmButton: false,
-                                            timer: 1500
-                                        })
                     return
                 } else if (system_mode == "lending") {
                     if (userdata < 3 && texts.length != 21) {
