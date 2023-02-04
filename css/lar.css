@@ -1,0 +1,27 @@
+#explanation{
+   width: 70%;
+
+}
+.work{
+   text-align:center;
+}
+
+#keyview {
+   visibility: hidden;
+}
+
+.data{
+   font-size: 25px;
+   display: flex;
+   justify-content: center;
+   margin-top: 20px;
+}
+.datas{
+   margin-left: 20px;
+}
+.data button{
+   border-color: white;
+   color:  white;
+   border-radius: 20px;
+   background-color: #FF5757;
+}

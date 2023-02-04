@@ -1,7 +1,7 @@
 /*スプレッドシート送受信 */
 
 //宣言
-let jsonObj, flag = false,userdata,namedata;
+let jsonObj, flag = false, userdata, namedata;
 let mode, key1, key2, key3, key4, key5, key6, key7, key8, key9, key10, key11, key12, key13, key14, key15, key16, key17, key18, key19, key20;
 const apiurl = 'https://script.google.com/macros/s/AKfycbyOBgvJG2v2xqtAHXU_wmFixyYxRHEPsyykDd5disH6zVmxMY4SUE6QcwGn9fOkGA1e/exec'
 
@@ -15,9 +15,9 @@ function send(mode, key1, key2, key3, key4, key5, key6, key7, key8, key9, key10,
         xhr.onreadystatechange = function () {
                 // readyState XMLHttpRequest の状態 4: リクエストが終了して準備が完了
                 // status httpステータス
-                if (xhr.readyState == 2 ){
+                if (xhr.readyState == 2) {
                         $("#overlay").fadeIn(300);
-                }else if (xhr.readyState == 4 && xhr.status == 200) {
+                } else if (xhr.readyState == 4 && xhr.status == 200) {
                         // jsonをオブジェクトに変更
                         jsonObj = JSON.parse(xhr.responseText);
 
@@ -78,7 +78,7 @@ function send(mode, key1, key2, key3, key4, key5, key6, key7, key8, key9, key10,
                         } else if (mode == "book_num") {
                                 return book_data(jsonObj)
                         } else if (mode == "book_cheak") {
-                                send("reserv_cheak",cheak().sub,true)
+                                send("reserv_cheak", cheak().sub, true)
                                 test(jsonObj)
                         } else if (mode == "admin_book_cheak") {
                                 test(jsonObj)
@@ -93,7 +93,7 @@ function send(mode, key1, key2, key3, key4, key5, key6, key7, key8, key9, key10,
                         } else if (mode == "index_search") {
                                 index_search(jsonObj)
                         } else if (mode == "reserve") {
-                                reserve(jsonObj,key4)
+                                reserve(jsonObj, key4)
                         } else if (mode == "user_cheak") {
                                 if (jsonObj[0] == 'notmatch') {
                                         Swal.fire({
@@ -123,24 +123,68 @@ function send(mode, key1, key2, key3, key4, key5, key6, key7, key8, key9, key10,
                                         }
                                 }
 
-                        } else if(mode=="reserv_cheak"){
+                        } else if (mode == "reserv_cheak") {
                                 userdata = jsonObj[0]
                                 namedata = jsonObj[1]
 
-                                if(key2==true) {
+                                if (key2 == true) {
                                         //貸出予約履歴照会
-                                        send("LendingData",cheak().sub)
+                                        send("LendingData", cheak().sub)
+                                }
+                        } else if (mode == "retrun"|| mode=="retrun2") {
+                                if (jsonObj == "完了") {
+                                        console.log(jsonObj)
+                                        Swal.fire({
+                                                position: 'top-end',
+                                                icon: 'success',
+                                                title: '返却処理が完了',
+                                                html: '完了しました',
+                                                showConfirmButton: false,
+                                                timer: 1500
+                                        })
+                                } else if(jsonObj =="貸出記録なし"){
+                                        Swal.fire({
+                                                position: 'top-end',
+                                                icon: 'warning',
+                                                title: '貸出履歴がありません',
+                                                html: '貸出情報がありません',
+                                                showConfirmButton: false,
+                                                timer: 1500
+                                        })
+                                }else{
+                                        Swal.fire({
+                                                icon: 'warning',
+                                                title: '貸出情報が複数あります。',
+                                                html: '<div id="test"></div>',
+                                                showConfirmButton: false,
+                                        })
+
+                                        const $row = $(`<div id='row' class='book-row'>${jsonObj[0][7]}</div>`) // 全てのデータ要素
+                                        for(let i =0;i<jsonObj.length;i++){
+                                                const $div = $(`<div class='data' id='data${i}'></div>`) // データ要素
+                                                const $cover = $(`<div class='datas'>${jsonObj[i][9]}</div>`) // 名前
+                                                const $tess = $(`<div class='datas'>${jsonObj[i][6]}</div>`) // 処理番号
+                                                const $divs = $(`<button class='datas' id="return_button" onclick='send("retrun2"," ${jsonObj[i][0]}","${jsonObj[i][1]}"," ${new Date().toLocaleString()}","${jsonObj[i][6]}")'>返却</div>`) // ボタン
+                                                
+                                                $div.append($cover).append($tess).append($divs);
+                                                $row.append($div)
+                                                $("#test").append($row);
+                                        }
+                                        
+
+                        
+                                        
                                 }
                         }
-
                         return (jsonObj)
                 } else if (mode == "log") {
                         if (localStorage.getItem('debug') == 1) {
-                                Swal.fire("デバックモード","一時停止中").then((result) => {
-                                    systems()
-                                })}
+                                Swal.fire("デバックモード", "一時停止中").then((result) => {
+                                        systems()
+                                })
+                        }
                 }
-                if (mode != "book_cheak" && mode != "reserv_cheak"){
+                if (mode != "book_cheak" && mode != "reserv_cheak" && mode != "book_num") {
                         $("#overlay").fadeOut(300);
                 }
         }
