@@ -27,8 +27,16 @@
 
 window.addEventListener('load', function() {
     setTimeout(() => {
+        const query = location.search.split('=');
+        const flag = decodeURIComponent(query[2]);
+
+        if(query[0]==""){
+            console.log("あいうえお")
             send("book_cheak")
-        }, 1000);
+        } else {
+            send("book_cheak",flag)
+        }
+    }, 1000);
 })
     </script>
 </body>
