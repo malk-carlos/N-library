@@ -23,11 +23,12 @@ function search(key,data) { //library.htmlを開いている場合の検索
             }
         }
     }
+    console.log(search_list,"sl")
     reset_list(search_list);
 }
 
 function search_move(key) { //library.htmlへの遷移を伴う検索
-    window.location.href = `library.html?key=${encodeURIComponent(key)}`;
+    window.location.href = `library.html?key=${encodeURIComponent(key)}=flag`;
 }
 
 function reset_list(search_list) {
@@ -40,17 +41,18 @@ function reset_list(search_list) {
 
         const $row = $(`<div id='row${String(i+1)}' class='book-row'></div>`) // 各書籍の表紙, タイトル, 著者を記載する要素
 
-        for (let j = 0; j < 4; j ++){
-            const $n = i*4+j+1;
-            const $div = $(`<div id='book${String($n)}' class='book'></div>`) // 各書籍の表紙, タイトル, 著者を記載する要素
+        for (let j = 1; j < 5; j ++){
+            const $n = i*4+j;
+            const $btn = $(`<button id='btn${String($n)}' class='standby' name='${search_list[$n][21]}' onClick='toReserve(${search_list[$n][0]},${$n})'>予約不可</button>`) //予約ボタン
+            const $div = $(`<div id='book${String($n)}' class='book ${search_list[$n][0]}'></div>`) // 各書籍の表紙, タイトル, 著者を記載する要素
             const $ps = $(`<div class='ps'><div>`)
 
-            const $cover = $(`<img src='${search_list[$n][17]}' class='coverimg' alt="${search_list[$n][1]}"oncontextmenu="return false;">`) // 表紙
+            const $cover = $(`<img src='${search_list[$n][17]}' class='coverimg' alt="${search_list[$n][1]}" oncontextmenu="return false;">`) // 表紙
             const $title = $(`<p class='title'>${search_list[$n][1]}</p>`) // タイトル
             const $writer = $(`<p class='writer'>${search_list[$n][7]}</p>`) // 著者名
 
             $ps.append($title).append($writer);
-            $div.append($cover).append($ps);
+            $div.append($cover).append($ps).append($btn);
             $row.append($div);
 
             if ($n == search_list.length - 1) {
@@ -62,6 +64,8 @@ function reset_list(search_list) {
         $("#container").append($row);
     }
     history.replaceState('', '', new URL(window.location.href).pathname);
+    $("#overlay").fadeOut(300);
+    send("reserv_cheak", cheak().sub, true)
 }
 
 function toIndex_search() {

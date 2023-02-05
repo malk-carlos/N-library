@@ -28,7 +28,8 @@ function test(jsonObj) {
             $("#container").append($row);
         }
     } else {
-        search(search_key);
+        console.log("b")
+        search(search_key,jsonObj);
     }
 }
 
