@@ -82,6 +82,13 @@ function send(mode, key1, key2, key3, key4, key5, key6, key7, key8, key9, key10,
                                 test(jsonObj)
                         } else if (mode == "admin_book_cheak") {
                                 test(jsonObj)
+                        } else if (mode == "searching") {
+                                if (key2 == "/library.html") {
+                                        console.log("あいう",jsonObj)
+                                        search(key1,jsonObj);
+                                } else {
+                                        search_move(key1);
+                                }
                         } else if (mode == "db_cheak") {
                                 db_cheak(jsonObj)
                         } else if (mode == "LendingData") {

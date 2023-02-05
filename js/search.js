@@ -1,28 +1,21 @@
 function path_check() {
     const url = new URL(window.location.href);
     const path = url.pathname;
-
-    if (path == "/library.html") {
-        let key = $("#keyword").val();
-        search(key);
-
-    } else {
-        let key = $("#keyword").val();
-        search_move(key);
-    }
+    const key = $("#keyword").val();
+    send('searching',key,path);
 }
 
-function search(key) { //library.htmlを開いている場合の検索
+function search(key,data) { //library.htmlを開いている場合の検索
 
-    let search_list = [jsonObj[0]];
+    let search_list = [data[0]];
 
-    for (let k = 1; k < jsonObj.length; k++) { // jsonObjの数（= 登録書籍の種類数）分検索
+    for (let k = 1; k < data.length; k++) { // jsonObjの数（= 登録書籍の種類数）分検索
 
         for (let l = 1; l <= 15; l++) { // jsonObjのパラメータ1-9と15に部分一致するか検索
             
-            console.log(k,l,String(jsonObj[k][l]).indexOf(key),String(jsonObj[k][l]))
-            if(String(jsonObj[k][l]).indexOf(key) > -1){ // 検索ワードと一致する部分があるか
-                search_list.push(jsonObj[k]); // 一致したら配列をsearch_listに
+            console.log(k,l,String(data[k][l]).indexOf(key),String(data[k][l]))
+            if(String(data[k][l]).indexOf(key) > -1){ // 検索ワードと一致する部分があるか
+                search_list.push(data[k]); // 一致したら配列をsearch_listに
                 l = 16; // 同一書籍を重ねて表示しないよう抜ける
             }
             else if(l == 9) {
@@ -85,8 +78,6 @@ function index_search(jsonObj) {
     for (let k = 1; k < jsonObj.length; k++) { // jsonObjの数（= 登録書籍の種類数）分検索
 
         for (let l = 1; l <= 15; l++) { // jsonObjのパラメータ1-9と15に部分一致するか検索
-            
-            console.log(k,l,String(jsonObj[k][l]).indexOf($word),String(jsonObj[k][l]))
             if(String(jsonObj[k][l]).indexOf($word) > -1){ // 検索ワードと一致する部分があるか
                 search_list.push(jsonObj[k]); // 一致したら配列をsearch_listに
                 l = 16; // 同一書籍を重ねて表示しないよう抜ける
