@@ -34,6 +34,7 @@ function test(jsonObj) {
 }
 
 function toReserve(book_num,n) {
+    $("#overlay").fadeIn(300);
     if ($(`#btn${String(n)}`).attr('class') == 'reserve_btn'){
         console.log("tore")
         send("reserve",cheak().sub, book_num, new Date().toLocaleString(),n)
