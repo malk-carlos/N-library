@@ -112,8 +112,8 @@ function send(mode, key1, key2, key3, key4, key5, key6, key7, key8, key9, key10,
                                 bookDB = jsonObj
                                 index_search(bookDB)
                         } else if (mode == "reserve") {
-                                bookDB = jsonObj
-                                reserve(bookDB, key4)
+                                rentStatus = jsonObj
+                                reserve(rentStatus, key4)
                         } else if (mode == "user_cheak") {
                                 userDatas = jsonObj
                                 if (userDatas[0] == 'notmatch') {

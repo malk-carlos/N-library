@@ -42,13 +42,13 @@ function toReserve(book_num,n) {
     }
 }
 
-function reserve(bookDB,n) {
-    console.log(bookDB,n,userdata,"書籍データ,通し番号,userdata");
-    if (data == "予約完了") {
+function reserve(rentStatus,n) {
+    console.log(rentStatus,n,userdata,"書籍データ,通し番号,userdata");
+    if (rentStatus == "予約完了") {
         $(`#btn${String(n)}`).removeClass('reserve_btn').addClass('reserved').removeAttr("onClick").text("予約済み");
         userdata += 1;
         limit();
-    } else if (bookDB == "予約できませんでした") {
+    } else if (rentStatus == "予約できませんでした") {
         swal.fire({
             title: "予期しないエラー",
             text: "エラーが発生しました！",
