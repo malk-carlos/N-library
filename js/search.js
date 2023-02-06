@@ -5,17 +5,17 @@ function path_check() {
     send('searching',key,path);
 }
 
-function search(key,data) { //library.htmlを開いている場合の検索
+function search(key,bookDB) { //library.htmlを開いている場合の検索
 
-    let search_list = [data[0]];
+    let search_list = [bookDB[0]];
 
-    for (let k = 1; k < data.length; k++) { // jsonObjの数（= 登録書籍の種類数）分検索
+    for (let k = 1; k < bookDB.length; k++) { // 登録書籍の種類数分検索
 
-        for (let l = 1; l <= 15; l++) { // jsonObjのパラメータ1-9と15に部分一致するか検索
+        for (let l = 1; l <= 15; l++) { // bookDBのパラメータ1-9と15に部分一致するか検索
             
-            console.log(k,l,String(data[k][l]).indexOf(key),String(data[k][l]))
-            if(String(data[k][l]).indexOf(key) > -1){ // 検索ワードと一致する部分があるか
-                search_list.push(data[k]); // 一致したら配列をsearch_listに
+            console.log(k,l,String(bookDB[k][l]).indexOf(key),String(bookDB[k][l]))
+            if(String(bookDB[k][l]).indexOf(key) > -1){ // 検索ワードと一致する部分があるか
+                search_list.push(bookDB[k]); // 一致したら配列をsearch_listに
                 l = 16; // 同一書籍を重ねて表示しないよう抜ける
             }
             else if(l == 9) {
@@ -75,15 +75,15 @@ function toIndex_search() {
     }
 }
 
-function index_search(jsonObj) {
+function index_search(bookDB) {
     const $word = $("#word").val();
     // data = 蔵書一覧　$word = 検索ワード
-    let search_list = [jsonObj[0]];
-    for (let k = 1; k < jsonObj.length; k++) { // jsonObjの数（= 登録書籍の種類数）分検索
+    let search_list = [bookDB[0]];
+    for (let k = 1; k < bookDB.length; k++) { // 登録書籍の種類数分検索
 
-        for (let l = 1; l <= 15; l++) { // jsonObjのパラメータ1-9と15に部分一致するか検索
-            if(String(jsonObj[k][l]).indexOf($word) > -1){ // 検索ワードと一致する部分があるか
-                search_list.push(jsonObj[k]); // 一致したら配列をsearch_listに
+        for (let l = 1; l <= 15; l++) { // bookDBのパラメータ1-9と15に部分一致するか検索
+            if(String(bookDB[k][l]).indexOf($word) > -1){ // 検索ワードと一致する部分があるか
+                search_list.push(bookDB[k]); // 一致したら配列をsearch_listに
                 l = 16; // 同一書籍を重ねて表示しないよう抜ける
             }
             else if(l == 9) {

@@ -1,11 +1,11 @@
-function test(jsonObj) {
+function test(bookDB) {
 
     const query = location.search.split('=');
-    console.log("query",query,jsonObj)
+    console.log("query",query,bookDB)
     const search_key = decodeURIComponent(query[1]);
 
     if (query[0]=="") {
-        const jOl4 = Math.floor((jsonObj.length) / 4); // 4冊ごとに列を作る
+        const jOl4 = Math.floor((bookDB.length) / 4); // 4冊ごとに列を作る
 
         for (let i = 0; i < jOl4; i ++) {
     
@@ -13,13 +13,13 @@ function test(jsonObj) {
     
             for (let j = 1; j < 5; j ++){
                 const $n = i*4+j;
-                const $btn = $(`<button id='btn${String($n)}' class='standby' name='${jsonObj[$n][21]}' onClick='toReserve(${jsonObj[$n][0]},${$n})'>予約不可</button>`) //予約ボタン
-                const $div = $(`<div id='book${String($n)}' class='book ${jsonObj[$n][0]}'></div>`) // 各書籍の表紙, タイトル, 著者を記載する要素
+                const $btn = $(`<button id='btn${String($n)}' class='standby' name='${bookDB[$n][21]}' onClick='toReserve(${bookDB[$n][0]},${$n})'>予約不可</button>`) //予約ボタン
+                const $div = $(`<div id='book${String($n)}' class='book ${bookDB[$n][0]}'></div>`) // 各書籍の表紙, タイトル, 著者を記載する要素
                 const $ps = $(`<div class='ps'><div>`)
     
-                const $cover = $(`<img src='${jsonObj[$n][17]}' class='coverimg' alt="${jsonObj[$n][1]}" oncontextmenu="return false;">`) // 表紙
-                const $title = $(`<p class='title'>${jsonObj[$n][1]}</p>`) // タイトル
-                const $writer = $(`<p class='writer'>${jsonObj[$n][7]}</p>`) // 著者名
+                const $cover = $(`<img src='${bookDB[$n][17]}' class='coverimg' alt="${bookDB[$n][1]}" oncontextmenu="return false;">`) // 表紙
+                const $title = $(`<p class='title'>${bookDB[$n][1]}</p>`) // タイトル
+                const $writer = $(`<p class='writer'>${bookDB[$n][7]}</p>`) // 著者名
     
                 $ps.append($title).append($writer);
                 $div.append($cover).append($ps).append($btn);
@@ -29,7 +29,7 @@ function test(jsonObj) {
         }
     } else {
         console.log("b")
-        search(search_key,jsonObj);
+        search(search_key,bookDB);
     }
 }
 
@@ -42,13 +42,13 @@ function toReserve(book_num,n) {
     }
 }
 
-function reserve(data,n) {
-    console.log(data,n,userdata);
+function reserve(bookDB,n) {
+    console.log(bookDB,n,userdata,"書籍データ,通し番号,userdata");
     if (data == "予約完了") {
         $(`#btn${String(n)}`).removeClass('reserve_btn').addClass('reserved').removeAttr("onClick").text("予約済み");
         userdata += 1;
         limit();
-    } else if (data == "予約できませんでした") {
+    } else if (bookDB == "予約できませんでした") {
         swal.fire({
             title: "予期しないエラー",
             text: "エラーが発生しました！",
@@ -69,8 +69,8 @@ function limit () {
     }
 }
 
-function mydata(datas) {
-    console.log(datas,"mydata");
+function mydata(logDB) {
+    console.log(logDB,"mydata");
 
     const book_length = $(".book:last").attr("id").replace("book","");
     console.log(book_length,"Blen") 
@@ -78,8 +78,8 @@ function mydata(datas) {
         if (Number($(`#btn${i+1}`).attr("name")) <= 0){
             $(`#btn${i+1}`).removeClass('standby reserve_btn').addClass('limit').text("予約不可");
         }
-        for(let j = 0; datas.length > j; j ++){
-            let dataJ = datas[j];
+        for(let j = 0; logDB.length > j; j ++){
+            let dataJ = logDB[j];
             console.log(dataJ[5],"dataJ5");
             if(dataJ[1] == $(`#book${i+1}`).attr("class").replace("book ","") && dataJ[5] == "予約中"){
                 $(`#btn${i+1}`).removeClass('standby limit').addClass('reserved').removeAttr("onClick").text("予約済み");

@@ -1,7 +1,7 @@
 /*スプレッドシート送受信 */
 
 //宣言
-let jsonObj, flag = false, userdata, namedata;
+let jsonObj,bookDB,logDB,userDatas, flag = false, userdata, namedata;
 let mode, key1, key2, key3, key4, key5, key6, key7, key8, key9, key10, key11, key12, key13, key14, key15, key16, key17, key18, key19, key20;
 const apiurl = 'https://script.google.com/macros/s/AKfycbyOBgvJG2v2xqtAHXU_wmFixyYxRHEPsyykDd5disH6zVmxMY4SUE6QcwGn9fOkGA1e/exec'
 
@@ -76,38 +76,47 @@ function send(mode, key1, key2, key3, key4, key5, key6, key7, key8, key9, key10,
                                         alert("失敗しました")
                                 }
                         } else if (mode == "book_num") {
-                                return book_data(jsonObj)
+                                bookDB = jsonObj
+                                return book_data(bookDB)
                         } else if (mode == "book_cheak") {
+                                bookDB = jsonObj
                                 if(key1 == "flag"){
                                         console.log("a")
-                                        test(jsonObj)
+                                        test(bookDB)
                                 } else {
                                         send("reserv_cheak", cheak().sub, true)
-                                        test(jsonObj)
+                                        test(bookDB)
                                 }
                         } else if (mode == "admin_book_cheak") {
-                                test(jsonObj)
+                                bookDB = jsonObj
+                                test(bookDB)
                         } else if (mode == "searching") {
+                                bookDB = jsonObj
                                 if (key2 == "/library.html") {
-                                        console.log("あいう",jsonObj)
-                                        search(key1,jsonObj);
+                                        console.log("lib-search",bookDB)
+                                        search(key1,bookDB);
                                 } else {
                                         search_move(key1);
                                 }
                         } else if (mode == "db_cheak") {
-                                db_cheak(jsonObj)
+                                bookDB = jsonObj
+                                db_cheak(bookDB)
                         } else if (mode == "LendingData") {
-                                console.log(jsonObj)
-                                mydata(jsonObj)
+                                logDB = jsonObj
+                                console.log(logDB)
+                                mydata(logDB)
                         } else if (mode == "AllLendingdata") {
                                 reservationdata = jsonObj
                                 return
                         } else if (mode == "index_search") {
-                                index_search(jsonObj)
+                                bookDB = jsonObj
+                                index_search(bookDB)
                         } else if (mode == "reserve") {
-                                reserve(jsonObj, key4)
+                                bookDB = jsonObj
+                                reserve(bookDB, key4)
                         } else if (mode == "user_cheak") {
-                                if (jsonObj[0] == 'notmatch') {
+                                userDatas = jsonObj
+                                if (userDatas[0] == 'notmatch') {
                                         Swal.fire({
                                                 position: 'top-end',
                                                 icon: 'question',
@@ -117,8 +126,8 @@ function send(mode, key1, key2, key3, key4, key5, key6, key7, key8, key9, key10,
                                                 timer: 1500
                                         })
                                 } else {
-                                        userdata = jsonObj[0]
-                                        namedata = jsonObj[1]
+                                        userdata = userDatas[0]
+                                        namedata = userDatas[1]
                                         if (userdata < 3) {
                                                 console.log(namedata)
 
@@ -136,8 +145,9 @@ function send(mode, key1, key2, key3, key4, key5, key6, key7, key8, key9, key10,
                                 }
 
                         } else if (mode == "reserv_cheak") {
-                                userdata = jsonObj[0]
-                                namedata = jsonObj[1]
+                                userDatas = jsonObj
+                                userdata = userDatas[0]
+                                namedata = userDatas[1]
 
                                 if (key2 == true) {
                                         //貸出予約履歴照会
