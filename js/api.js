@@ -1,7 +1,7 @@
 /*スプレッドシート送受信 */
 
 //宣言
-let jsonObj,bookDB,logDB,userDatas, flag = false, userdata, namedata;
+let jsonObj,bookDB,logDB,userDatas,rentStatus, flag = false, userdata, namedata;
 let mode, key1, key2, key3, key4, key5, key6, key7, key8, key9, key10, key11, key12, key13, key14, key15, key16, key17, key18, key19, key20;
 const apiurl = 'https://script.google.com/macros/s/AKfycbyOBgvJG2v2xqtAHXU_wmFixyYxRHEPsyykDd5disH6zVmxMY4SUE6QcwGn9fOkGA1e/exec'
 
