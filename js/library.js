@@ -34,6 +34,7 @@ function test(jsonObj) {
 }
 
 function toReserve(book_num,n) {
+    console.log(userdata)
     $("#overlay").fadeIn(300);
     if ($(`#btn${String(n)}`).attr('class') == 'reserve_btn'){
         console.log("tore")
@@ -80,7 +81,7 @@ function mydata(datas) {
         for(let j = 0; datas.length > j; j ++){
             let dataJ = datas[j];
             console.log(dataJ[5],"dataJ5");
-            if(dataJ[1] == $(`#book${i+1}`).attr("class").replace("book ","")){
+            if(dataJ[1] == $(`#book${i+1}`).attr("class").replace("book ","") && dataJ[5] == "予約中"){
                 $(`#btn${i+1}`).removeClass('standby limit').addClass('reserved').removeAttr("onClick").text("予約済み");
             }
         }
