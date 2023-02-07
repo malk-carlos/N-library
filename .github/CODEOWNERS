@@ -1,0 +1,12 @@
+# 全ファイルの所有者
+* @malk-carlos
+* @nagito-hiroshima
+
+# 特定の拡張子のファイル所有者
+*.html @username2
+*.js @username2
+*.scss @username2
+
+# 特定のディレクトリ直下ファイルの所有者
+# Eメールアドレスも指定可
+tests/* example@github.com

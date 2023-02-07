@@ -2,15 +2,24 @@
 <html lang="ja">
 
 <head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="./css/library.css">
     <title>書籍検索</title>
 
-    <script src="./js/api.js"></script>
+    <!--CSS-->
     <link rel="stylesheet" href="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.css" />
+    <link rel="stylesheet" href="./css/karisystem_db.css" /> 
+    <link rel="stylesheet" href="./css/library.css">
+
+    <!--外部JS-->
+
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.js"></script>
+    
+    <!--自作JS-->
+    <script src="./js/api.js"></script>
     <script src="./js/karisystem_db.js"></script>
-    <link rel="stylesheet" href="./css/karisystem_db.css" />
+    <script src="./js/google-login.js"></script>
+
 </head>
 
 <body>
@@ -18,9 +27,11 @@
         <script src="./js/header.js"></script>
         <script>header();</script>
     </header>
-    
+
     <h1>管理者様</h1>
     <a href="./regist.html">蔵書を追加</a>
+    <a href="./lar.html">貸出・返却</a>
+    
     <div id="tables">
         <table id="container" class="table table-bordered">
             <thead>
@@ -68,12 +79,10 @@
     </div>
     <script>
         //ページ読み込み後　DBへ蔵書DBの照会
-        window.onload = function () {
             admin_cheak()
-            send("book_cheak")
+            send("admin_book_cheak")
             console.log("読み込み完了")
-        }
-    </script>
+</script>
 </body>
 
 </html>

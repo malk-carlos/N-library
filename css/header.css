@@ -11,7 +11,7 @@ header {
 }
 
 header>img {
-    height: 7.5vmin;
+    height: 60%;
     left: 2.5%;
     top: 50%;
     transform: translateY(-50%);
@@ -19,33 +19,39 @@ header>img {
     position: absolute;
 }
 
-header>input {
-    width: 300px;
-    height: 5vh;
-    border: none;
-    border-radius: 50px;
-    left: 15%;
+#search {
+    width: 30%;
+    height: calc(100vw * 0.03);
+    left: 12.5%;
     top: 50%;
     transform: translateY(-50%);
     display: inline-block;
     position: absolute;
+    vertical-align: middle;
+}
+
+#search>input {
+    width: 80%;
+    height: 100%;
+    border: none;
+    border-radius: 50px;
+    display: inline-block;
     padding-left: 15px;
+    color: #333;
 }
 
-header>button {
-    width: 5vh;
-    height: 5vh;
+#search>button {
+    width: 10%;
+    height: 100%;
     border: none;
     border-radius: 50px;
-    left: calc(15% + 330px);
-    top: 50%;
-    transform: translateY(-50%);
     display: inline-block;
-    position: absolute;
     color: #150971;
+    background-color: #fff;
+    margin-left: 10px;
 }
 
-header>button>i {
+#search>button>i {
     width: 12px;
     height: 12px;
 }
@@ -62,9 +68,101 @@ ul>li {
     margin-left: 2.5vw;
 }
 
-ul>li>a,ul>li>span {
+ul>li>a {
     color: #fff;
     text-decoration: none;
     font-size: large;
     cursor: pointer;
+}
+
+ul>li>button {
+    background-color: #fff;
+    color: #150971;
+    border: 1px solid #fff;
+    font-size: large;
+    transition: .2s;
+}
+
+ul>li>button:hover {
+    background-color: #fffd;
+    transform: scale(1.02);
+}
+
+ul>li>button:active {
+    background-color: #150971;
+    color: #fff;
+}
+
+#admin {
+    position: absolute;
+    padding: 0;
+    width: 10px;
+    height: 10px;
+    right: 0;
+    top: 0;
+    border: none;
+    cursor: unset;
+}
+
+#admin_group {
+    display: none;
+}
+
+#overlay {
+    position: fixed;
+    top: 0;
+    z-index: 100;
+    width: 100%;
+    height: 100%;
+    display: none;
+    background: rgba(0, 0, 0, 0.6);
+}
+
+.cv-spinner {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px #ddd solid;
+    border-top: 4px #2e93e6 solid;
+    border-radius: 50%;
+    animation: sp-anime 0.8s infinite linear;
+}
+
+@keyframes sp-anime {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.is-hide {
+    display: none;
+}
+
+.logout,
+#nav {
+    /*コレ*/
+    display: flex;
+    /*コレ*/
+    align-items: center;
+    /*コレ*/
+    justify-content: center;
+
+}
+
+.logout img {
+    margin-right: 5px;
+    height: 30px;
+    border-radius: 20px;
+    border-color: #150971;
+    border: solid .5px;
+}
+
+.air{
+    height: 300px;
 }
