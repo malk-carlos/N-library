@@ -20,10 +20,11 @@ img{
 #icom > img{
     width:  17vw;       
     height: 17vw;       
-    min-width: 120px;
-    min-height: 120px;
+    min-width: 150px;
+    min-height: 150px;
     border-radius: 50% ;
     border: solid 3px #333;
+    position: relative;
 }
 .mypage-frame{
     padding: 1em 1.4em;
@@ -32,31 +33,33 @@ img{
     background: #FFF;
     border: solid 3px #333;/*線*/
     border-radius: 10px;/*角の丸み*/
+    min-width: 650px;
 }
 .tab-mypage{
     padding: 1em 1.4em;
-    margin: 2em 2em;
+    margin: 2vw 2vw;
     width: 20vw;
     font-weight: bold;
     background: #FFF;
     border: solid 3px #333;/*線*/
     border-radius: 10px;/*角の丸み*/
-
+    min-width: 190px;
 }
 .flex{
     display: flex;
 }
 #name{
-    font-size: 3em;
+    font-size:max(2vw,50px);
+    margin: 0 auto;
 }
 .frame_right{
-  right: 5;
-  
+    margin: 0 auto;
+    width: 66vw;
 }
 .frame_left{
-  left: 5;
+  width: 27vw;
   text-align: center;
-  min-width: 220px;
+  min-width: 260px;
 }
 .tab-mypage_item{
     margin: 8% 5% 8% 5%;
@@ -74,24 +77,62 @@ img{
 }
 .tab-mypage_item:focus{
     color: #000;
-    border-bottom: 0.2em solid #000;
+    font-size:max(2.3vw,25px);
+    border-bottom: 0.1em solid #000;
 
 }
-.tab_mypage-content{
+.tab-mypage-content{
     display: none;
+    position: relative;
 }
 .is-show{
     display: block;
 }
 .acount-google{
-    padding: 4%;
+    padding:max(1vw,10px);
     background-color: #150971;
     color: #FFF;
-    font-size: 2vw;
-
+    font-size:max(3.5vw,30px);
     border-radius: 10px;
     text-decoration: none;
+    
 }
 .center{
     text-align: center;
+}
+.relative{
+    position: relative;
+
+}
+#content-01{
+    width: 100%;
+}
+.name-frame{
+    align-items: flex-end;
+    border-bottom: 3px solid ;
+    white-space: nowrap;
+    position: relative;
+}
+.right-container{
+    margin: 3vw;
+}
+.bottom{
+    bottom: 5;
+}
+.title{
+    font-size: 1.5vw;
+}
+/* デバッグ用 */
+.test{
+    color: red;
+}
+#container {
+    text-align: center;
+}
+
+.book {
+    display: inline-block;
+    width: 20vw;
+    height: 25vw;
+    margin: 2%;
 }
