@@ -21,47 +21,47 @@
         <div class="frame_left">
             <div id="icom"></div>
             <div class="tab-mypage">
-                <input id="profile" type="button" class="tab-mypage_item is-active"  value=" プロフィール " onclick="change()"/></input>
+                <input id="profile" type="button" class="tab-mypage_item"  value=" プロフィール " onclick="change()"/></input>
+                <input id="borrowing" type="button" class="tab-mypage_item"  value="貸出中の本" onclick="change()"></input>
                 <input id="history" type="button" class="tab-mypage_item"  value="借りた本の履歴" onclick="change()"></input>
                 <input id="return" type="button" class="tab-mypage_item"  value="返却日が近い本" onclick="change()"></input>
                 <input id="reserve" type="button" class="tab-mypage_item"  value="予約した本" onclick="change()"></input>
             </div>
         </div>
         <div class="frame_right">
-            <div class="tab_mypage-content" id="content-01">
-                <div id="name"></div>
-                <div id="mail"></div>
-                <div id="bcTarget"></div>
-                <div id="datas"></div>
-                <a href="https://myaccount.google.com/" class="acount-google">編集</a>
+            <div class="tab-mypage-content is-show" id="content-01">
+                <div class="right-container center">
+                    <div class="name-frame flex">
+                        <div style="padding: 1.4%;">表示名</div>
+                        <div id="name"></div>
+                    </div>
+                    <div id="mail"></div>
+                </div>
+                <div class="right-container center">
+                    <div class="name-frame flex">
+                        <div style="padding: 1.4%;">ひとこと</div>
+                        <input type="text" name="hitokoto">
+                    </div>
+                </div>
+                <!-- <div id="bcTarget"></div> -->
+                <div class="right-container">
+                    <a href="https://myaccount.google.com/" class="acount-google">編集</a>
+                </div>
             </div>
-            <div class="tab_mypage-content" id="content-02">
-                <p>仮置き</p>
+            <div class="tab-mypage-content" id="content-02">
+                <!-- <div id="datas"></div> -->
+                <div class="borrowing"></div>
             </div>
-            <div class="tab_mypage-content" id="content-03">
-                <p>仮置きに</p>
+            <div class="tab-mypage-content" id="content-03">
+                <div class="history"></div>
             </div>
-            <div class="tab_mypage-content"  id="content-04">
-                <p>仮置き3</p>
+            <div class="tab-mypage-content" id="content-04">
+                <div class="return"></div>
+            </div>
+            <div class="tab-mypage-content"  id="content-05">
+                <div class="reserve"></div>
             </div>
         </div>
-         <!-- <div id="tables">
-             <table id="foo-table" class="table table-bordered">
-                 <thead>
-                     <tr>
-                         <th>本</th>
-                         <th>状態</th>
-                         <th>最終更新日</th>
-                         <th class="sys-no">処理番号</th>
-                     </tr>
-                 </thead>
-                 <tbody>
-     
-                     <tr>
-                     </tr>
-                 </tbody>
-             </table>
-         </div> -->
  </div>
     <script>
         //ログイン情報取得
@@ -71,8 +71,98 @@
         document.getElementById("icom").innerHTML = `<img src="${logindata.picture}">`
         //バーコード表示
         $("#bcTarget").barcode(logindata.sub, "code39", { barWidth: 2.9, barHeight: 90 });
+        //貸出予約履歴照会
+        send("LendingData",logindata.sub);
+       
 
-        // タブ切り替え
+
+        //api.jsからの呼び出し（データが返ってきたら）
+        function mydata(datas) {
+            let datasBorrow = datas.filter(value => value[5] === '貸出中')
+            let datasReserve = datas.filter(value => value[5] === '予約中')
+            let datasHistory = datas.filter(value => value[5] === '返却済み')
+            const date = new Date();
+            var returnDate;
+            var difference;
+            let datasReturn = [];
+            for (let i = 0; i < datasBorrow.length; i++) {
+                const borrowDate = new Date(datasBorrow[i][3])
+                returnDate = new Date(borrowDate.getTime() + 7 * 24 * 60 * 60 * 1000)
+                difference = returnDate - date 
+                if (datasBorrow[i][5] === '貸出中' && difference <= 86400000 && difference >= 0) {
+                    datasReturn.push(datasBorrow[i]);
+                }
+                // datasReturn = datasBorrow.filter(function(value){
+                //     return value[5] === '貸出中' && difference <= 86400000;
+                // });
+            }
+            console.log(returnDate);
+            console.log(datas);
+            console.log(datasBorrow);
+            console.log(datasReserve);
+            console.log(datasHistory);
+            console.log(datasReturn);
+            // 貸出中の本
+            if (datasBorrow.length === 0 ) {
+                const $div = $('<div class="void-mypage"></div>')
+                const $fight = $('<p>まだ履歴がありません！<br>本を予約しましょう！</p>')
+                $div.append($fight)
+                $(".borrowing").append($div)
+            }else{
+                for (let i = 0; i < datasBorrow.length; i++) {
+                    const $div = $(`<div id='borrowingbook${String(i)}' class='book'></div>`)
+                    const $cover = $(`<img src='${datasBorrow[i][8]}' class='coverimg' alt="${datasBorrow[i][7]}">`) // 表紙
+                    const $title = $(`<p class='title'>${datasBorrow[i][7]}</p>`) // タイトル
+                    $div.append($cover).append($title);
+                    $(".borrowing").append($div)
+                }
+            }
+            // 借りた本の履歴
+            if (datasHistory.length === 0) {
+                const $div = $('<div class="void-mypage"></div>')
+                const $fight = $('<p>まだ履歴がありません！<br>本を借りましょう！</p>')
+                $div.append($fight)
+                $(".history").append($div)
+            }else{
+                for (let i = 0; i < datasHistory.length; i++) {
+                    const $div1 = $(`<div id='bookhistory${String(i)}' class='book'></div>`)
+                    const $cover1 = $(`<img src='${datasHistory[i][8]}' class='coverimg' alt="${datasHistory[i][7]}">`) // 表紙
+                    const $title1 = $(`<p class='title'>${datasHistory[i][7]}</p>`) // タイトル
+                    $div1.append($cover1).append($title1);
+                    $(".history").append($div1)
+                }
+            }
+            // 予約した本
+            if (datasReserve.length === 0) {
+                const $div = $('<div class="void-mypage"></div>')
+                const $fight = $('<p>まだ履歴がありません！<br>本を予約しましょう！</p>')
+                $div.append($fight)
+                $(".reserve").append($div)
+            } else {
+                for (let i = 0; i < datasReserve.length; i++) {
+                    const $div = $(`<div id='reservebook${String(i)}' class='book'></div>`)
+                    const $cover = $(`<img src='${datasReserve[i][8]}' class='coverimg' alt="${datasReserve[i][7]}">`) // 表紙
+                    const $title = $(`<p class='title'>${datasReserve[i][7]}</p>`) // タイトル
+                    $div.append($cover).append($title);
+                    $(".reserve").append($div)
+                }
+            }
+            if (datasReturn.length === 0) {
+                const $div = $('<div class="void-mypage"></div>')
+                const $fight = $('<p>まだ履歴がありません！<br>本を予約しましょう！</p>')
+                $div.append($fight)
+                $(".return").append($div)
+            }else{
+                for (let i = 0; i < datasReturn.length; i++) {
+                    const $div = $(`<div id='reservebook${String(i)}' class='book'></div>`)
+                    const $cover = $(`<img src='${datasReturn[i][8]}' class='coverimg' alt="${datasReturn[i][7]}">`) // 表紙
+                    const $title = $(`<p class='title'>${datasReturn[i][7]}</p>`) // タイトル
+                    $div.append($cover).append($title);
+                    $(".return").append($div)
+                }
+            }
+        }
+        // 切り替え
         function change(e) {
             var e = e || window.event;
             var elem = e.target || e.srcElement;
@@ -81,62 +171,45 @@
             var content02 = document.getElementById('content-02')
             var content03 = document.getElementById('content-03')
             var content04 = document.getElementById('content-04')
+            var content05 = document.getElementById('content-05')
             switch (elemId) {
                 case 'profile' :
                     content01.classList.add('is-show')
                     content02.classList.remove('is-show')
                     content03.classList.remove('is-show')
                     content04.classList.remove('is-show')
+                    content05.classList.remove('is-show')
                     break;
-                case 'history':
+                case 'borrowing':
                     content01.classList.remove('is-show')
                     content02.classList.add('is-show')
                     content03.classList.remove('is-show')
                     content04.classList.remove('is-show')
+                    content05.classList.remove('is-show')
                     break;
-                case 'return':
+                case 'history':
                     content01.classList.remove('is-show')
                     content02.classList.remove('is-show')
                     content03.classList.add('is-show')
                     content04.classList.remove('is-show')
+                    content05.classList.remove('is-show')
+                    break;
+                case 'return':
+                    content01.classList.remove('is-show')
+                    content02.classList.remove('is-show')
+                    content03.classList.remove('is-show')
+                    content04.classList.add('is-show')
+                    content05.classList.remove('is-show')
                     break;
                 case 'reserve':
                     content01.classList.remove('is-show')
                     content02.classList.remove('is-show')
                     content03.classList.remove('is-show')
-                    content04.classList.add('is-show')
+                    content04.classList.remove('is-show')
+                    content05.classList.add('is-show')
                     break;
             }
             
-        }
-
-        //貸出予約履歴照会
-        send("LendingData",logindata.sub);
-
-        //api.jsからの呼び出し（データが返ってきたら）
-        function mydata(datas) {
-            const table = document.getElementById('foo-table');  //表のオブジェクトを取得
-            for (let i = 0; i < datas.length-1; i++) {
-                if (logindata.sub == datas[i][0]) {
-                    var row = table.insertRow(-1);  //行末に行(tr要素)を追加
-                     //セル(td要素)の追加
-                    for(let i=0;i<4;i++){
-                        eval(`var cell${i}= row.insertCell(${i})`)
-                    }
-                    
-                    cell0.innerHTML = `<div><img src="${datas[i][8]}"></div><div>${datas[i][7]}</div>${datas[i][1]}`
-                    cell1.innerHTML = datas[i][5]
-
-                    if (datas[i][5] == "返却済み") {
-                        cell2.innerHTML = `${datas[i][4].substr(0, 4)} / ${datas[i][4].substr(5, 2)} / ${datas[i][4].substr(8, 2)} <br> ${datas[i][4].substr(11, 8)}`
-                    } else if (datas[i][5] == "貸出中") {
-                        cell2.innerHTML = `${datas[i][3].substr(0, 4)} / ${datas[i][3].substr(5, 2)} / ${datas[i][3].substr(8, 2)} <br> ${datas[i][3].substr(11, 8)}`
-                    } else if (datas[i][5] == "予約中") {
-                        cell2.innerHTML = `${datas[i][2].substr(0, 4)} / ${datas[i][2].substr(5, 2)} / ${datas[i][2].substr(8, 2)} <br> ${datas[i][2].substr(11, 8)}`
-                    }
-                    cell3.innerHTML =`<div class="sys-no">${datas[i][6]}</div>`
-                }
-            }
         }
 
     </script>
