@@ -11,8 +11,9 @@ h1 {
 }
 
 .book-row {
-    height: 55vh;
-    margin-bottom: -5%;
+    height: 60vh;
+    padding-bottom: 2.5%;
+    border-bottom: 1px solid #150971;
 }
 
 .book {
@@ -23,27 +24,37 @@ h1 {
     position: relative;
 }
 
+.book:hover {
+    border: none;
+    box-shadow: 0 0 10px #5555;
+}
+
+.bookData {
+    display: block;
+    width: 95%;
+}
+
 .coverimg {
     width: 70%;
     height: 50%;
     object-fit: contain;
     position: absolute;
-    top: 0;
+    top: 30px;
     left: 50%;
     transform: translateX(-50%);
 }
 
 .ps {
-    width: 100%;
+    width: 95%;
     position: absolute;
-    top: 52.5%;
+    top: calc(52.5% + 30px);
     left: 50%;
     transform: translateX(-50%);
 }
 
 .reserve_btn {
     position: absolute;
-    bottom: 25%;
+    bottom: 10%;
     left: 50%;
     transform: translateX(-50%);
     background-color: #150971;
@@ -69,7 +80,7 @@ h1 {
 
 .reserved {
     position: absolute;
-    bottom: 25%;
+    bottom: 10%;
     left: 50%;
     transform: translateX(-50%);
     background-color: green;
@@ -82,7 +93,7 @@ h1 {
 
 .limit,.standby {
     position: absolute;
-    bottom: 25%;
+    bottom: 10%;
     left: 50%;
     transform: translateX(-50%);
     background-color: #888;
