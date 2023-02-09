@@ -49,6 +49,7 @@
                         <input type="text" name="hitokoto">
                     </div>
                 </div>
+                <a href="#" onclick="barcode()">barcode</a>
                 <!-- <div id="bcTarget"></div> -->
                 <div class="right-container">
                     <a href="https://myaccount.google.com/" class="acount-google">編集</a>
@@ -80,7 +81,14 @@
         //貸出予約履歴照会
         send("LendingData",logindata.sub);
        
-
+        function barcode(){
+    //バーコード表示
+    Swal.fire({
+        html:                '<div id="bcTarget"></div>',
+        showConfirmButton: false
+})
+$("#bcTarget").barcode(cheak().sub, "code39", { barWidth: 1, barHeight: 90 });
+}
 
         //api.jsからの呼び出し（データが返ってきたら）
         function mydata(datas) {
