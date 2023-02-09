@@ -103,7 +103,7 @@ background-repeat: no-repeat;
   background-color:#7494C0;
   padding : 5px;
   width: 100%;
-  height: 520px;
+  height: 515px;
   overflow-y:scroll;
 }
 
@@ -198,7 +198,11 @@ background-repeat: no-repeat;
   .chat-open-r {
     height : auto!important;
     transition : width .2s;
-    width : 100%!important;
+    width: 93%!important;
+  }
+
+  #chatbot-footer-div {
+    height:25px;    
   }
   /* 下からアニメーションする場合はこれ*/
   .chat-open-b {
