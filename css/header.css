@@ -338,6 +338,33 @@ i{
 }
 
   }
+
+
+  /* 画面幅960px"以下"の時に読み込むスタイル */
+@media screen and (max-width:760px) {
+    .logout,
+#nav,#nav2,#nav1,#navs {
+    /*コレ*/
+    display: flex;
+    /*コレ*/
+    align-items: center;
+    /*コレ*/
+    justify-content: center;
+}
+
+#admin_group{
+    display: none!important;
+}
+#admin{
+    display: none!important;
+}
+
+#search {
+    display: none;
+    }
+
+  }
+
   /* 画面幅670px"以下"の時に読み込むスタイル */
   @media screen and (max-width:670px) {
     #nav,#search {
