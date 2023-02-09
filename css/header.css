@@ -120,7 +120,6 @@ ul li button:active {
     margin: 5px 0;
 }
 #admin_group a{
-    display:inline-block;
     text-align: center;
     min-width: 110px;
     border-radius: 28px;
@@ -186,6 +185,127 @@ i{
     margin: 0 5px;
 }
 
+.hamburger-menu{
+    display: none;
+}
+.menu-btn {
+    position: fixed;
+    top: 18px;
+    right: 10px;
+    display: flex;
+    height: 60px;
+    width: 60px;
+    justify-content: center;
+    align-items: center;
+    z-index: 90;
+    background-color: #3584bb;
+}
+.menu-btn span,
+.menu-btn span:before,
+.menu-btn span:after {
+    content: '';
+    display: block;
+    height: 3px;
+    width: 25px;
+    border-radius: 3px;
+    background-color: #ffffff;
+    position: absolute;
+}
+.menu-btn span:before {
+    bottom: 8px;
+}
+.menu-btn span:after {
+    top: 8px;
+}
+
+#menu-btn-check:checked ~ .menu-btn span {
+    background-color: rgba(255, 255, 255, 0);/*メニューオープン時は真ん中の線を透明にする*/
+    animation: fadeIn 0.7s cubic-bezier(0.33, 1, 0.68, 1) 1 forwards;
+}
+#menu-btn-check:checked ~ .menu-btn span::before {
+    bottom: 0;
+    transform: rotate(45deg);
+    animation: fadeIn 0.7s cubic-bezier(0.33, 1, 0.68, 1) 1 forwards;
+}
+#menu-btn-check:checked ~ .menu-btn span::after {
+    top: 0;
+    transform: rotate(-45deg);
+    animation: fadeIn 0.7s cubic-bezier(0.33, 1, 0.68, 1) 1 forwards;
+}
+
+#menu-btn-check {
+    display: none;
+}
+
+   
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  .menu-content {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 80;
+    background-color: #3584bb;
+}
+.menu-content ul {
+    padding: 70px 10px 0;
+}
+.menu-content ul li {
+    border-bottom: solid 1px #ffffff;
+    list-style: none;
+}
+.menu-content ul li a {
+    display: block;
+    width: 100%;
+    font-size: 6vw;
+    box-sizing: border-box;
+    color:#ffffff;
+    text-decoration: none;
+    padding: 9px 15px 10px 0;
+    position: relative;
+    margin-top: 40px;
+}
+.menu-content ul li a::before {
+    content: "";
+    width: 7px;
+    height: 7px;
+    border-top: solid 2px #ffffff;
+    border-right: solid 2px #ffffff;
+    transform: rotate(45deg);
+    position: absolute;
+    right: 11px;
+    top: 16px;
+}
+
+.menu-content {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 100%;/*leftの値を変更してメニューを画面外へ*/
+    z-index: 80;
+    background-color: #3584bb;
+    transition: all 0.5s;/*アニメーション設定*/
+}
+
+#menu-btn-check:checked ~ .menu-content {
+    left: 0;/*メニューを画面内へ*/
+}
+
+.menu-content ul{
+    width: 90vw;
+    display: inline-grid;
+}
+
 @media screen and (min-width:951px) {
     .logout,
 #nav,#nav2,#nav1,#navs {
@@ -200,7 +320,7 @@ i{
 }
 
 /* 画面幅960px"以下"の時に読み込むスタイル */
-@media screen and (max-width:950px) {
+@media screen and (max-width:960px) {
     .logout,#navs {
     /*コレ*/
     display: flex;
@@ -209,8 +329,25 @@ i{
     /*コレ*/
     justify-content: center;
 }
+
+#admin_group{
+    display: none!important;
+}
+#admin{
+    display: none!important;
+}
+
   }
-  /* 画面幅520px"以下"の時に読み込むスタイル */
-  @media screen and (max-width:520px) {
-    
+  /* 画面幅670px"以下"の時に読み込むスタイル */
+  @media screen and (max-width:670px) {
+    #nav,#search {
+    display: none;
+    }
+    .hamburger-menu{
+        display: block;
+    }
+    ul li {
+        display: inline-block;
+        margin-left: 6.5vw;
+    }
   }
