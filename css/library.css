@@ -54,6 +54,13 @@ h1 {
     cursor: pointer;
 }
 
+.reserve_btn:focus {
+    outline: 3px double #352991;
+    background-color: #150971dd;
+    border-radius: 10px;
+    transition: .2s;
+}
+
 .reserve_btn:hover {
     background-color: #150971dd;
     border-radius: 10px;
@@ -84,4 +91,8 @@ h1 {
     padding: 5px 15px;
     border-radius: 5px;
     cursor: unset;
+}
+
+.reserved:focus,.limit:focus,.standby:focus {
+    outline: none;
 }
