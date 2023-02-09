@@ -76,8 +76,6 @@
         document.getElementById("name").innerHTML = logindata.name 
         document.getElementById("mail").innerHTML = logindata.email
         document.getElementById("icom").innerHTML = `<img src="${logindata.picture}">`
-        //バーコード表示
-        $("#bcTarget").barcode(logindata.sub, "code39", { barWidth: 2.9, barHeight: 90 });
         //貸出予約履歴照会
         send("LendingData",logindata.sub);
        

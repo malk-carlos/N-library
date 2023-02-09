@@ -1,8 +1,10 @@
 * {
     margin: 0;
+    box-sizing: content-box!important;
 }
 
 header {
+    font-size: 18px;
     height: 12.5vh;
     background-color: #150971;
     color: #fff;
@@ -10,38 +12,32 @@ header {
     position: relative;
 }
 
-header>img {
-    height: 60%;
-    left: 2.5%;
-    top: 50%;
-    transform: translateY(-50%);
-    display: inline-block;
-    position: absolute;
+#navs img {
+    height: 80px;
 }
 
 #search {
-    width: 30%;
+    width: 120%;
     height: calc(100vw * 0.03);
-    left: 12.5%;
-    top: 50%;
-    transform: translateY(-50%);
-    display: inline-block;
-    position: absolute;
-    vertical-align: middle;
+    display: flex;
+    flex-wrap: nowrap;
 }
 
-#search>input {
+#search i{
+    margin: 0 auto 0 -6px;
+}
+
+#search input {
     width: 80%;
-    height: 100%;
     border: none;
     border-radius: 50px;
     display: inline-block;
-    padding-left: 15px;
+    padding: 20px 10px;
     color: #333;
 }
 
-#search>button {
-    width: 10%;
+#search button {
+    width: 20%;
     height: 100%;
     border: none;
     border-radius: 50px;
@@ -51,31 +47,42 @@ header>img {
     margin-left: 10px;
 }
 
-#search>button>i {
+
+#search button i {
     width: 12px;
     height: 12px;
 }
 
-header>ul {
+header ul#navs {
     position: absolute;
-    right: 5%;
+    left: -50px;
     top: 50%;
     transform: translateY(-50%);
 }
 
-ul>li {
+header ul#nav  {
+    position: absolute;
+    right: 2%;
+    top: 50%;
+    transform: translateY(-50%);
+   
+}
+
+
+ul li {
     display: inline-block;
     margin-left: 2.5vw;
 }
 
-ul>li>a {
+ul li a {
     color: #fff;
     text-decoration: none;
-    font-size: large;
-    cursor: pointer;
+}
+ul li a:hover{
+    color: #fff;
 }
 
-ul>li>button {
+ul li button {
     background-color: #fff;
     color: #150971;
     border: 1px solid #fff;
@@ -83,12 +90,12 @@ ul>li>button {
     transition: .2s;
 }
 
-ul>li>button:hover {
+ul li button:hover {
     background-color: #fffd;
     transform: scale(1.02);
 }
 
-ul>li>button:active {
+ul li button:active {
     background-color: #150971;
     color: #fff;
 }
@@ -105,7 +112,24 @@ ul>li>button:active {
 }
 
 #admin_group {
+    margin-left: 10px;
+    list-style:none;
     display: none;
+}
+#admin_group li{
+    margin: 5px 0;
+}
+#admin_group a{
+    display:inline-block;
+    text-align: center;
+    min-width: 110px;
+    border-radius: 28px;
+    font-size: 15px;
+    padding: 5px 15px;
+    text-decoration: none;
+    cursor: pointer;
+    color: white;
+    background-color: #2e93e6;
 }
 
 #overlay {
@@ -144,16 +168,7 @@ ul>li>button:active {
     display: none;
 }
 
-.logout,
-#nav {
-    /*コレ*/
-    display: flex;
-    /*コレ*/
-    align-items: center;
-    /*コレ*/
-    justify-content: center;
 
-}
 
 .logout img {
     margin-right: 5px;
@@ -166,3 +181,36 @@ ul>li>button:active {
 .air{
     height: 300px;
 }
+
+i{
+    margin: 0 5px;
+}
+
+@media screen and (min-width:951px) {
+    .logout,
+#nav,#nav2,#nav1,#navs {
+    /*コレ*/
+    display: flex;
+    /*コレ*/
+    align-items: center;
+    /*コレ*/
+    justify-content: center;
+}
+    
+}
+
+/* 画面幅960px"以下"の時に読み込むスタイル */
+@media screen and (max-width:950px) {
+    .logout,#navs {
+    /*コレ*/
+    display: flex;
+    /*コレ*/
+    align-items: center;
+    /*コレ*/
+    justify-content: center;
+}
+  }
+  /* 画面幅520px"以下"の時に読み込むスタイル */
+  @media screen and (max-width:520px) {
+    
+  }
