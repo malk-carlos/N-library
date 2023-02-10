@@ -1,18 +1,18 @@
 function test(bookDB) {
 
     const query = location.search.split('=');
-    console.log("query",query,bookDB)
     const search_key = decodeURIComponent(query[1]);
 
     if (query[0]=="") {
-        const jOl4 = Math.floor((bookDB.length) / 4); // 4冊ごとに列を作る
-
-        for (let i = 0; i < jOl4; i ++) {
+        const bOl4 = Math.ceil((bookDB.length) / 4); // 4冊ごとに列を作る
+    
+        for (let i = 0; i <= bOl4; i ++) {
     
             const $row = $(`<div id='row${String(i+1)}' class='book-row'></div>`) // 各書籍の表紙, タイトル, 著者を記載する要素
     
             for (let j = 1; j < 5; j ++){
                 const $n = i*4+j;
+    
                 const $btn = $(`<button id='btn${String($n)}' class='standby' name='${bookDB[$n][21]}' onClick='toReserve(${bookDB[$n][0]},${$n})'>予約不可</button>`) //予約ボタン
                 const $div = $(`<div id='book${String($n)}' class='book ${bookDB[$n][0]}'></div>`) // 各書籍の表紙, タイトル, 著者を記載する要素
                 const $div2 = $(`<div id='bookData${String($n)}' class='bookData' onClick='popup(${String($n)})'></div>`)
@@ -26,11 +26,16 @@ function test(bookDB) {
                 $div2.append($cover).append($ps)
                 $div.append($div2).append($btn);
                 $row.append($div);
+    
+                if ($n == bookDB.length - 1) {
+                    j = 5;
+                } else {
+                    j = j;
+                }
             }
             $("#container").append($row);
         }
     } else {
-        console.log("b")
         search(search_key,bookDB);
     }
 }
@@ -82,7 +87,6 @@ function mydata(logDB) {
         }
         for(let j = 0; logDB.length > j; j ++){
             let dataJ = logDB[j];
-            console.log(dataJ[5],"dataJ5");
             if(dataJ[1] == $(`#book${i+1}`).attr("class").replace("book ","") && dataJ[5] == "予約中"){
                 $(`#btn${i+1}`).removeClass('standby limit').addClass('reserved').removeAttr("onClick").text("予約済み");
             }
