@@ -8,8 +8,8 @@ const res = [
 ];
 
 const chatTitle = "チャットボット";
-const yourName = "名前";
-const yourRoll = "役職";
+const yourName = "ぴよたそ";
+const yourRoll = "マスコット";
 const firstMsg = "Brrow a book へようこそ。わからない場合は下のボタンを押してください。";
 const closeTxt = "×";
 const profileSize = { width : 50, height : 50}; //プロフィール画像サイズ

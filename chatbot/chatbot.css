@@ -87,6 +87,7 @@ background-repeat: no-repeat;
 #chatbot-profile-img {
   float: left;
   margin-right: 8px;
+  height: auto;
 }
 
 #chatbot-name-div{
