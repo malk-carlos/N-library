@@ -104,3 +104,14 @@ body {
     border: none;
     cursor: unset;
 }
+
+.agree{
+    height: 50vh;
+   
+}
+
+#swal2-html-container{
+    padding: 5px;
+    border:  solid .5px;
+    border-color: #333;
+}
