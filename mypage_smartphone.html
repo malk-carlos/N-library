@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <link rel="stylesheet" href="./css/mypage.css">
+  <script src="./js/google-login.js"></script>
+  <script src="./js/api.js"></script>
+  <script src="./js/jquery-barcode.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+  <title>マイページ</title>
+</head>
+<body>
+  <header>
+    <script src="./js/header.js"></script>
+    <script>header();</script>
+  </header>
+  <div>
+    <div id="tabs">
+      <button class="tab-btn" data-tab="tab1">Tab 1</button>
+      <button class="tab-btn" data-tab="tab2">Tab 2</button>
+      <button class="tab-btn" data-tab="tab3">Tab 3</button>
+      <div id="tab1" class="tab-content">Tab 1 content</div>
+      <div id="tab2" class="tab-content">Tab 2 content</div>
+      <div id="tab3" class="tab-content">Tab 3 content</div>
+    </div>
+  </div>
+  <script>
+    const tabs = document.querySelector('#tabs');
+    const tabBtns = tabs.querySelectorAll('.tab-btn');
+    const tabContents = tabs.querySelectorAll('.tab-content');
+
+    tabBtns.forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        const tab = btn.dataset.tab;
+        tabContents.forEach(function(content) {
+          content.style.display = 'none';
+        });
+        tabs.querySelector('#' + tab).style.display = 'block';
+      });
+    });
+
+
+
+
+  </script>
+</body>
+</html>

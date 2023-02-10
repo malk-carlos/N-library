@@ -4,11 +4,13 @@
 <head>
 
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <link rel="stylesheet" href="./css/mypage.css">
     <script src="./js/google-login.js"></script>
     <script src="./js/api.js"></script>
     <script src="./js/jquery-barcode.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
     <title>マイページ</title>
 </head>
 
@@ -18,6 +20,17 @@
         <script>header();</script>
     </header>
  <div class="mypage-frame flex">
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+         <input id="hitokoto" type="text" name="hitokoto" autocomplete="off">
+        </div>
+    </div><div id="myModal2" class="modal">
+        <div class="modal-content2">
+            <div id="bcTarget"></div>
+        </div>
+    </div>
+      
         <div class="frame_left">
             <div id="icom"></div>
             <div class="tab-mypage">
@@ -31,35 +44,36 @@
         <div class="frame_right">
             <div class="tab-mypage-content is-show" id="content-01">
                 <div class="right-container center">
-                    <div class="name-frame flex">
+                    <div class="profile-frame flex">
                         <div style="padding: 1.4%;">表示名</div>
                         <div id="name"></div>
                     </div>
                     <div id="mail"></div>
                 </div>
                 <div class="right-container center">
-                    <div class="name-frame flex">
+                    <div class="profile-frame flex">
                         <div style="padding: 1.4%;">ひとこと</div>
-                        <input type="text" name="hitokoto">
+                            <p id="output"></p>
+                        <input id="hitokotoEdit" type="image" src="img/pencil.png" onclick="Edit()">
                     </div>
                 </div>
-                <!-- <div id="bcTarget"></div> -->
                 <div class="right-container">
                     <a href="https://myaccount.google.com/" class="acount-google">編集</a>
+                    <input id="mybtn" type="button" value="バーコード提示" onclick="barcode()">
+                    <a href="mypage_smartphone.html">でバック用</a>
                 </div>
             </div>
             <div class="tab-mypage-content" id="content-02">
-                <!-- <div id="datas"></div> -->
-                <div class="borrowing"></div>
+                <div class="borrowing flex-wrap"></div>
             </div>
             <div class="tab-mypage-content" id="content-03">
-                <div class="history"></div>
+                <div class="history flex-wrap"></div>
             </div>
             <div class="tab-mypage-content" id="content-04">
-                <div class="return"></div>
+                <div class="return flex-wrap"></div>
             </div>
             <div class="tab-mypage-content"  id="content-05">
-                <div class="reserve"></div>
+                <div class="reserve flex-wrap"></div>
             </div>
         </div>
  </div>
@@ -73,11 +87,54 @@
         $("#bcTarget").barcode(logindata.sub, "code39", { barWidth: 2.9, barHeight: 90 });
         //貸出予約履歴照会
         send("LendingData",logindata.sub);
-       
-
+        // ひとこと用 
+        var modal = document.getElementById("myModal");
+        var modal2 = document.getElementById("myModal2");
+        var inputhitokoto = document.getElementById("hitokoto");
+        var btn = document.getElementById("myBtn");
+        var span = document.getElementsByClassName("close")[0];
+    
+        // ひとことcokie
+        Editcall()
+        function Editcall() {
+            inputhitokoto.addEventListener("input",function(event){
+                Cookies.set("input", event.target.value ,{expires: 30});
+            });
+            // 保存されたCookieを呼び出して、textContentに設定する
+            document.getElementById("output").textContent = Cookies.get("input");
+        }
+        // ひとこと編集
+        function Edit() {
+            // テスト
+            modal.style.display = "block";
+            span.onclick = function() {
+                modal.style.display = "none";
+                inputhitokoto.value = ""
+                Editcall();
+            }
+            window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+                inputhitokoto.value = ""
+                Editcall();
+            }
+        }
+        }
+        function barcode() {
+            modal2.style.display = "block";
+            span.onclick = function() {
+                modal2.style.display = "none";
+            }
+            window.onclick = function(event) {
+                if (event.target == modal2) {
+                modal2.style.display = "none";
+                }
+            }
+        }
 
         //api.jsからの呼び出し（データが返ってきたら）
         function mydata(datas) {
+
             let datasBorrow = datas.filter(value => value[5] === '貸出中')
             let datasReserve = datas.filter(value => value[5] === '予約中')
             let datasHistory = datas.filter(value => value[5] === '返却済み')
@@ -92,12 +149,7 @@
                 if (datasBorrow[i][5] === '貸出中' && difference <= 86400000 && difference >= 0) {
                     datasReturn.push(datasBorrow[i]);
                 }
-                // datasReturn = datasBorrow.filter(function(value){
-                //     return value[5] === '貸出中' && difference <= 86400000;
-                // });
             }
-            console.log(returnDate);
-            console.log(datas);
             console.log(datasBorrow);
             console.log(datasReserve);
             console.log(datasHistory);
@@ -105,7 +157,7 @@
             // 貸出中の本
             if (datasBorrow.length === 0 ) {
                 const $div = $('<div class="void-mypage"></div>')
-                const $fight = $('<p>まだ履歴がありません！<br>本を予約しましょう！</p>')
+                const $fight = $('<p>貸出中の本はありません！<br>本を借りましょう！</p>')
                 $div.append($fight)
                 $(".borrowing").append($div)
             }else{
@@ -132,24 +184,10 @@
                     $(".history").append($div1)
                 }
             }
-            // 予約した本
-            if (datasReserve.length === 0) {
-                const $div = $('<div class="void-mypage"></div>')
-                const $fight = $('<p>まだ履歴がありません！<br>本を予約しましょう！</p>')
-                $div.append($fight)
-                $(".reserve").append($div)
-            } else {
-                for (let i = 0; i < datasReserve.length; i++) {
-                    const $div = $(`<div id='reservebook${String(i)}' class='book'></div>`)
-                    const $cover = $(`<img src='${datasReserve[i][8]}' class='coverimg' alt="${datasReserve[i][7]}">`) // 表紙
-                    const $title = $(`<p class='title'>${datasReserve[i][7]}</p>`) // タイトル
-                    $div.append($cover).append($title);
-                    $(".reserve").append($div)
-                }
-            }
+            // 返却日が近い本
             if (datasReturn.length === 0) {
                 const $div = $('<div class="void-mypage"></div>')
-                const $fight = $('<p>まだ履歴がありません！<br>本を予約しましょう！</p>')
+                const $fight = $('<p>返却日が近い本はありません！<br>読書を楽しみましょう！</p>')
                 $div.append($fight)
                 $(".return").append($div)
             }else{
@@ -159,6 +197,21 @@
                     const $title = $(`<p class='title'>${datasReturn[i][7]}</p>`) // タイトル
                     $div.append($cover).append($title);
                     $(".return").append($div)
+                }
+            }
+            // 予約した本
+            if (datasReserve.length === 0) {
+                const $div = $('<div class="void-mypage"></div>')
+                const $fight = $('<p>まだ予約履歴がありません！<br>本を予約しましょう！</p>')
+                $div.append($fight)
+                $(".reserve").append($div)
+            } else {
+                for (let i = 0; i < datasReserve.length; i++) {
+                    const $div = $(`<div id='reservebook${String(i)}' class='book'></div>`)
+                    const $cover = $(`<img src='${datasReserve[i][8]}' class='coverimg' alt="${datasReserve[i][7]}">`) // 表紙
+                    const $title = $(`<p class='title'>${datasReserve[i][7]}</p>`) // タイトル
+                    $div.append($cover).append($title);
+                    $(".reserve").append($div)
                 }
             }
         }
@@ -211,7 +264,6 @@
             }
             
         }
-
     </script>
 </body>
 
