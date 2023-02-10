@@ -13,6 +13,19 @@ function book_autocomplete(isbns) {
             .then((data) => Data = data)
             .then(response => {
                 console.log(Data)
+                if(Data[0] == null){
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'warning',
+                        title: '未対応コード',
+                        html:
+                        'ISBNコードをスキャンしてください。未対応コードは手動で登録してください。',
+                        showConfirmButton: false,
+                        timer: 2500
+                      })
+                      flags ="off"
+                    return
+                }
                 for (i = 2; i < 19; i++) {
                     try {
                         datas_arry[i] = eval(datas[i])
@@ -65,7 +78,7 @@ function register() {
         datas_arry[i] = encodeURIComponent(document.getElementById("books" + i).innerHTML)
        // console.log(datas_arry[i])
     }
-    send("register", datas_arry[18], datas_arry[2], datas_arry[3], datas_arry[4], datas_arry[5], datas_arry[6], datas_arry[7], datas_arry[8], datas_arry[9], datas_arry[10], datas_arry[11], datas_arry[12], datas_arry[13], datas_arry[14], datas_arry[15], datas_arry[16], datas_arry[17], document.img.src, encodeURIComponent(document.getElementById("options").value), Number(document.getElementById("number").value) + 1)
+    send("register", datas_arry[18], datas_arry[2], datas_arry[3], datas_arry[4], datas_arry[5], datas_arry[6], datas_arry[7], datas_arry[8], datas_arry[9], datas_arry[10], datas_arry[11], datas_arry[12], datas_arry[13], datas_arry[14], datas_arry[15], datas_arry[16], datas_arry[17], document.img.src, encodeURIComponent(document.getElementById("options").value))
 }
 
 let texts

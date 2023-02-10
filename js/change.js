@@ -1,27 +1,26 @@
-function db_cheak(db) {
-    let datas_arry
+function db_cheak(logDB) {
     const subject = ["", "タイトル", "タイトルカナ", "サブタイトル", "サブタイトルかな", "シリーズ", "シリーズかな", "著者", "著者かな", "出版社", "出版日", "ページ数", "分類", "内容紹介", "著者紹介", "キーワード", "価格", "画像URL", "登録数"]
 
     const parmet = (new URL(window.location.href).search).replace("?", "")
-    for (let i = 0; i < db.length; i++) {
-        if (db[i][0] == parmet) {
-            console.log(db[i])
+    for (let i = 0; i < logDB.length; i++) {
+        if (logDB[i][0] == parmet) {
+            console.log(logDB[i])
 
             for (let q = 1; q < 19; q++) {
-                console.log(db[i][q])
+                console.log(logDB[i][q])
                 document.getElementById("books_tbl2").rows[q - 1].cells[0].innerHTML = subject[q]
                 if (q == 17) {
-                    document.getElementById("books_tbl2").rows[q - 1].cells[1].innerHTML = '<textarea readonly oninput="imgurl()" class="box" id=books' + q + ' type="text" >' + db[i][q] + '</textarea><button id="mode_change_button' + q + '" onclick="mode_changes(' + q + ')">修正</button><div><img id="imgs" src=' + db[i][q] + '></div>'
+                    document.getElementById("books_tbl2").rows[q - 1].cells[1].innerHTML = '<textarea readonly oninput="imgurl()" class="box" id=books' + q + ' type="text" >' + logDB[i][q] + '</textarea><button id="mode_change_button' + q + '" onclick="mode_changes(' + q + ')">修正</button><div><img id="imgs" src=' + logDB[i][q] + '></div>'
                 } else {
-                    document.getElementById("books_tbl2").rows[q - 1].cells[1].innerHTML = '<textarea readonly class="box" id=books' + q + ' type="text" >' + db[i][q] + '</textarea><button id="mode_change_button' + q + '" onclick="mode_changes(' + q + ')">修正</button>'
+                    document.getElementById("books_tbl2").rows[q - 1].cells[1].innerHTML = '<textarea readonly class="box" id=books' + q + ' type="text" >' + logDB[i][q] + '</textarea><button id="mode_change_button' + q + '" onclick="mode_changes(' + q + ')">修正</button>'
                 }
             }
-            if (db[1][22] == "許可") {
+            if (logDB[1][22] == "許可") {
                 document.getElementById("books_tbl2").rows[18].cells[1].innerHTML = '<select id="books19"><option selected>許可</option><option>禁止</option></select>'
             } else {
                 document.getElementById("books_tbl2").rows[18].cells[1].innerHTML = '<select id="books19"><option >許可</option><option selected>禁止</option></select>'
             }
-            document.getElementById("books_tbl2").rows[19].cells[1].innerHTML = '<textarea readonly class="box" id="books20" type="text" >' + db[i][0] + '</textarea>'
+            document.getElementById("books_tbl2").rows[19].cells[1].innerHTML = '<textarea readonly class="box" id="books20" type="text" >' + logDB[i][0] + '</textarea>'
 
         }
     }
@@ -81,3 +80,9 @@ function cheanges() {
 function deletes() {
     send("delete", document.getElementById("books20").value)
 }
+
+//ページ読み込み後　DBへ蔵書DBの照会
+window.addEventListener('load', function() {
+    admin_cheak()
+    console.log("読み込み完了")
+})

@@ -2,16 +2,18 @@
 <html lang="ja">
 
 <head>
-
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <title>マイページ</title>
+    <!--CSS-->
     <link rel="stylesheet" href="./css/mypage.css">
+    <!--外部JS-->
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+    <!--自作JS-->
     <script src="./js/google-login.js"></script>
     <script src="./js/api.js"></script>
     <script src="./js/jquery-barcode.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
-    <title>マイページ</title>
+
 </head>
 
 <body>
@@ -83,8 +85,6 @@
         document.getElementById("name").innerHTML = logindata.name 
         document.getElementById("mail").innerHTML = logindata.email
         document.getElementById("icom").innerHTML = `<img src="${logindata.picture}">`
-        //バーコード表示
-        $("#bcTarget").barcode(logindata.sub, "code39", { barWidth: 2.9, barHeight: 90 });
         //貸出予約履歴照会
         send("LendingData",logindata.sub);
         // ひとこと用 

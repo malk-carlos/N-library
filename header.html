@@ -2,49 +2,128 @@
 <html lang="ja">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>header</title>
 </head>
 
 <body>
     <header>
-        <script src="./js/platform.js"></script>
-        <script src="./js/google-login.js"></script>
+        <!--head-->
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="robots" content="noindex">
+
+        <!--CSS-->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
             integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
             crossorigin="anonymous" referrerpolicy="no-referrer">
-        <script src="./js/api.js"></script>
         <link rel="stylesheet" href="./css/header.css">
+
+        <!--外部JS-->
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
+        <script type="text/javascript" src="./chatbot/chatbot.js"></script>
+
+
+        <!--自作JS-->
+        <script src="./js/platform.js"></script>
+        <script src="./js/google-login.js"></script>
+        <script src="./js/api.js"></script>
+        <script src="./js/search.js"></script>
+        <script src="./js/debug.js"></script>
+
 
         <script>
             //IPアドレス保存処理  ((document.cookie + ';').match('IP=([^¥S;]*)') || [])[1] に
             fetch('https://api.ipify.org/?format=json')
                 .then((response) => response.json())
                 .then((data) => document.cookie = 'IP=' + data.ip + '; max-age=86400;')//86400 = 1日
-                .then(response =>{
-                    
-            //ログインセッション確認
-            if (cheak()) {
-                //systems()
-                //ログイン確認済み
-            } else {
-                //再ログイン必要
-                window.location.href = "./error.html?E2"
-            } })
+                .then(response => {
+
+                    //ログインセッション確認
+                    if (cheak()) {
+                        //systems()
+                        //ログイン確認済み
+                    } else {
+                        //再ログイン必要
+                        if (localStorage.getItem('debug') == 1) {
+                            Swal.fire("デバックモード", "一時停止中").then((result) => {
+                                window.location.href = "./error.html?E2"
+                            })
+                        }
+
+                    }
+                })
         </script>
-        <img src="https://studiogram.jp/studiogram/wp-content/uploads/2021/08/muji_logo.png" alt="">
-        <input type="text" placeholder="検索ワードを入力">
-        <button id="search"><i class="fa-solid fa-magnifying-glass"></i></button>
-        <ul id="nav">
-            <li><a href="./library.html">蔵書一覧</a></li>
-            <li><a href="./mypage.html">マイページ</a></li>
-            <li><a href="#">お問い合わせ</a></li>
-            <li><a href="#">設定</a></li>
-            <li><span onclick="logout()">ログアウト</span></li>
-            <li><a href="#" onclick="admin()">管理者用</a></li>
+        <ul id="navs">
+            <li> <img src="https://studiogram.jp/studiogram/wp-content/uploads/2021/08/muji_logo.png" alt=""></li>
+            <li><div id="search">
+                <input id="keyword" type="text" placeholder="検索ワードを入力">
+                <button onclick="path_check()"><i class="fa-solid fa-magnifying-glass"></i></button>
+            </div></li>
         </ul>
+       
+        
+        <ul id="nav">
+            <div id="nav1">
+            <li><a href="./library.html"><i class="fa-solid fa-book"></i>蔵書一覧</a></li>
+            <li><a href="./mypage.html"><i class="fa-solid fa-user"></i>マイページ</a></li>
+        </div>
+        <div id="nav2">
+            <li><a href="https://forms.gle/xQ2tUjXSGSEtMCWG6">お問い合わせ<i class="fa-solid fa-arrow-up-right-from-square"></i></a></li>
+            <li><button onclick="logout()" class="logout"><img src="" name="icom">ログアウト</button></li>
+        </div>
+            <div id="admin_group">
+                <li><a href="./admin.html"><i class="fa-solid fa-hammer"></i>管理者TOP</a></li>
+                <li><a href="./lar.html"><i class="fa-solid fa-right-left"></i>貸出・返却</a></li>
+                <li><a href="./regist.html"><i class="fa-solid fa-cash-register"></i>登録処理</a></li>
+            </div>
+        </ul>
+        <button id="admin" onclick="toAdmin()"></button>
+
+        <div class="hamburger-menu">
+            <input type="checkbox" id="menu-btn-check">
+            <label for="menu-btn-check" class="menu-btn"><span></span></label>
+            <!--ここからメニュー-->
+            <div class="menu-content">
+                <ul>
+                    
+            <li><a href="./library.html"><i class="fa-solid fa-book"></i>蔵書一覧</a></li>
+                    <li><a href="./mypage.html"><i class="fa-solid fa-user"></i>マイページ</a></li>
+                    <li>
+                        <a href="https://forms.gle/xQ2tUjXSGSEtMCWG6">お問い合わせ<i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                    </li>
+                </ul>
+            </div>
+            <!--ここまでメニュー-->
+        </div>
+
+        <div id="overlay">
+            <div class="cv-spinner">
+                <span class="spinner"></span>
+            </div>
+            <script>
+                window.addEventListener('load', function () {
+                    console.log("＝＝＝header読み込み開始＝＝＝")
+                    if (Cookies.get('Admin')) {
+                        document.getElementById("admin_group").style.display = "inline-grid"
+                        document.getElementById("admin").style.display = "none"
+                    }
+
+                    if (localStorage.getItem('debug') == 1) {
+                        let element = document.querySelector('body');;
+                        element.insertAdjacentHTML('afterbegin', '<h1>デバッグモード</h1>');
+                        element.insertAdjacentHTML('beforeend', '<div class="air"></div>');
+                    }
+
+                    $("#overlay").fadeIn(300);
+                    if (Cookies.get('sessionID')) {
+                        document.icom.src = JSON.parse(Cookies.get('sessionID')).picture
+                    }
+                    console.log("＝＝＝header読み込みここまで＝＝＝")
+                })
+
+
+            </script>
     </header>
 </body>
 

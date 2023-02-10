@@ -1,0 +1,213 @@
+#chatbot-eyecatch-div {
+  display: block;
+  position: fixed;
+  padding: 0;
+  top: auto;
+  bottom: 0; /*アイキャッチの場所下からの距離*/
+  right: 0; /*アイキャッチの場所右からの距離*/
+  overflow:visible;
+  width: 400px;
+  height: 100px;
+  background-image: url(eyecatch.png);
+  background-position:right;
+  background-size: contain;
+background-repeat: no-repeat;
+}
+
+#chatbot-eyecatch-img {
+  position: relative;
+}
+
+#chatbot-outline {
+  display: block;
+  position: fixed;
+  border : 5px solid #009EE7; /*枠の色*/
+  border-radius : 10px 10px 10px 10px;
+  height : 0; /*高さ600 x 幅410固定だけど最初は0で準備*/
+  width : 0;
+  padding: 0;
+  bottom: 0; /*位置：画面下からの距離*/
+  right: 0; /*位置：画面右からの距離*/
+  background-color: rgb(255,255,255,0.9); /*中の色*/
+  overflow:hidden;
+}
+/*チャット窓を開くときのアニメーション*/
+.chat-open-r {
+  width : 410px!important;
+  height : 650px!important;
+  transition : width .2s;
+}
+/* 下からアニメーションする場合はこれ*/
+.chat-open-b {
+  width : 410px!important;
+  height : 650px!important;
+  transition : height .2s;
+}
+
+#chatbot-header-div {
+  position: relative;
+  width: 100%;
+  height: 25px;
+  background-color : #009EE7; /*ヘッダーの色*/
+  overflow-x: hidden;
+}
+
+#chatbot-title-div {
+  position: relative;
+  width: 100%;
+  color : #fff;
+  font-size : 15px;
+  padding-left : 5px;
+  overflow-x: hidden;
+}
+
+#chatbot-close-div {
+  position: absolute;
+  font-weight:bold;
+  color : #fff; /*×ボタンの色*/
+  top: 0px;
+  right: 20px;
+}
+
+#chatbot-body-div {
+    position: relative;
+    height:auto;
+    width: 100%;
+}
+
+#chatbot-profile-div {
+  position: relative;
+  width: 100%;
+  height: 66px;
+  padding: 8px;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+#chatbot-profile-img {
+  float: left;
+  margin-right: 8px;
+}
+
+#chatbot-name-div{
+  font-size:16px;
+  font-weight:bold;
+}
+
+#chatbot-roll-div{
+  font-size:15px;
+}
+
+#chatbot-message-div {
+  
+  background-color:#7494C0;
+  padding : 5px;
+  width: 100%;
+  height: 515px;
+  overflow-y:scroll;
+}
+
+#chatbot-menu-ul {
+  margin: 0;
+}
+#chatbot-menu-ul li {
+  list-style: none;
+  display: list-item;
+}
+#chatbot-menu-ul li label {
+  background-color: #8DE055;
+  border-radius: 20px;
+  margin: 0;
+  padding: 10px;
+  margin-bottom: 5px;
+  width: 90%;
+  float: right;
+  margin-right: 5px;   /* 15px */
+  clear: both;
+}
+#chatbot-menu-ul li label:hover {
+  background-color:#0DF2FF!important; /*メニューにマウスを乗せた時の色*/
+}
+#chatbot-menu-ul li input[type="radio"] {
+  display: none;
+}
+#chatbot-menu-ul li input[type="radio"]:checked + label  { /*メニューを選んだ時の色*/
+  color: #fff;
+  background: #0C31F5;
+}
+
+#chatbot-footer-div {
+  position: relative;
+  width: 100%;
+  height:100px;
+  background-color : #009EE7; /*フッターの色*/
+  overflow-x: hidden;
+  opacity:1;
+  
+}
+
+#chatbot-footer-div span {
+  position: absolute;
+  right:5px;
+}
+
+#chatbot-footer-div a {
+  color : #ddd;
+  font-size : 10px;
+  text-decoration: none;
+}
+
+.query-div {
+  background-color: #8DE055;
+  border-radius: 20px;
+  margin: 0;
+  padding: 10px;
+  margin-bottom: 5px;
+  max-width: 90%;
+  float: right;
+  margin-right: 5px;   /* 15px */
+  clear: both;
+
+}
+
+.res-div,#chatbot-message-p {
+  background-color: #ffffff;
+  border-radius: 20px;
+  margin: 0;
+  padding: 10px;
+  margin-bottom: 5px;
+  max-width: 90%;
+  clear: both;
+}
+
+@media screen and (max-width: 480px) {
+  #chatbot-eyecatch-div {
+    bottom: 50px;
+    width: 50px;
+    height: 50px;
+    background-image: url(eyecatch-sp.png);
+  }
+  #chatbot-outline {
+    bottom :60px;
+  }
+  #chatbot-message-div {
+    height:400px;
+  }
+	/* 画面幅410px以下に適用されるCSS（スマホ用） */
+  /*右から開くアニメーション*/
+  .chat-open-r {
+    height : auto!important;
+    transition : width .2s;
+    width: 93%!important;
+  }
+
+  #chatbot-footer-div {
+    height:25px;    
+  }
+  /* 下からアニメーションする場合はこれ*/
+  .chat-open-b {
+    width : 100%!important;
+    transition : height .2s;
+    height : auto!important;
+  }
+}
