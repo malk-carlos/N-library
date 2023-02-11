@@ -104,6 +104,8 @@
                 <span class="spinner"></span>
             </div>
             <script>
+                $("#overlay").fadeIn(300);
+
                 function headerload(){
                     console.log("＝＝＝header読み込み開始＝＝＝")
                         if (Cookies.get('Admin')) {
@@ -117,7 +119,6 @@
                             element.insertAdjacentHTML('beforeend', '<div class="air"></div>');
                         }
 
-                        $("#overlay").fadeIn(300);
                         if (Cookies.get('sessionID')) {
                             document.icom.src = JSON.parse(Cookies.get('sessionID')).picture
                         }
