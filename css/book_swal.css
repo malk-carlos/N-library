@@ -5,6 +5,10 @@
     display: block !important;
 }
 
+.bookSwalWriter a{
+    color: inherit;
+}
+
 .bookDetails h2.swal2-title {
     margin-bottom: 30px;
     height: 30px;

@@ -103,7 +103,7 @@ function popup(n) {
         <div class='bookSwalViwe'>
         <div class='bookSwalViwes'>
         <p class='bookSwalCoverP'><img src='${bookDB[n][17]}' class='bookSwalCover' oncontextmenu="return false;"></p>
-        <p class='bookSwalWriter'>著者：${bookDB[n][7]}</p>
+        <p class='bookSwalWriter'>著者：<a href='https://www.google.com/search?q=${bookDB[n][7]}'>${bookDB[n][7]}</a></p>
         <p class='bookSwalPage'>${bookDB[n][11]}ページ</p>
         <p class='bookSwalData'><span class='bookSwalRegistry'>登録数：${bookDB[n][18]}冊</span>｜<span class='bookSwalStock'>貸出可能在庫：${bookDB[n][21]}冊</span></p></div></div>`,
         backdrop: "#0005",
