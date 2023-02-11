@@ -319,16 +319,16 @@ i{
 }
 
 ::-webkit-scrollbar {
-    width: 16px;
+    width: 10px;
     height: 20px;
     }
     ::-webkit-scrollbar-track {
-    background-color: rgba(120, 170, 210,0.3);
+    background-color: #27816b51;
 
     }
     ::-webkit-scrollbar-thumb {
-    background: #78aad2;
-    box-shadow: 1px 1px 3px 3px rgba(0,67,100,0.4);
+    background: #27816b73;
+    box-shadow: 1px 1px 3px 3px rgba(0, 67, 100, 0);
     width: 130px;
     }
 
