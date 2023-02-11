@@ -28,12 +28,12 @@ img{
 }
 .mypage-frame{
     padding: 1em 1.4em;
-    margin: 2em 2em;
+    margin: 150px 2em 2em;
     font-weight: bold;
     background: #FFF;
     border: solid 3px #333;/*線*/
     border-radius: 10px;/*角の丸み*/
-    min-width: 850px;
+    min-width: 80vw;
 }
 .tab-mypage{
     padding: 1em 1.4em;

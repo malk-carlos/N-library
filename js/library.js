@@ -98,7 +98,9 @@ function limit () {
     if (userdata < 3) {
         $(`.standby`).removeClass('standby limit').addClass('reserve_btn').text("予約する");
     } else {
+        console.log("limelse")
         $(`.reserve_btn`).removeClass('reserve_btn').addClass('limit').removeAttr("onClick").text("予約不可");
+        $(`.standby`).removeClass('standby').addClass('limit').removeAttr("onClick").text("予約不可");
     }
 }
 

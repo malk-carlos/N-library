@@ -1,7 +1,7 @@
 h1 {
     text-align: center;
     width: 80%;
-    margin: 5vh auto;
+    margin: 150px auto 5vh;
     padding-bottom: 5px;
     border-bottom: 1px solid #333;
 }
@@ -66,7 +66,7 @@ h1 {
 }
 
 .reserve_btn:focus {
-    outline: 3px double #352991;
+    outline: 3px double #47a18Add;
     background-color: #27816Add;
     border-radius: 10px;
     transition: .2s;
@@ -83,7 +83,7 @@ h1 {
     bottom: 10%;
     left: 50%;
     transform: translateX(-50%);
-    background-color: green;
+    background-color: #352991;
     border: none;
     color: #fff;
     padding: 5px 15px;
