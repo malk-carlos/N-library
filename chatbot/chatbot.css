@@ -6,12 +6,13 @@
   bottom: 0; /*アイキャッチの場所下からの距離*/
   right: 0; /*アイキャッチの場所右からの距離*/
   overflow:visible;
-  width: 400px;
+  width: 293px;
   height: 100px;
   background-image: url(eyecatch.png);
   background-position:right;
   background-size: contain;
 background-repeat: no-repeat;
+cursor: help;
 }
 
 #chatbot-eyecatch-img {
