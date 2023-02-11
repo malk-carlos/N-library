@@ -107,3 +107,32 @@ h1 {
 .reserved:focus,.limit:focus,.standby:focus {
     outline: none;
 }
+
+#mbContainer {
+    display: none;
+}
+
+.mb_coverimg {
+    width: 45vw;
+    height: 60vw;
+    object-fit: cover;
+    margin: calc(2.5vw - 1px);
+    border: solid 1px #150971;
+    border-radius: 5px;
+}
+
+.mb_coverimg:hover {
+    transform: scale(1.01);
+    opacity: .8;
+    transition: .2s;
+}
+
+@media screen and (max-width:670px) {
+    #mbContainer {
+        display: block;
+    }
+
+    #container {
+        display: none;
+    }
+}
