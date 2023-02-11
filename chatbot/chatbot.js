@@ -8,7 +8,7 @@ const res = [
 ];
 
 const chatTitle = "チャットボット";
-const yourName = "ぴよたそ";
+const yourName = "ピヨ太郎";
 const yourRoll = "マスコット";
 const firstMsg = "Brrow a book へようこそ。わからない場合は下のボタンを押してください。";
 const closeTxt = "×";
