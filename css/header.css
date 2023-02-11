@@ -9,7 +9,7 @@ img {
 header {
     font-size: 18px;
     height: 100px;
-    background-color: #150971;
+    background-color: #27816A;
     color: #fff;
     vertical-align: middle;
     position: relative;
@@ -45,7 +45,7 @@ header {
     border: none;
     border-radius: 50px;
     display: inline-block;
-    color: #150971;
+    color: #27816A;
     background-color: #fff;
     margin-left: 10px;
 }
@@ -87,7 +87,7 @@ ul li a:hover{
 
 ul li button {
     background-color: #fff;
-    color: #150971;
+    color: #27816A;
     border: 1px solid #fff;
     font-size: large;
     transition: .2s;
@@ -99,7 +99,7 @@ ul li button:hover {
 }
 
 ul li button:active {
-    background-color: #150971;
+    background-color: #27816A;
     color: #fff;
 }
 
@@ -177,7 +177,7 @@ ul li button:active {
     margin-right: 5px;
     height: 30px;
     border-radius: 20px;
-    border-color: #150971;
+    border-color: #27816A;
     border: solid .5px;
 }
 
@@ -202,7 +202,7 @@ i{
     justify-content: center;
     align-items: center;
     z-index: 90;
-    background-color: #3584bb;
+    background-color: #27816A;
 }
 .menu-btn span,
 .menu-btn span:before,
@@ -297,7 +297,7 @@ i{
     top: 0;
     left: 100%;/*leftの値を変更してメニューを画面外へ*/
     z-index: 80;
-    background-color: #3584bb;
+    background-color: #27816A;
     transition: all 0.5s;/*アニメーション設定*/
 }
 
