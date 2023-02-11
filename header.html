@@ -104,9 +104,9 @@
                 <span class="spinner"></span>
             </div>
             <script>
-                window.addEventListener('load', function () {
-                    setTimeout(() => {
-                        console.log("＝＝＝header読み込み開始＝＝＝")
+
+window.addEventListener('load', function() {
+                    console.log("＝＝＝header読み込み開始＝＝＝")
                         if (Cookies.get('Admin')) {
                             document.getElementById("admin_group").style.display = "inline-grid"
                             document.getElementById("admin").style.display = "none"
@@ -123,8 +123,7 @@
                             document.icom.src = JSON.parse(Cookies.get('sessionID')).picture
                         }
                         console.log("＝＝＝header読み込みここまで＝＝＝")
-                    })
-                }, 1000);
+                })
 
 
 
