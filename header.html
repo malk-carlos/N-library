@@ -55,23 +55,26 @@
                 })
         </script>
         <ul id="navs">
-            <li> <img src="https://studiogram.jp/studiogram/wp-content/uploads/2021/08/muji_logo.png" alt=""></li>
-            <li><div id="search">
-                <input id="keyword" type="text" placeholder="検索ワードを入力">
-                <button onclick="path_check()"><i class="fa-solid fa-magnifying-glass"></i></button>
-            </div></li>
+            <li> <img src="./img/logo.png" alt=""></li>
+            <li>
+                <div id="search">
+                    <input id="keyword" type="text" placeholder="検索ワードを入力">
+                    <button onclick="path_check()"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </div>
+            </li>
         </ul>
-       
-        
+
+
         <ul id="nav">
             <div id="nav1">
-            <li><a href="./library.html"><i class="fa-solid fa-book"></i>蔵書一覧</a></li>
-            <li><a href="./mypage.html"><i class="fa-solid fa-user"></i>マイページ</a></li>
-        </div>
-        <div id="nav2">
-            <li><a href="https://forms.gle/xQ2tUjXSGSEtMCWG6">お問い合わせ<i class="fa-solid fa-arrow-up-right-from-square"></i></a></li>
-            <li><button onclick="logout()" class="logout"><img src="" name="icom">ログアウト</button></li>
-        </div>
+                <li><a href="./library.html"><i class="fa-solid fa-book"></i>蔵書一覧</a></li>
+                <li><a href="./mypage.html"><i class="fa-solid fa-user"></i>マイページ</a></li>
+            </div>
+            <div id="nav2">
+                <li><a href="https://forms.gle/xQ2tUjXSGSEtMCWG6">お問い合わせ<i
+                            class="fa-solid fa-arrow-up-right-from-square"></i></a></li>
+                <li><button onclick="logout()" class="logout"><img src="" name="icom">ログアウト</button></li>
+            </div>
             <div id="admin_group">
                 <li><a href="./admin.html"><i class="fa-solid fa-hammer"></i>管理者TOP</a></li>
                 <li><a href="./lar.html"><i class="fa-solid fa-right-left"></i>貸出・返却</a></li>
@@ -86,11 +89,12 @@
             <!--ここからメニュー-->
             <div class="menu-content">
                 <ul>
-                    
-            <li><a href="./library.html"><i class="fa-solid fa-book"></i>蔵書一覧</a></li>
+
+                    <li><a href="./library.html"><i class="fa-solid fa-book"></i>蔵書一覧</a></li>
                     <li><a href="./mypage.html"><i class="fa-solid fa-user"></i>マイページ</a></li>
                     <li>
-                        <a href="https://forms.gle/xQ2tUjXSGSEtMCWG6">お問い合わせ<i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                        <a href="https://forms.gle/xQ2tUjXSGSEtMCWG6">お問い合わせ<i
+                                class="fa-solid fa-arrow-up-right-from-square"></i></a>
                     </li>
                 </ul>
             </div>
@@ -103,24 +107,27 @@
             </div>
             <script>
                 window.addEventListener('load', function () {
-                    console.log("＝＝＝header読み込み開始＝＝＝")
-                    if (Cookies.get('Admin')) {
-                        document.getElementById("admin_group").style.display = "inline-grid"
-                        document.getElementById("admin").style.display = "none"
-                    }
+                    setTimeout(() => {
+                        console.log("＝＝＝header読み込み開始＝＝＝")
+                        if (Cookies.get('Admin')) {
+                            document.getElementById("admin_group").style.display = "inline-grid"
+                            document.getElementById("admin").style.display = "none"
+                        }
 
-                    if (localStorage.getItem('debug') == 1) {
-                        let element = document.querySelector('body');;
-                        element.insertAdjacentHTML('afterbegin', '<h1>デバッグモード</h1>');
-                        element.insertAdjacentHTML('beforeend', '<div class="air"></div>');
-                    }
+                        if (localStorage.getItem('debug') == 1) {
+                            let element = document.querySelector('body');;
+                            element.insertAdjacentHTML('afterbegin', '<h1>デバッグモード</h1>');
+                            element.insertAdjacentHTML('beforeend', '<div class="air"></div>');
+                        }
 
-                    $("#overlay").fadeIn(300);
-                    if (Cookies.get('sessionID')) {
-                        document.icom.src = JSON.parse(Cookies.get('sessionID')).picture
-                    }
-                    console.log("＝＝＝header読み込みここまで＝＝＝")
-                })
+                        $("#overlay").fadeIn(300);
+                        if (Cookies.get('sessionID')) {
+                            document.icom.src = JSON.parse(Cookies.get('sessionID')).picture
+                        }
+                        console.log("＝＝＝header読み込みここまで＝＝＝")
+                    })
+                }, 1000);
+
 
 
             </script>

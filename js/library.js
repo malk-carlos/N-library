@@ -1,7 +1,6 @@
 function test(bookDB) {
 
     const query = location.search.split('=');
-    console.log("query",query,bookDB)
     const search_key = decodeURIComponent(query[1]);
 
     if (query[0]=="") {
@@ -11,7 +10,6 @@ function test(bookDB) {
         mbBookRow();
         console.log("test3")
     } else {
-        console.log("b")
         search(search_key,bookDB);
     }
 }
@@ -128,13 +126,19 @@ function popup(n) {
     Swal.fire({
         title: "書籍詳細",
         html: `<p class='bookSwalName'><b>『${bookDB[n][1]}』</b><span class='ruby'>${bookDB[n][2]}</span><p>
-        <p class='bookSwalCoverP'><img src='${bookDB[n][17]}' class='bookSwalCover'></p>
-        <p class='bookSwalWriter'>著者：${bookDB[n][7]}</p>
+        <div class='bookSwalViwe'>
+        <div class='bookSwalViwes'>
+        <p class='bookSwalCoverP'><img src='${bookDB[n][17]}' class='bookSwalCover' oncontextmenu="return false;"></p>
+        <p class='bookSwalWriter'>著者：<a href='https://www.google.com/search?q=${bookDB[n][7]}'>${bookDB[n][7]}</a></p>
         <p class='bookSwalPage'>${bookDB[n][11]}ページ</p>
-        <p class='bookSwalData'><span class='bookSwalRegistry'>登録数：${bookDB[n][18]}冊</span>｜<span class='bookSwalStock'>貸出可能在庫：${bookDB[n][21]}冊</span></p>`,
+        <p class='bookSwalData'><span class='bookSwalRegistry'>登録数：${bookDB[n][18]}冊</span>｜<span class='bookSwalStock'>貸出可能在庫：${bookDB[n][21]}冊</span></p></div></div>`,
         backdrop: "#0005",
+        confirmButtonText : "閉じる",
         customClass: "bookDetails"
     })
+    if(bookDB[n][13] !=='-' && bookDB[n][13]!==""){
+        $(".bookSwalViwe").append(`<div class='bookSwalViwes2'><p><b>書籍紹介</b></p>${bookDB[n][13]}</div>`)
+    }
 }
 
 function res_popup(book_num,n) {
