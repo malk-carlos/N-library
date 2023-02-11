@@ -314,6 +314,24 @@ i{
     display: inline-grid;
 }
 
+.fa-arrow-up-right-from-square{
+    font-size: 2px;
+}
+
+::-webkit-scrollbar {
+    width: 16px;
+    height: 20px;
+    }
+    ::-webkit-scrollbar-track {
+    background-color: rgba(120, 170, 210,0.3);
+
+    }
+    ::-webkit-scrollbar-thumb {
+    background: #78aad2;
+    box-shadow: 1px 1px 3px 3px rgba(0,67,100,0.4);
+    width: 130px;
+    }
+
 @media screen and (min-width:951px) {
     .logout,
 #nav,#nav2,#nav1,#navs {

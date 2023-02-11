@@ -121,6 +121,22 @@ function mydata(logDB) {
         }
     }
     limit();
+
+    tippy('.limit', {
+        content: "貸出可能な在庫数がありません。<br>返却をお待ちください。",
+        allowHTML: true,
+      });
+      tippy('.reserve_btn', {
+        content: "予約できます。<br>予約する場合はボタンを押してください。",
+        allowHTML: true,
+      });
+
+      tippy('.reserved', {
+        content: "既にこの本を予約しています。<br>予約をキャンセルするにはボタンを押してください。",
+        allowHTML: true,
+      });
+
+
 }
 
 function popup(n) {
@@ -131,15 +147,31 @@ function popup(n) {
         <div class='bookSwalViwe'>
         <div class='bookSwalViwes'>
         <p class='bookSwalCoverP'><img src='${bookDB[n][17]}' class='bookSwalCover' oncontextmenu="return false;"></p>
-        <p class='bookSwalWriter'>著者：<a href='https://www.google.com/search?q=${bookDB[n][7]}'>${bookDB[n][7]}</a></p>
-        <p class='bookSwalPage'>${bookDB[n][11]}ページ</p>
-        <p class='bookSwalData'><span class='bookSwalRegistry'>登録数：${bookDB[n][18]}冊</span>｜<span class='bookSwalStock'>貸出可能在庫：${bookDB[n][21]}冊</span></p></div></div>`,
+        <div class='bookSwalPoint'>
+        <p class='bookSwalWriter'><i class="fa-solid fa-pen-nib"></i><a href='https://www.google.com/search?q=${bookDB[n][7]}'>${bookDB[n][7]}<i class="fa-solid fa-arrow-up-right-from-square"></i></a></p>
+        <p class='bookSwalPage'><i class="fa-solid fa-note-sticky"></i>${bookDB[n][11]}ページ</p>
+        <p class='bookSwalData'><span class='bookSwalRegistry'><i class="fa-solid fa-cash-register"></i>${bookDB[n][18]}冊</span><br><span class='bookSwalStock'><i class="fa-solid fa-boxes-stacked"></i>${bookDB[n][21]}冊</span></p></div></div></div>`,
         backdrop: "#0005",
         confirmButtonText : "閉じる",
         customClass: "bookDetails"
     })
+
+    tippy('.bookSwalWriter', {
+        content: "著者名",
+      });
+      tippy('.bookSwalPage', {
+        content: "ページ数",
+      });
+      tippy('.bookSwalRegistry', {
+        content: "登録数",
+      });
+      tippy('.bookSwalStock', {
+        content: "貸出可能在庫数",
+      });
+
+
     if(bookDB[n][13] !=='-' && bookDB[n][13]!==""){
-        $(".bookSwalViwe").append(`<div class='bookSwalViwes2'><p><b>書籍紹介</b></p>${bookDB[n][13]}</div>`)
+        $(".bookSwalViwe").append(`<div class='bookSwalViwes2'><p><b>書籍紹介</b></p><div class='bookSwaltext'>${bookDB[n][13]}</div></div>`)
     }
 }
 
