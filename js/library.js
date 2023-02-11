@@ -148,7 +148,7 @@ function popup(n) {
         <div class='bookSwalViwes'>
         <p class='bookSwalCoverP'><img src='${bookDB[n][17]}' class='bookSwalCover' oncontextmenu="return false;"></p>
         <div class='bookSwalPoint'>
-        <p class='bookSwalWriter'><i class="fa-solid fa-pen-nib"></i><a href='https://www.google.com/search?q=${bookDB[n][7]}'>${bookDB[n][7]}<i class="fa-solid fa-arrow-up-right-from-square"></i></a></p>
+        <p class='bookSwalWriter'><i class="fa-solid fa-pen-nib"></i><a href='https://www.google.com/search?q=${bookDB[n][7]}' target="_blank" rel="noopener noreferrer">${bookDB[n][7]}<i class="fa-solid fa-arrow-up-right-from-square"></i></a></p>
         <p class='bookSwalPage'><i class="fa-solid fa-note-sticky"></i>${bookDB[n][11]}ページ</p>
         <p class='bookSwalData'><span class='bookSwalRegistry'><i class="fa-solid fa-cash-register"></i>${bookDB[n][18]}冊</span><br><span class='bookSwalStock'><i class="fa-solid fa-boxes-stacked"></i>${bookDB[n][21]}冊</span></p></div></div></div>`,
         backdrop: "#0005",
