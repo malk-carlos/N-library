@@ -8,11 +8,15 @@ img {
 
 header {
     font-size: 18px;
+    width: 100vw;
     height: 100px;
     background-color: #27816A;
     color: #fff;
     vertical-align: middle;
-    position: relative;
+    position: fixed;
+    top: 0;
+    opacity: .9;
+    z-index: 99;
 }
 
 #navs img {
