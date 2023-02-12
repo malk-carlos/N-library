@@ -9,6 +9,7 @@ window.addEventListener('load', function () {
                 systems()
             })
         }
+        systems()
     } else { //再ログイン必要
         console.log("Cookieログイン情報が見当たりません")
     }
