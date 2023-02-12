@@ -72,7 +72,7 @@ function toReserve(book_num,n) {
 function reserve(rentStatus,n) {
     console.log(rentStatus,n,userdata,"書籍データ,通し番号,userdata");
     if (rentStatus == "予約完了") {
-        $(`#btn${String(n)}`).removeClass('reserve_btn').addClass('reserved').removeAttr("onClick").text("予約済み");
+        $(`#btn${String(n)}`).removeClass('reserve_btn').addClass('reserved').attr("onClick", `cancel(${n})`).text("予約済み");
         swal.fire({
             title: "予約完了",
             text: "予約が完了しました",
@@ -116,7 +116,9 @@ function mydata(logDB) {
         for(let j = 0; logDB.length > j; j ++){
             let dataJ = logDB[j];
             if(dataJ[1] == $(`#book${i+1}`).attr("class").replace("book ","") && dataJ[5] == "予約中"){
-                $(`#btn${i+1}`).removeClass('standby limit').addClass('reserved').removeAttr("onClick").text("予約済み");
+                console.log("a")
+                $(`#btn${i+1}`).removeClass('standby limit').addClass('reserved').attr("onClick", `cancel(${i+1})`).text("予約済み");
+                console.log("b")
             }
         }
     }
@@ -197,6 +199,66 @@ function mb_popup(n) {
             }).then(()=>{
                 $("#overlay").fadeOut(300);
             })
+        }
+    })
+}
+
+function cancel(n) {
+    swal.fire({
+        title: "キャンセルしますか？",
+        html: `<p>以下の書籍の予約をキャンセルします。</p>
+        <p class='bookSwalName'>${bookDB[n][1]}</p>
+        <p class='bookSwalCoverP'><img src='${bookDB[n][17]}' class='bookSwalCover'></p>
+        <p class='bookSwalWriter BSP'>著者：${bookDB[n][7]}</p>
+        <p class='bookSwalPage BSP'>${bookDB[n][11]}ページ</p>
+        <p class='bookSwalData'><span class='bookSwalRegistry'>登録数：${bookDB[n][18]}冊</span>｜<span class='bookSwalStock'>貸出可能在庫：${bookDB[n][21]}冊</span></p>`,
+        backdrop: "#0005",
+        customClass: "bookDetails",
+        showCancelButton : true,
+        cancelButtonText : 'やめる',
+        confirmButtonText : 'キャンセルする'
+    }).then((result)=>{
+        if(result.isConfirmed){
+            const userID = logDB[0][0];
+            let reserveNUM;
+            for(let i = (logDB.length - 1); i >= 0; i -= 1 ){
+                if(logDB[i][5] == "予約中" && logDB[i][1] == bookDB[n][0]){
+                    reserveNUM = logDB[i][6];
+                    i = -1;
+                }
+            }
+            send("resavedel", userID, bookDB[n][0], new Date().toLocaleString(), n, reserveNUM);
+            // setTimeout(send("LendingData",true),1500);
+            // setTimeout(()=>{
+            //     let status;
+            //     for(let i = (logDB.length - 1); i >= 0; i -= 1 ){
+            //         if(logDB[i][6] == reserveNUM){
+            //             status = logDB[i][5];
+            //             i = -1;
+            //         }
+            //     }
+            //     if(status == "予約取り消し"){
+                    swal.fire({
+                        title: "予約をキャンセルしました",
+                        text: "",
+                        icon: "success",
+                        customClass:"canceled"
+                    }).then(()=>{
+                        $(`#btn${String(n)}`).removeClass('reserved').addClass('reserve_btn').attr("onclick", `toReserve(${bookDB[n][0]},${n})`).text("予約する");
+                        $("#overlay").fadeOut(300);
+                    })
+            //     } else {
+            //         swal.fire({
+            //             title: "キャンセルできませんでした",
+            //             text: "エラーが発生しました！",
+            //             icon: "error",
+            //             confirmButtonText : "ページをリロードする",
+            //             allowOutsideClick : false
+            //         }).then(() => {
+            //             window.location.reload();
+            //         })
+            //     }
+            // },1500)
         }
     })
 }
