@@ -104,7 +104,9 @@ function send(mode, key1, key2, key3, key4, key5, key6, key7, key8, key9, key10,
                         } else if (mode == "LendingData") {
                                 logDB = jsonObj
                                 console.log(logDB)
-                                mydata(logDB)
+                                if(key1 != true){
+                                        mydata(logDB)
+                                }
                         } else if (mode == "AllLendingdata") {
                                 reservationdata = jsonObj
                                 return
