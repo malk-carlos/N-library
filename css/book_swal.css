@@ -173,6 +173,8 @@
 
 .bookSwaltext{
     padding-left: 20px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
 }
 
 .bookSwalPoint {
