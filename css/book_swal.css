@@ -20,6 +20,11 @@
     background-color: #0000;
 }
 
+.title{
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
 .bookDetails #swal2-html-container {
     height: 80%;
 }
@@ -50,12 +55,12 @@
 }
 
 .bookDetails .bookSwalCoverP {
-    height: 340px !important;
+    height: 330px !important;
     margin-bottom: 20px;
 }
 
 .bookDetails img.bookSwalCover {
-    height: 350px;
+    height: 340px;
     width: auto;
 }
 

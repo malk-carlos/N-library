@@ -1,5 +1,5 @@
 function test(bookDB) {
-
+    console.log("＝＝＝test()開始＝＝＝")
     const query = location.search.split('=');
     const search_key = decodeURIComponent(query[1]);
 
@@ -12,8 +12,10 @@ function test(bookDB) {
     } else {
         search(search_key,bookDB);
     }
+    console.log("＝＝＝test()読み込みここまで＝＝＝")
 }
 function pcBookRow(){
+    console.log("＝＝＝pcBookRow()開始＝＝＝")
     const bOl4 = Math.ceil((bookDB.length) / 4); // 4冊ごとに列を作る
     console.log("bOl4",bOl4)
     for (let i = 0; i < bOl4; i ++) {
@@ -40,8 +42,10 @@ function pcBookRow(){
         $("#container").append($row);
     }
     console.log("mbBR前");
+    console.log("＝＝＝pcBookRowここまで＝＝＝")
 }
 function mbBookRow(){
+    console.log("＝＝＝mbBookRow()開始＝＝＝")
     console.log("mbBR呼び出し")
     const bOl2 = Math.ceil((bookDB.length) / 2);
     for (let l = 0; l < bOl2; l ++){
@@ -58,18 +62,22 @@ function mbBookRow(){
         }
         $("#mbContainer").append($mb_row);
     }
+    console.log("＝＝＝mbBookRow()ここまで＝＝＝")
 }
 
 function toReserve(book_num,n) {
+    console.log("＝＝＝toReserve()開始＝＝＝")
     console.log(userdata)
     $("#overlay").fadeIn(300);
     if ($(`#btn${String(n)}`).attr('class') == 'reserve_btn'){
         console.log("tore")
         res_popup(book_num,n)
     }
+    console.log("＝＝＝toReserve()ここまで＝＝＝")
 }
 
 function reserve(rentStatus,n) {
+    console.log("＝＝＝reserve()開始＝＝＝")
     console.log(rentStatus,n,userdata,"書籍データ,通し番号,userdata");
     if (rentStatus == "予約完了") {
         $(`#btn${String(n)}`).removeClass('reserve_btn').addClass('reserved').attr("onClick", `cancel(${n})`).text("予約済み");
@@ -92,9 +100,11 @@ function reserve(rentStatus,n) {
             window.location.reload();
         }) ;
     }
+    console.log("＝＝＝reserve()ここまで＝＝＝")
 }
 
 function limit () {
+    console.log("＝＝＝limit()開始＝＝＝")
     if (userdata < 3) {
         $(`.standby`).removeClass('standby limit').addClass('reserve_btn').text("予約する");
     } else {
@@ -102,9 +112,11 @@ function limit () {
         $(`.reserve_btn`).removeClass('reserve_btn').addClass('limit').removeAttr("onClick").text("予約不可");
         $(`.standby`).removeClass('standby').addClass('limit').removeAttr("onClick").text("予約不可");
     }
+    console.log("＝＝＝limit()ここまで＝＝＝")
 }
 
 function mydata(logDB) {
+    console.log("＝＝＝mydata()開始＝＝＝")
     console.log(logDB,"mydata");
 
     const book_length = $(".book:last").attr("id").replace("book","");
@@ -137,11 +149,11 @@ function mydata(logDB) {
         content: "既にこの本を予約しています。<br>予約をキャンセルするにはボタンを押してください。",
         allowHTML: true,
       });
-
-
+      console.log("＝＝＝mydata()ここまで＝＝＝")
 }
 
 function popup(n) {
+    console.log("＝＝＝popup()開始＝＝＝")
     // 蔵書データ[n]でsweetalert表示
     Swal.fire({
         title: "書籍詳細",
@@ -175,9 +187,11 @@ function popup(n) {
     if(bookDB[n][13] !=='-' && bookDB[n][13]!==""){
         $(".bookSwalViwe").append(`<div class='bookSwalViwes2'><p><b>書籍紹介</b></p><div class='bookSwaltext'>${bookDB[n][13]}</div></div>`)
     }
+    console.log("＝＝＝popup()ここまで＝＝＝")
 }
 
 function res_popup(book_num,n) {
+    console.log("＝＝＝res_popup()開始＝＝＝")
     // 蔵書データ[n]でsweetalert表示
     // 予約時最終確認
     Swal.fire({
@@ -203,9 +217,11 @@ function res_popup(book_num,n) {
             })
         }
     })
+    console.log("＝＝＝res_popup()ここまで＝＝＝")
 }
 
 function mb_popup(n) {
+    console.log("＝＝＝mb_popup()開始＝＝＝")
     // スマホ用デザインの確認画面
     Swal.fire({
         title: "書籍詳細",
@@ -233,9 +249,11 @@ function mb_popup(n) {
             })
         }
     })
+    console.log("＝＝＝mb_popup()ここまで＝＝＝")
 }
 
 function cancel(n) {
+    console.log("＝＝＝cancel()開始＝＝＝")
     swal.fire({
         title: "キャンセルしますか？",
         html: `<p>以下の書籍の予約をキャンセルします。</p>
@@ -293,4 +311,5 @@ function cancel(n) {
             // },1500)
         }
     })
+    console.log("＝＝＝cancel()ここまで＝＝＝")
 }
