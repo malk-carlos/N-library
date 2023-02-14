@@ -5,6 +5,15 @@ function log(data){
     return
 }
 
+
+setTimeout(() => {
+  if (localStorage.getItem('debug') == "1" ||localStorage.getItem('debug') == "2") {
+    let element = document.querySelector('body');;
+    element.insertAdjacentHTML('afterbegin', `<br><br><br><br><h2>デバッグモード</h2> <button onclick="localStorage.removeItem('debug');location.reload()">デバックモード解除</button>`);
+  }
+}, 2000);
+
+
 //console.logイベントが発火した時に処理を実行
 if(localStorage.getItem('debug')==1){
     window.console.log = text => {

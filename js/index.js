@@ -13,10 +13,6 @@ window.addEventListener('load', function () {
     } else { //再ログイン必要
         console.log("Cookieログイン情報が見当たりません")
     }
-    if (localStorage.getItem('debug') == 1) {
-        let element = document.querySelector('body');;
-        element.insertAdjacentHTML('afterbegin', `<h1>デバッグモード</h1> <button onclick="localStorage.removeItem('debug');location.reload()">デバックモード解除</button>`);
-    }
     console.log("＝＝＝初期設定ここまで＝＝＝")
 })
 /*初期設定ここまで*/
