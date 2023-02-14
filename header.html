@@ -19,8 +19,8 @@
         <link rel="stylesheet" href="./css/header.css">
 
         <!--外部JS-->
-        <script src="https://unpkg.com/@popperjs/core@2"></script>
-        <script src="https://unpkg.com/tippy.js@6"></script>
+        <script src="./js/popper.min.js"></script>
+        <script src="./js/tippy-bundle.umd.min.js"></script>
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
         <script type="text/javascript" src="./chatbot/chatbot.js"></script>
@@ -41,20 +41,6 @@
                 .then((response) => response.json())
                 .then((data) => document.cookie = 'IP=' + data.ip + '; max-age=86400;')//86400 = 1日
                 .then(response => {
-
-                    //ログインセッション確認
-                    if (cheak()) {
-                        //systems()
-                        //ログイン確認済み
-                    } else {
-                        //再ログイン必要
-                        if (localStorage.getItem('debug') == 1) {
-                            Swal.fire("デバックモード", "一時停止中").then((result) => {
-                                window.location.href = "./error.html?E2"
-                            })
-                        }
-
-                    }
                 })
         </script>
         <ul id="navs">
@@ -71,16 +57,18 @@
         <ul id="nav">
             <div id="nav1">
                 <li><a href="./library.html" title="蔵書一覧"><i class="fa-solid fa-book"></i>蔵書一覧</a></li>
-                <li><a href="./mypage.html"title="マイページ"><i class="fa-solid fa-user"></i>マイページ</a></li>
+                <li><a href="./mypage.html" title="マイページ"><i class="fa-solid fa-user"></i>マイページ</a></li>
             </div>
             <div id="nav2">
-                <li><a href="https://forms.gle/9AVs49UbYAHnwWdp7" target="_blank" rel="noopener noreferrer" title="お問い合せ（外部:GoogleForms）"><i class="fa-solid fa-circle-question"></i></i>お問い合わせ<i class="fa-solid fa-arrow-up-right-from-square"></i></a></li>
+                <li><a href="https://forms.gle/9AVs49UbYAHnwWdp7" target="_blank" rel="noopener noreferrer"
+                        title="お問い合せ（外部:GoogleForms）"><i class="fa-solid fa-circle-question"></i></i>お問い合わせ<i
+                            class="fa-solid fa-arrow-up-right-from-square"></i></a></li>
                 <li><button onclick="logout()" class="logout" title="ログアウト"><img src="" name="icom">ログアウト</button></li>
             </div>
             <div id="admin_group">
-                <li><a href="./admin.html"title="管理者向け｜トップ"><i class="fa-solid fa-hammer"></i>管理者TOP</a></li>
-                <li><a href="./lar.html"title="管理者向け｜貸出・返却"><i class="fa-solid fa-right-left"></i>貸出・返却</a></li>
-                <li><a href="./regist.html"title="管理者向け｜登録処理"><i class="fa-solid fa-cash-register"></i>登録処理</a></li>
+                <li><a href="./admin.html" title="管理者向け｜トップ"><i class="fa-solid fa-hammer"></i>管理者TOP</a></li>
+                <li><a href="./lar.html" title="管理者向け｜貸出・返却"><i class="fa-solid fa-right-left"></i>貸出・返却</a></li>
+                <li><a href="./regist.html" title="管理者向け｜登録処理"><i class="fa-solid fa-cash-register"></i>登録処理</a></li>
             </div>
         </ul>
         <button id="admin" onclick="toAdmin()"></button>
@@ -93,8 +81,10 @@
                 <ul>
 
                     <li><a href="./library.html" title="蔵書一覧"><i class="fa-solid fa-book"></i>蔵書一覧</a></li>
-                    <li><a href="./mypage.html"title="マイページ"><i class="fa-solid fa-user"></i>マイページ</a></li>
-                    <li><a href="https://forms.gle/9AVs49UbYAHnwWdp7" target="_blank" rel="noopener noreferrer"title="お問い合せ（外部:GoogleForms）"><i class="fa-solid fa-circle-question"></i>お問い合わせ<i class="fa-solid fa-arrow-up-right-from-square"></i></a></li>
+                    <li><a href="./mypage.html" title="マイページ"><i class="fa-solid fa-user"></i>マイページ</a></li>
+                    <li><a href="https://forms.gle/9AVs49UbYAHnwWdp7" target="_blank" rel="noopener noreferrer"
+                            title="お問い合せ（外部:GoogleForms）"><i class="fa-solid fa-circle-question"></i>お問い合わせ<i
+                                class="fa-solid fa-arrow-up-right-from-square"></i></a></li>
                 </ul>
             </div>
             <!--ここまでメニュー-->
@@ -107,33 +97,49 @@
             <script>
                 $("#overlay").fadeIn(300);
 
-                function headerload(){
+                function headerload() {
                     console.log("＝＝＝header読み込み開始＝＝＝")
-                        if (Cookies.get('Admin')) {
-                            document.getElementById("admin_group").style.display = "inline-grid"
-                            document.getElementById("admin").style.display = "none"
-                        }
 
+                    if (cheak()) {  //ログイン確認済み
+                        console.log("Cookieログイン情報確認済み")
+
+                    } else { //再ログイン必要
+                        console.log("Cookieログイン情報が見当たりません")
                         if (localStorage.getItem('debug') == 1) {
-                            let element = document.querySelector('body');;
-                            element.insertAdjacentHTML('afterbegin', '<h1>デバッグモード</h1>');
-                            element.insertAdjacentHTML('beforeend', '<div class="air"></div>');
+                            Swal.fire("デバックモード", "一時停止中").then((result) => {
+                                window.location.href = "./error.html?E2"
+                            })
                         }
+                        window.location.href = "./error.html?E2"
+                    }
 
-                        if (Cookies.get('sessionID')) {
-                            document.icom.src = JSON.parse(Cookies.get('sessionID')).picture
-                        }
-                        console.log("＝＝＝header読み込みここまで＝＝＝")
-               
+                    if (Cookies.get('Admin')) {
+                        document.getElementById("admin_group").style.display = "inline-grid"
+                        document.getElementById("admin").style.display = "none"
+                    }
+
+                    if (localStorage.getItem('debug') == 1) {
+                        let element = document.querySelector('body');;
+                        element.insertAdjacentHTML('afterbegin', '<h1>デバッグモード</h1>');
+                        element.insertAdjacentHTML('beforeend', '<div class="air"></div>');
+                    }
+
+                    if (Cookies.get('sessionID')) {
+                        document.icom.src = JSON.parse(Cookies.get('sessionID')).picture
+                    }
+                    console.log("＝＝＝header読み込みここまで＝＝＝")
+
                 }
 
-window.addEventListener('load', function() {
-headerload()
-})
 
-setTimeout(() => {
-    headerload()
-}, 3000);
+
+                window.addEventListener('load', function () {
+                    headerload()
+                })
+
+                setTimeout(() => {
+                    headerload()
+                }, 3000);
 
 
 
