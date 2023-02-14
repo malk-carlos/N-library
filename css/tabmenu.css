@@ -1,0 +1,85 @@
+.tab-group{
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    padding: 0;
+    
+  }
+
+.tab-group li{
+    width: 20vw;
+    margin: 0 20px;
+}
+  .tab{
+    padding:5px;
+    list-style:none;
+    border:solid 1px #CCC;
+    text-align:center;
+    cursor:pointer;
+  }
+  .panel-group{
+    font-size: 13px;
+    margin: 0 auto;
+    width: 70vw;
+    height:auto;
+  }
+  .panel{
+    display:none;
+  }
+  .tab.is-active{
+    background:#27816a;
+    color:#FFF;
+    transition: all 0.2s ease-out;
+  }
+  .panel.is-show{
+    display:block;
+  }
+
+  .panel-group .book_img{
+    text-align: center;
+    height: auto;
+    width: 60px;
+  }
+  .panel-group .table{
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+
+  .panel-group .panel_table{
+    margin: 0 auto !important;
+    width: 70vw;
+}
+
+.panel-group .title{
+    width: 28vw;
+}
+
+
+.panel-group table {
+    border-collapse: separate;  /* 表の線と線の間を空ける */
+    border-spacing:  5px;       /* 表の線と線の間の幅 */
+
+}
+
+.panel-group th,td {
+    text-align: center;
+    padding: 5px 10px;          /* 余白指定 */
+}
+
+.panel-group th {
+    height: 20px;
+    text-align: center;
+    background-color:  #3F51B5; /* 背景色指定 */
+    color:  #fff;               /* 文字色指定 */
+    font-weight:  normal;       /* 文字の太さ指定 */
+}
+
+
+.panel-group td {
+    background-color:  #c0c9ff; /* 背景色指定 */
+}
+
+.panel-group td .over{
+    background-color: #ff6262!important;
+    color:  #fff; 
+}
