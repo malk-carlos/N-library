@@ -106,20 +106,24 @@ function debugalert() {
         denyButtonText: 'キャンセル',
         confirmButtonText: 'キャンセル',
         cancelButtonText: 'キャンセル',
-        footer: `<div onclick="debug()">　　　　　　　</div>`
+        footer: `<div onclick="a()">　　　　　　　</div>`
     })
 }
 /*デバックアラート表示ここまで*/
 
 /*デバックモード*/
-function debug() {
+function a(){
+    Swal.fire({title: '開発者用モード',html: "<button onclick='debug(2)'>ログコンソール表示</div><button onclick='debug(1)'>ログ画面表示</div>"})
+}
+function debug(n) {
     console.log("＝＝＝デバック開始＝＝＝")
-    if (localStorage.getItem('debug') == 1) {
+
+    if (localStorage.getItem('debug') == "1" && localStorage.getItem('debug') == "2") {
         console.log("デバックモードオフ")
         localStorage.removeItem('debug') //デバックモードOFF)
     } else {
         localStorage.removeItem('agree')
-        localStorage.setItem('debug', 1);
+        localStorage.setItem('debug', n);
         console.log("利用規約初期化....デバックモードオン")
         location.reload()
     }

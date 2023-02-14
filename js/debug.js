@@ -1,5 +1,5 @@
 function log(data){
-    if(localStorage.getItem('debug')==1){
+    if(localStorage.getItem('debug')=="1" || localStorage.getItem('debug') == "2"){
         console.log(data)
     }
     return
