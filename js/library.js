@@ -21,8 +21,8 @@ function pcBookRow(){
     for (let i = 0; i < bOl4; i ++) {
         const $row = $(`<div id='row${String(i+1)}' class='book-row'></div>`) // 各書籍の表紙, タイトル, 著者を記載する要素
         for (let j = 1; j < 5; j ++){
-            const $n = i*4+j;
-            const $btn = $(`<button id='btn${String($n)}' class='standby' name='${bookDB[$n][21]}' onClick='toReserve(${bookDB[$n][0]},${$n})'>予約不可</button>`) //予約ボタン
+            const $n = i*4+j;//toReserve(${bookDB[$n][0]},${$n})
+            const $btn = $(`<button id='btn${String($n)}' class='standby' name='${bookDB[$n][21]}' onClick="toReserve(${bookDB[$n][0]},${$n})">予約不可</button>`) //予約ボタン
             const $div = $(`<div id='book${String($n)}' class='book ${bookDB[$n][0]}'></div>`) // 各書籍の表紙, タイトル, 著者を記載する要素
             const $div2 = $(`<div id='bookData${String($n)}' class='bookData' onClick='popup(${$n})'></div>`)
             const $ps = $(`<div class='ps'><div>`)
@@ -41,12 +41,10 @@ function pcBookRow(){
         }
         $("#container").append($row);
     }
-    console.log("mbBR前");
     console.log("＝＝＝pcBookRowここまで＝＝＝")
 }
 function mbBookRow(){
     console.log("＝＝＝mbBookRow()開始＝＝＝")
-    console.log("mbBR呼び出し")
     const bOl2 = Math.ceil((bookDB.length) / 2);
     for (let l = 0; l < bOl2; l ++){
         const $mb_row = $(`<div id='mb-row${String(l+1)}' class='mb-book-row'></div>`)
@@ -67,7 +65,6 @@ function mbBookRow(){
 
 function toReserve(book_num,n) {
     console.log("＝＝＝toReserve()開始＝＝＝")
-    console.log(userdata)
     $("#overlay").fadeIn(300);
     if ($(`#btn${String(n)}`).attr('class') == 'reserve_btn'){
         console.log("tore")
@@ -89,6 +86,7 @@ function reserve(rentStatus,n) {
         })
         userdata += 1;
         limit();
+        setTimeout(() => send("LendingData",cheak().sub,true), 3000)
     } else if (rentStatus == "予約できませんでした") {
         swal.fire({
             title: "予約できませんでした",
@@ -103,14 +101,17 @@ function reserve(rentStatus,n) {
     console.log("＝＝＝reserve()ここまで＝＝＝")
 }
 
-function limit () {
+function limit (delCheck) {
     console.log("＝＝＝limit()開始＝＝＝")
-    if (userdata < 3) {
+    if(delCheck && userdata < 3) {
+        console.log("userL")
+        $(`.userlimit`).removeClass('userlimit').addClass('reserve_btn').text("予約する");
+    } else if (userdata < 3) {
         $(`.standby`).removeClass('standby limit').addClass('reserve_btn').text("予約する");
     } else {
         console.log("limelse")
-        $(`.reserve_btn`).removeClass('reserve_btn').addClass('limit').removeAttr("onClick").text("予約不可");
-        $(`.standby`).removeClass('standby').addClass('limit').removeAttr("onClick").text("予約不可");
+        $(`.reserve_btn`).removeClass('reserve_btn').addClass('userlimit').text("予約不可");
+        $(`.standby`).removeClass('standby').addClass('userlimit').text("予約不可");
     }
     console.log("＝＝＝limit()ここまで＝＝＝")
 }
@@ -123,7 +124,7 @@ function mydata(logDB) {
     console.log(book_length,"Blen") 
     for(let i = 0; book_length > i; i ++){
         if (Number($(`#btn${i+1}`).attr("name")) <= 0){
-            $(`#btn${i+1}`).removeClass('standby reserve_btn').addClass('limit').removeAttr("onClick").text("予約不可");
+            $(`#btn${i+1}`).removeClass('standby reserve_btn userlimit').addClass('limit').text("予約不可");
         }
         for(let j = 0; logDB.length > j; j ++){
             let dataJ = logDB[j];
@@ -140,16 +141,19 @@ function mydata(logDB) {
         content: "貸出可能な在庫数がありません。<br>返却をお待ちください。",
         allowHTML: true,
       });
-      tippy('.reserve_btn', {
+    tippy('.reserve_btn', {
         content: "予約できます。<br>予約する場合はボタンを押してください。",
         allowHTML: true,
-      });
-
-      tippy('.reserved', {
+    });
+    tippy('.reserved', {
         content: "既にこの本を予約しています。<br>予約をキャンセルするにはボタンを押してください。",
         allowHTML: true,
-      });
-      console.log("＝＝＝mydata()ここまで＝＝＝")
+    });
+    tippy('.userlimit', {
+        content: "あなたは既に貸出上限まで本を借りています。<br>先に返却を済ませてください。",
+        allowHTML: true,
+    });
+
 }
 
 function popup(n) {
@@ -173,15 +177,15 @@ function popup(n) {
     tippy('.bookSwalWriter', {
         content: "著者名",
       });
-      tippy('.bookSwalPage', {
+    tippy('.bookSwalPage', {
         content: "ページ数",
-      });
-      tippy('.bookSwalRegistry', {
+    });
+    tippy('.bookSwalRegistry', {
         content: "登録数",
-      });
-      tippy('.bookSwalStock', {
+    });
+    tippy('.bookSwalStock', {
         content: "貸出可能在庫数",
-      });
+    });
 
 
     if(bookDB[n][13] !=='-' && bookDB[n][13]!==""){
@@ -268,6 +272,7 @@ function cancel(n) {
         cancelButtonText : 'やめる',
         confirmButtonText : 'キャンセルする'
     }).then((result)=>{
+        console.log("lended_log",logDB,n)
         if(result.isConfirmed){
             const userID = logDB[0][0];
             let reserveNUM;
@@ -277,17 +282,30 @@ function cancel(n) {
                     i = -1;
                 }
             }
+            console.log("sending",reserveNUM)
             send("resavedel", userID, bookDB[n][0], new Date().toLocaleString(), n, reserveNUM);
-            // setTimeout(send("LendingData",true),1500);
-            // setTimeout(()=>{
-            //     let status;
-            //     for(let i = (logDB.length - 1); i >= 0; i -= 1 ){
-            //         if(logDB[i][6] == reserveNUM){
-            //             status = logDB[i][5];
-            //             i = -1;
-            //         }
-            //     }
-            //     if(status == "予約取り消し"){
+            console.log("sended",reserveNUM,logDB)
+            // setTimeout(
+            setTimeout(()=>{
+                let status;
+                for(let i = (logDB.length - 1); i >= 0; i -= 1 ){
+                    if(logDB[i][6] == reserveNUM){
+                        status = logDB[i][5];
+                        i = -1;
+                    }
+                }
+                console.log(delStatus,"toLogSwal")
+                if(delStatus == "予約削除失敗") {
+                    swal.fire({
+                        title: "キャンセルできませんでした",
+                        text: "エラーが発生しました！",
+                        icon: "error",
+                        confirmButtonText : "ページをリロードする",
+                        allowOutsideClick : false
+                    // }).then(() => {
+                    //     window.location.reload();
+                    })
+                } else if(delStatus == "予約削除完了"){
                     swal.fire({
                         title: "予約をキャンセルしました",
                         text: "",
@@ -296,19 +314,11 @@ function cancel(n) {
                     }).then(()=>{
                         $(`#btn${String(n)}`).removeClass('reserved').addClass('reserve_btn').attr("onclick", `toReserve(${bookDB[n][0]},${n})`).text("予約する");
                         $("#overlay").fadeOut(300);
+                        userdata = userdata - 1;
+                        limit(true);
                     })
-            //     } else {
-            //         swal.fire({
-            //             title: "キャンセルできませんでした",
-            //             text: "エラーが発生しました！",
-            //             icon: "error",
-            //             confirmButtonText : "ページをリロードする",
-            //             allowOutsideClick : false
-            //         }).then(() => {
-            //             window.location.reload();
-            //         })
-            //     }
-            // },1500)
+                }
+            },3000)
         }
     })
     console.log("＝＝＝cancel()ここまで＝＝＝")

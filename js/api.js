@@ -1,7 +1,7 @@
 /*スプレッドシート送受信 */
 
 //宣言
-let jsonObj,bookDB,logDB,userDatas,rentStatus, flag = false, userdata, namedata;
+let jsonObj,bookDB,logDB,userDatas,rentStatus,delStatus, flag = false, userdata, namedata;
 let mode, key1, key2, key3, key4, key5, key6, key7, key8, key9, key10, key11, key12, key13, key14, key15, key16, key17, key18, key19, key20;
 const apiurl = 'https://script.google.com/macros/s/AKfycbyOBgvJG2v2xqtAHXU_wmFixyYxRHEPsyykDd5disH6zVmxMY4SUE6QcwGn9fOkGA1e/exec'
 
@@ -104,7 +104,7 @@ function send(mode, key1, key2, key3, key4, key5, key6, key7, key8, key9, key10,
                         } else if (mode == "LendingData") {
                                 logDB = jsonObj
                                 console.log(logDB)
-                                if(key1 != true){
+                                if(key2 != true){
                                         mydata(logDB)
                                 }
                         } else if (mode == "AllLendingdata") {
@@ -116,6 +116,9 @@ function send(mode, key1, key2, key3, key4, key5, key6, key7, key8, key9, key10,
                         } else if (mode == "reserve") {
                                 rentStatus = jsonObj
                                 reserve(rentStatus, key4)
+                        } else if (mode == "resavedel") {
+                                delStatus = jsonObj
+                                return delStatus
                         } else if (mode == "user_cheak") {
                                 userDatas = jsonObj
                                 if (userDatas[0] == 'notmatch') {
