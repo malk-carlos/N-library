@@ -6,6 +6,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>【エラー】Borrow a book</title>
+
+    <!--favicon-->
+    <link rel="apple-touch-icon" sizes="180x180" href="./favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./favicon/favicon-16x16.png">
+    <link rel="manifest" href="./favicon/site.webmanifest">
+    <link rel="mask-icon" href="./favicon/safari-pinned-tab.svg" color="#5bbad5">
+    <link rel="shortcut icon" href="./favicon/favicon.ico">
+    <meta name="msapplication-TileColor" content="#00aba9">
+    <meta name="msapplication-config" content="./favicon/browserconfig.xml">
+    <meta name="theme-color" content="#c9ffc7">
+
     <script src="./js/google-login.js"></script>
     <link rel="stylesheet" href="./css/error.css">
 
@@ -22,44 +34,44 @@
             <div id="errorlogin"></div>
             <div id="errorsecond"></div>
         </div>
-    </div>
-    <div id="buttonArea">
+        </div>
+        <div id="buttonArea">
 
-</div>
+        </div>
 
-    <script>
-        switch ((new URL(window.location.href).search)) {
-            case '?E1':
-                document.getElementById("errorviwe").innerHTML = "このアカウントでのログインは対応していません。"
-                break;
-            case '?E2':
-                document.getElementById("errorviwe").innerHTML = "セッションが切れました。"
-                break;
-            case '?E3':
-                document.getElementById("errorviwe").innerHTML = "管理者権限を確認できませんでした。"
-                break;
-            default:
-                document.getElementById("errorviwe").innerHTML = "エラーが発生しました。"
-                break;
-        }
-        document.getElementById("errorlogin").innerHTML = "もう一度ログインをしてください"
-        document.getElementById("errorsecond").innerHTML = "5秒後TOPページに戻ります"
-        document.getElementById("buttonArea").innerHTML =  '<button class="back-top" onclick="logout()"><div class="text">TOPに戻る</div></button>'
+        <script>
+            switch ((new URL(window.location.href).search)) {
+                case '?E1':
+                    document.getElementById("errorviwe").innerHTML = "このアカウントでのログインは対応していません。"
+                    break;
+                case '?E2':
+                    document.getElementById("errorviwe").innerHTML = "セッションが切れました。"
+                    break;
+                case '?E3':
+                    document.getElementById("errorviwe").innerHTML = "管理者権限を確認できませんでした。"
+                    break;
+                default:
+                    document.getElementById("errorviwe").innerHTML = "エラーが発生しました。"
+                    break;
+            }
+            document.getElementById("errorlogin").innerHTML = "もう一度ログインをしてください"
+            document.getElementById("errorsecond").innerHTML = "5秒後TOPページに戻ります"
+            document.getElementById("buttonArea").innerHTML = '<button class="back-top" onclick="logout()"><div class="text">TOPに戻る</div></button>'
 
-        //URLバーpath削除
-        history.replaceState('', '', new URL(window.location.href).pathname);
-        const cookies = document.cookie.split(';')
-        for (let i = 0; i < cookies.length; i++) {
-            const cookie = cookies[i]
-            const eqPos = cookie.indexOf('=')
-            const name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie
-            document.cookie = name + '=;max-age=0'
-        }
+            //URLバーpath削除
+            history.replaceState('', '', new URL(window.location.href).pathname);
+            const cookies = document.cookie.split(';')
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i]
+                const eqPos = cookie.indexOf('=')
+                const name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie
+                document.cookie = name + '=;max-age=0'
+            }
 
-        setTimeout(() => {
-          logout()
-        }, 5000);
-    </script>
+            setTimeout(() => {
+                logout()
+            }, 5000);
+        </script>
 </body>
 
 </html>

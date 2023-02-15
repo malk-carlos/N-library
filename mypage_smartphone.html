@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,11 +14,24 @@
   <script src="./js/jquery-barcode.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
   <title>【マイページ】Borrow a book</title>
+  
+  <!--favicon-->
+  <link rel="apple-touch-icon" sizes="180x180" href="./favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="./favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="./favicon/favicon-16x16.png">
+  <link rel="manifest" href="./favicon/site.webmanifest">
+  <link rel="mask-icon" href="./favicon/safari-pinned-tab.svg" color="#5bbad5">
+  <link rel="shortcut icon" href="./favicon/favicon.ico">
+  <meta name="msapplication-TileColor" content="#00aba9">
+  <meta name="msapplication-config" content="./favicon/browserconfig.xml">
+  <meta name="theme-color" content="#c9ffc7">
+
 </head>
+
 <body>
   <header>
-    <script src="./js/header.js"></script>
     <script>header();</script>
+    <script src="./js/header.js"></script>
   </header>
   <div>
     <div id="tabs">
@@ -34,10 +48,10 @@
     const tabBtns = tabs.querySelectorAll('.tab-btn');
     const tabContents = tabs.querySelectorAll('.tab-content');
 
-    tabBtns.forEach(function(btn) {
-      btn.addEventListener('click', function() {
+    tabBtns.forEach(function (btn) {
+      btn.addEventListener('click', function () {
         const tab = btn.dataset.tab;
-        tabContents.forEach(function(content) {
+        tabContents.forEach(function (content) {
           content.style.display = 'none';
         });
         tabs.querySelector('#' + tab).style.display = 'block';
@@ -49,4 +63,5 @@
 
   </script>
 </body>
+
 </html>
