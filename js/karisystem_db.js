@@ -5,6 +5,11 @@
 jsonObjに蔵書のデータが格納されています。
 
 */
+//貸出期間（日）
+const Lending_period = 7
+//取り置き期間（日）
+const Hold_period = 7
+
 
 function test(jsonObj) {
     const table = document.getElementById('container');  //表のオブジェクトを取得
@@ -69,7 +74,7 @@ function alllending(jsonObj) {
 
     //DB分繰り返し表作成
     for (j = 1; j < jsonObj.length; j++) {
-        if (jsonObj[j][5] == "貸出中") {
+        if (jsonObj[j][5] == "貸出中") {//貸出表
             /* 初期設定エリアここまで　↓↓↓↓↓↓↓ */
             var row = table.insertRow(-1);  //行末に行(tr要素)を追加
             row.setAttribute("class", `reload reload${j}`);
@@ -84,12 +89,12 @@ function alllending(jsonObj) {
             cell.innerHTML = `<img class='book_img' src='${jsonObj[j][8]}'>`
             cell1.innerHTML = `<div class='title table${j}'>${jsonObj[j][7]} </div>`
             cell2.innerHTML = `<div class='username table${j}'>${jsonObj[j][9]} </div>`
-            cell3.innerHTML = `<div class='date table${j}'>${showDiffDate(jsonObj[j][3], 14, j)}</div>`
+            cell3.innerHTML = `<div class='date table${j}'>${showDiffDate(jsonObj[j][3],Lending_period, j)}</div>`
             cell4.innerHTML = `<div class='system_no table${j}'>${jsonObj[j][6]} </div>`
             cell5.innerHTML = `<div class='adminbutton table${j}'><button class='admin_retrun' onclick='send("retrun2"," ${jsonObj[j][0]}","${jsonObj[j][1]}"," ${new Date().toLocaleString()}","${jsonObj[j][6]}")'>返却処理</button><button class='admin_cancel' onclick='admin_cancel_lending("${j}")'>貸出データ削除 </button></div>`
             /* 行作成エリアここまで　↑↑↑↑↑↑ */
 
-        } else if (jsonObj[j][5] == "予約中") {
+        } else if (jsonObj[j][5] == "予約中") {//予約表
             /* 初期設定エリアここまで　↓↓↓↓↓↓↓ */
             var row = table2.insertRow(-1);  //行末に行(tr要素)を追加
             row.setAttribute("class", `reload reload${j}`);
@@ -105,7 +110,7 @@ function alllending(jsonObj) {
             cell.innerHTML = `<img class='book_img' src='${jsonObj[j][8]}'>`
             cell1.innerHTML = `<div class='title table${j}'>${jsonObj[j][7]} </div>`
             cell2.innerHTML = `<div class='username table${j}'>${jsonObj[j][9]} </div>`
-            cell3.innerHTML = `<div class='date table${j}'>${showDiffDate(jsonObj[j][2], 7, j)}</div>`
+            cell3.innerHTML = `<div class='date table${j}'>${showDiffDate(jsonObj[j][2],Hold_period, j)}</div>`
             cell4.innerHTML = `<div class='system_no table${j}'>${jsonObj[j][6]} </div>`
             cell5.innerHTML = `<div class='adminbutton table${j}'><button class='admin_cancel' onclick='admin_cancel_resave("${j}")'>予約データ取消 </button></div>`
             /* 行作成エリアここまで　↑↑↑↑↑↑ */
