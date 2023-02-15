@@ -86,7 +86,7 @@ function alllending(jsonObj) {
             cell2.innerHTML = `<div class='username table${j}'>${jsonObj[j][9]} </div>`
             cell3.innerHTML = `<div class='date table${j}'>${showDiffDate(jsonObj[j][3], 14, j)}</div>`
             cell4.innerHTML = `<div class='system_no table${j}'>${jsonObj[j][6]} </div>`
-            cell5.innerHTML = `<div class='adminbutton table${j}'><button class='admin_cancel' onclick='admin_cancel_lending("${j}")'>貸出データ削除 </button></div>`
+            cell5.innerHTML = `<div class='adminbutton table${j}'><button class='admin_retrun' onclick='send("retrun2"," ${jsonObj[j][0]}","${jsonObj[j][1]}"," ${new Date().toLocaleString()}","${jsonObj[j][6]}")'>返却処理</button><button class='admin_cancel' onclick='admin_cancel_lending("${j}")'>貸出データ削除 </button></div>`
             /* 行作成エリアここまで　↑↑↑↑↑↑ */
 
         } else if (jsonObj[j][5] == "予約中") {
