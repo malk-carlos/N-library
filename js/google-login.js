@@ -6,28 +6,17 @@ let loginData, adminData
 function toAdmin() {
     console.log("===toAdmin()開始===")
     $("#overlay").fadeIn(300);//待機画面開始
-    const adminCheak = admin();
-    if (adminCheak) {//adminかどうか
-        if (localStorage.getItem('debug') == 1) {
-            Swal.fire("デバックモード", "一時停止中").then((result) => {
-                window.location.href = "./admin.html";
-            })
-        } else {
-            window.location.href = "./admin.html";
-        }
-    } else {
-        $("#overlay").fadeOut(300);//待機画面終了
-    }
+    console.log("===admin()開始===")
+    let loginData = cheak()
+    send("admin_cheak", new Date().toLocaleString(), ((document.cookie + ';').match('IP=([^¥S;]*)') || [])[1], loginData.email, platform.name, platform.version, platform.os.toString(), navigator.userAgent, "", encodeURIComponent(loginData.name), encodeURIComponent(loginData.sub))
+    console.log("===admin()ここまで===")
     console.log("===toAdmin()ここまで===")
 }
 /*adminログインアクセス処理ここまで*/
 
 /*admin情報問い合わせ */
 function admin() {
-    console.log("===admin()開始===")
-    let loginData = cheak()
-    send("admin_cheak", new Date().toLocaleString(), ((document.cookie + ';').match('IP=([^¥S;]*)') || [])[1], loginData.email, platform.name, platform.version, platform.os.toString(), navigator.userAgent, "", encodeURIComponent(loginData.name), encodeURIComponent(loginData.sub))
-    console.log("===admin()ここまで===")
+
 }
 /*admin情報問い合わせここまで*/
 
@@ -53,7 +42,7 @@ function admin_cheak() {
     const sessionid = Cookies.get('Admin');
     $("#overlay").fadeOut(300);
     if (!sessionid) {
-        if (localStorage.getItem('debug') == 1) {
+        if (localStorage.getItem('debug')  ) {
             Swal.fire("デバックモード", "一時停止中").then((result) => {
                 window.location.href = "./error.html?E3"
             })
@@ -71,7 +60,7 @@ function logout() {
     //Cookie削除
     Cookies.set('sessionID', "");
     Cookies.set('Admin', "");
-    if (localStorage.getItem('debug') == 1) {
+    if (localStorage.getItem('debug')  ) {
         Swal.fire("デバックモード", "一時停止中").then((result) => {
         window.location.href = "./index.html"
         })
