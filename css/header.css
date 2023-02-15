@@ -26,8 +26,8 @@ header {
 }
 
 #search {
-    width: 120%;
-    height: calc(100vw * 0.03);
+    width: 350px;
+    height: 50px;
     display: flex;
     flex-wrap: nowrap;
 }
@@ -41,13 +41,12 @@ header {
     border: none;
     border-radius: 50px;
     display: inline-block;
-    padding: 20px 10px;
+    padding: 0 10px;
     color: #333;
 }
 
 #search button {
     width: 20%;
-    height: 100%;
     border: none;
     border-radius: 50px;
     display: inline-block;
@@ -354,7 +353,7 @@ i {
     width: 130px;
 }
 
-@media screen and (min-width:1190px) {
+@media screen and (min-width:1175px) {
     .logout,
     #nav,
     #nav2,
@@ -369,70 +368,11 @@ i {
     }
 }
 
-@media screen and (max-width:1190px) {
+@media screen and (max-width:1175px) {
     .logout,
     #nav,
     #nav2,
     #nav1,
-    #navs {
-        /*コレ*/
-        display: flex;
-        /*コレ*/
-        align-items: center;
-        /*コレ*/
-        justify-content: center;
-    }
-
-    #admin_group,
-    #admin {
-        display: none !important;
-    }
-}
-
-@media screen and (max-width:1190px) {
-    .logout,
-    #nav,
-    #nav2,
-    #nav1,
-    #navs {
-        /*コレ*/
-        display: flex;
-        /*コレ*/
-        align-items: center;
-        /*コレ*/
-        justify-content: center;
-    }
-
-    #admin_group,
-    #admin {
-        display: none !important;
-    }
-}
-
-
-/* 画面幅960px"以下"の時に読み込むスタイル */
-@media screen and (max-width:960px) {
-
-    .logout,
-    #navs {
-        /*コレ*/
-        display: flex;
-        /*コレ*/
-        align-items: center;
-        /*コレ*/
-        justify-content: center;
-    }
-
-    #admin_group,
-    .connect,
-    #admin {
-        display: none !important;
-    }
-}
-
-@media screen and (max-width:1020px) {
-
-    .logout,
     #navs {
         /*コレ*/
         display: flex;
@@ -450,14 +390,10 @@ i {
 }
 
 
-
 /* 画面幅960px"以下"の時に読み込むスタイル */
-@media screen and (max-width:840px) {
+@media screen and (max-width:1000px) {
 
     .logout,
-    #nav,
-    #nav2,
-    #nav1,
     #navs {
         /*コレ*/
         display: flex;
@@ -467,9 +403,44 @@ i {
         justify-content: center;
     }
 
+    #nav1{
+        display: grid;
+    }
+
     #admin_group,
-    .connect {
+    .connect,
+    #admin {
         display: none !important;
+    }
+}
+
+
+
+/* 画面幅960px"以下"の時に読み込むスタイル */
+@media screen and (max-width:850px) {
+
+    .logout,
+    #nav,
+    #nav2,
+    #navs {
+        /*コレ*/
+        display: flex;
+        /*コレ*/
+        align-items: center;
+        /*コレ*/
+        justify-content: center;
+    }
+
+    #nav1{
+        display: grid !important;
+    }
+
+    #admin_group {
+        display: none !important;
+    }
+
+    .connect{
+        display: block !important;
     }
 
     #admin {
