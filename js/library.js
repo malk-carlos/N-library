@@ -302,8 +302,8 @@ function cancel(n) {
                         icon: "error",
                         confirmButtonText : "ページをリロードする",
                         allowOutsideClick : false
-                    // }).then(() => {
-                    //     window.location.reload();
+                    }).then(() => {
+                        window.location.reload();
                     })
                 } else if(delStatus == "予約削除完了"){
                     swal.fire({
