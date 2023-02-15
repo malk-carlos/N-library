@@ -6,6 +6,7 @@ let mode, key1, key2, key3, key4, key5, key6, key7, key8, key9, key10, key11, ke
 const apiurl = 'https://script.google.com/macros/s/AKfycbyOBgvJG2v2xqtAHXU_wmFixyYxRHEPsyykDd5disH6zVmxMY4SUE6QcwGn9fOkGA1e/exec'
 
 function send(mode, key1, key2, key3, key4, key5, key6, key7, key8, key9, key10, key11, key12, key13, key14, key15, key16, key17, key18, key19, key20) {
+        $("#overlay").fadeIn(300);
         xhr = new XMLHttpRequest()
         xhr.open('POST', apiurl, true);
         xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded;charset=UTF-8');
@@ -99,6 +100,7 @@ function send(mode, key1, key2, key3, key4, key5, key6, key7, key8, key9, key10,
                         } else if (mode == "admin_book_cheak") {
                                 bookDB = jsonObj
                                 test(bookDB)
+                                send("AllLendingdata")
                         } else if (mode == "searching") {
                                 bookDB = jsonObj
                                 if (key2 == "/library.html") {
@@ -118,6 +120,7 @@ function send(mode, key1, key2, key3, key4, key5, key6, key7, key8, key9, key10,
                                 }
                         } else if (mode == "AllLendingdata") {
                                 reservationdata = jsonObj
+                                alllending(reservationdata)
                                 return
                         } else if (mode == "index_search") {
                                 bookDB = jsonObj
@@ -127,7 +130,25 @@ function send(mode, key1, key2, key3, key4, key5, key6, key7, key8, key9, key10,
                                 reserve(rentStatus, key4)
                         } else if (mode == "resavedel") {
                                 delStatus = jsonObj
-                                return delStatus
+                                if(key6){
+                                        if(delStatus =="予約削除完了")
+                                        Swal.fire(
+                                                '取り消し完了',
+                                                '予約を取り消しました！',
+                                                'success'
+                                            )
+                                            $(`.reload${key6}`).remove();
+                                }
+                                return delStatus 
+                        }else if (mode == "lendingdel") {
+                                        if(jsonObj == "貸出削除完了"){
+                                                Swal.fire(
+                                                        '取り消し完了',
+                                                        '貸出を取り消しました！',
+                                                        'success'
+                                                    )
+                                                    $(`.reload${key6}`).remove();
+                                        }
                         } else if (mode == "user_cheak") {
                                 userDatas = jsonObj
                                 if (userDatas[0] == 'notmatch') {

@@ -6,7 +6,7 @@
 /* 書籍詳細表示のswal */
 .swal2-container.swal2-center>.bookDetails {
     width: 60vw !important;
-    height: 80vh !important;
+    /* height: 80vh !important; */
     display: block !important;
 }
 
@@ -24,10 +24,10 @@
     white-space: pre-wrap;
     word-wrap: break-word;
 }
-
+/* 
 .bookDetails #swal2-html-container {
     height: 80%;
-}
+} */
 
 .bookDetails .bookSwalName {
     margin: 10px auto 45px;
@@ -55,12 +55,12 @@
 }
 
 .bookDetails .bookSwalCoverP {
-    height: 330px !important;
+    height: 250px !important;
     margin-bottom: 20px;
 }
 
 .bookDetails img.bookSwalCover {
-    height: 340px;
+    height: 250px;
     width: auto;
 }
 
@@ -166,6 +166,7 @@
 }
 
 .bookSwalViwe{
+    margin-top: 80px;
     display: flex;
     justify-content: center;
 }
