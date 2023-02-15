@@ -49,8 +49,8 @@ function send(mode, key1, key2, key3, key4, key5, key6, key7, key8, key9, key10,
                                                 icon: 'success',
                                                 title: '登録完了',
                                                 html:
-                                                        '<img class="alertImg" src="' + document.img.src + '"><div class="alertTitle">' + Data[0].onix.DescriptiveDetail.TitleDetail.TitleElement.TitleText.content + '</div>' +
-                                                        Data[0].onix.DescriptiveDetail.Contributor[0].PersonName.content,
+                                                        '<img class="alertImg" src="' + document.img.src + '"><div class="alertTitle">' + key2 + '</div>' +
+                                                        key8,
                                                 showConfirmButton: false,
                                                 timer: 1500
                                         })
@@ -61,8 +61,8 @@ function send(mode, key1, key2, key3, key4, key5, key6, key7, key8, key9, key10,
                                                 icon: 'info',
                                                 title: '追加完了',
                                                 html:
-                                                        '<img class="alertImg" src="' + document.img.src + '"><div class="alertTitle">' + Data[0].onix.DescriptiveDetail.TitleDetail.TitleElement.TitleText.content + '</div>' +
-                                                        Data[0].onix.DescriptiveDetail.Contributor[0].PersonName.content,
+                                                        '<img class="alertImg" src="' + document.img.src + '"><div class="alertTitle">' + key2 + '</div>' +
+                                                        key8,
                                                 showConfirmButton: false,
                                                 timer: 1500
                                         })
