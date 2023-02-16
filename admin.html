@@ -16,9 +16,9 @@
     <meta name="theme-color" content="#c9ffc7">
 
     <!--CSS-->
-    <link rel="stylesheet" href="./css/karisystem_db.css" />
     <link rel="stylesheet" href="./css/library.css">
     <link rel="stylesheet" href="./css/tabmenu.css">
+    <link rel="stylesheet" href="./css/admin.css">
 
     <!--外部JS-->
 
@@ -40,10 +40,14 @@
         <script>header();</script>
     </header>
 
-    <h1>管理者様</h1>
-    <a href="./regist.html">蔵書を追加</a>
-    <a href="./lar.html">貸出・返却</a>
-    <button onclick='send("admin_book_cheak")'>データ更新</button>
+    <div id="h1">
+        <h1>管理者様</h1>
+        <button id="update" onclick='send("admin_book_cheak")'><h1>更新</h1><i id="#ud_i" class="fa-solid fa-rotate-right"></i></button>
+    </div>
+    <div id="atags">
+        <a href="./regist.html">蔵書を追加</a>
+        <a href="./lar.html">貸出・返却</a>
+    </div>
 
     <div class="tab-panel">
         <!--タブ-->
