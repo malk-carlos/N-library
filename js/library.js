@@ -50,8 +50,11 @@ function mbBookRow(){
         const $mb_row = $(`<div id='mb-row${String(l+1)}' class='mb-book-row'></div>`)
         for (let k = 1; k <= 2; k ++ ) {
             const $m = l*2+k;
-            const $mb_cover = $(`<img src='${bookDB[$m][17]}' class='mb_coverimg' alt="${bookDB[$m][1]}" oncontextmenu="return false;" onClick='mb_popup(${$m})'>`) // 表紙
-            $mb_row.append($mb_cover);
+            const $mb_div = $(`<div id='mb-div${String($m)}' class='mb-book-div ${bookDB[$m][0]}' onClick='mb_popup(${$m})'></div>`)
+            const $mb_cover = $(`<img src='${bookDB[$m][17]}' class='mb-coverimg' alt="${bookDB[$m][1]}" oncontextmenu="return false;">`) // 表紙
+            const $mb_btn = $(`<button id='mb-btn${String($m)}' class='mb-standby' name='${bookDB[$m][21]}'>予約不可</button>`) //予約ボタン
+            $mb_div.append($mb_cover).append($mb_btn);
+            $mb_row.append($mb_div)
             if ($m == bookDB.length - 1) {
                 k = 5;
             } else {
@@ -78,6 +81,7 @@ function reserve(rentStatus,n) {
     console.log(rentStatus,n,userdata,"書籍データ,通し番号,userdata");
     if (rentStatus == "予約完了") {
         $(`#btn${String(n)}`).removeClass('reserve_btn').addClass('reserved').attr("onClick", `cancel(${n})`).text("予約済み");
+        $(`#mb-btn${n}`).removeClass('mb-reserve_btn').addClass('mb-reserved').text("予約済み");
         swal.fire({
             title: "予約完了",
             text: "予約が完了しました",
@@ -106,12 +110,19 @@ function limit (delCheck) {
     if(delCheck && userdata < 3) {
         console.log("userL")
         $(`.userlimit`).removeClass('userlimit').addClass('reserve_btn').text("予約する");
+
+        $(`.mb-userlimit`).removeClass('mb-userlimit').addClass('mb-reserve_btn').text("予約する");
     } else if (userdata < 3) {
         $(`.standby`).removeClass('standby limit').addClass('reserve_btn').text("予約する");
+
+        $(`.mb-standby`).removeClass('mb-standby mb-limit').addClass('mb-reserve_btn').text("予約する");
     } else {
         console.log("limelse")
         $(`.reserve_btn`).removeClass('reserve_btn').addClass('userlimit').text("予約不可");
         $(`.standby`).removeClass('standby').addClass('userlimit').text("予約不可");
+
+        $(`.mb-reserve_btn`).removeClass('mb-reserve_btn').addClass('mb-userlimit').text("予約不可");
+        $(`.mb-standby`).removeClass('mb-standby').addClass('mb-userlimit').text("予約不可");
     }
     console.log("＝＝＝limit()ここまで＝＝＝")
 }
@@ -120,17 +131,26 @@ function mydata(logDB) {
     console.log("＝＝＝mydata()開始＝＝＝")
     console.log(logDB,"mydata");
 
-    const book_length = $(".book:last").attr("id").replace("book","");
+    const book_length = Number($(".book:last").attr("id").replace("book",""));
     console.log(book_length,"Blen") 
     for(let i = 0; book_length > i; i ++){
         if (Number($(`#btn${i+1}`).attr("name")) <= 0){
             $(`#btn${i+1}`).removeClass('standby reserve_btn userlimit').addClass('limit').text("予約不可");
+        }
+        if (Number($(`#mb-btn${i+1}`).attr("name")) <= 0){
+            $(`#mb-btn${i+1}`).removeClass('mb-standby mb-reserve_btn mb-userlimit').addClass('mb-limit').text("予約不可");
         }
         for(let j = 0; logDB.length > j; j ++){
             let dataJ = logDB[j];
             if(dataJ[1] == $(`#book${i+1}`).attr("class").replace("book ","") && dataJ[5] == "予約中"){
                 console.log("a")
                 $(`#btn${i+1}`).removeClass('standby limit').addClass('reserved').attr("onClick", `cancel(${i+1})`).text("予約済み");
+                console.log("b")
+            }
+
+            if(dataJ[1] == $(`#mb-div${i+1}`).attr("class").replace("mb-book-div ","") && dataJ[5] == "予約中"){
+                $(`#mb-btn${i+1}`).removeClass('mb-standby mb-limit').addClass('mb-reserved').text("予約済み");
+                $(`#mb-div${i+1}`).attr("onClick", `mb_popup(${i+1})`);
                 console.log("b")
             }
         }
@@ -226,33 +246,28 @@ function res_popup(book_num,n) {
 
 function mb_popup(n) {
     console.log("＝＝＝mb_popup()開始＝＝＝")
-    // スマホ用デザインの確認画面
-    Swal.fire({
-        title: "書籍詳細",
-        html: `<p class='bookSwalName'>${bookDB[n][1]}</p>
-        <p class='bookSwalCoverP'><img src='${bookDB[n][17]}' class='bookSwalCover'></p>
-        <p class='bookSwalWriter BSP'>著者：${bookDB[n][7]}</p>
-        <p class='bookSwalPage BSP'>${bookDB[n][11]}ページ</p>
-        <p class='bookSwalData'><span class='bookSwalRegistry'>登録数：${bookDB[n][18]}冊</span>｜<span class='bookSwalStock'>貸出可能在庫：${bookDB[n][21]}冊</span></p>`,
-        backdrop: "#0005",
-        customClass: "bookDetails",
-        showCancelButton : true,
-        cancelButtonText : 'やめる',
-        confirmButtonText : '予約する'
-    }).then((result)=>{
-        console.log("then1",n,"n")
-        if(result.isConfirmed){
-            send("reserve",cheak().sub, bookDB[n][0], new Date().toLocaleString(),n)
-        } else {
-            Swal.fire({
-                title: "予約をキャンセルしました",
-                text: "",
-                customClass:"canceled"
-            }).then(()=>{
-                $("#overlay").fadeOut(300);
-            })
-        }
-    })
+
+    let mode
+    if($(`#mb-btn${n}`).attr("class")=="mb-reserve_btn"){
+        mode="reserve"
+        console.log(mode,"mb-reserveBtn")
+    } else if($(`#mb-btn${n}`).attr("class")=="mb-reserved"){
+        mode="cancel"
+        console.log(mode,"mb-reserved")
+    }
+    
+    if(mode=="reserve"){
+        mbReserve(n);
+    } else if(mode=="cancel"){
+        mbCancel(n);
+    } else if(userdata>=3){
+        cannotReserve(n,"既に上限まで借りています。先に返却を済ませてください。");
+    } else if(Number($(`#mb-btn${String(n)}`).attr("name"))<=0){
+        cannotReserve(n,"この本には貸し出せる在庫がありません。またの機会に予約してください。");
+    } else {
+        cannotReserve(n);
+    }
+
     console.log("＝＝＝mb_popup()ここまで＝＝＝")
 }
 
@@ -313,6 +328,7 @@ function cancel(n) {
                         customClass:"canceled"
                     }).then(()=>{
                         $(`#btn${String(n)}`).removeClass('reserved').addClass('reserve_btn').attr("onclick", `toReserve(${bookDB[n][0]},${n})`).text("予約する");
+                        $(`#mb-btn${String(n)}`).removeClass('mb-reserved').addClass('mb-reserve_btn').text("予約する");
                         $("#overlay").fadeOut(300);
                         userdata = userdata - 1;
                         limit(true);
