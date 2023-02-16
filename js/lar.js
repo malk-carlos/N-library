@@ -65,6 +65,7 @@ function scan(texts) {
                                         send("lending", userid, texts, new Date().toLocaleString())
                                         bookdata[i][21]--
                                         userdata++
+                                        new Audio("./audio/button42.mp3").play()
                                         Swal.fire({
                                             position: 'top-end',
                                             icon: 'success',
@@ -83,6 +84,7 @@ function scan(texts) {
                                                     send("lending2", userid, texts, new Date().toLocaleString())
                                                     bookdata[i][21]--
                                                     userdata++
+                                                    new Audio("./audio/button44.mp3").play()
                                                     Swal.fire({
                                                         position: 'top-end',
                                                         icon: 'success',
@@ -97,6 +99,7 @@ function scan(texts) {
                                         }
                                         //在庫なし
                                         console.log("在庫なし")
+                                        new Audio("./audio/button19.mp3").play()
                                         Swal.fire({
                                             position: 'top-end',
                                             icon: 'error',
@@ -109,6 +112,7 @@ function scan(texts) {
 
                                 } else {
                                     //貸出禁止
+                                    new Audio("./audio/button19.mp3").play()
                                     console.log("禁止")
                                     Swal.fire({
                                         position: 'top-end',
@@ -124,6 +128,7 @@ function scan(texts) {
                         }
                         //bookdataなし
                         console.log("なかった")
+                        new Audio("./audio/button19.mp3").play()
                         Swal.fire({
                             position: 'top-end',
                             icon: 'question',
@@ -136,6 +141,7 @@ function scan(texts) {
                     } else if (userdata > 2 && texts.length != 21) {
                         //上限に達した
                         alert("上限に達しました")
+                        new Audio("./audio/button29.mp3").play()
                         Swal.fire({
                             position: 'top-end',
                             icon: 'warning',
@@ -153,6 +159,7 @@ function scan(texts) {
 
                     } else {
                         //IDをスキャン
+                        new Audio("./audio/button19.mp3").play()
                         Swal.fire({
                             position: 'top-end',
                             icon: 'warning',
@@ -165,6 +172,7 @@ function scan(texts) {
                 }
                 break;
             } else {
+                new Audio("./audio/button29.mp3").play()
                 Swal.fire({
                     position: 'top-end',
                     icon: 'warning',
