@@ -7,13 +7,18 @@
   }
 
 .tab-group li{
-    width: 20vw;
+    vertical-align: middle;
+    width: 15vw;
+    height: 30px;
+    line-height: 30px;
     margin: 0 20px;
 }
   .tab{
     padding:5px;
     list-style:none;
     border:solid 1px #CCC;
+    border-bottom: none;
+    border-radius: 10px 10px 0 0;
     text-align:center;
     cursor:pointer;
   }
@@ -30,6 +35,11 @@
     background:#27816a;
     color:#FFF;
     transition: all 0.2s ease-out;
+    box-shadow: 0 0 5px #8885;
+    width: calc(15vw + 10px);
+    height: 35px;
+    line-height: 35px;
+    margin: -5px 15px 0;
   }
   .panel.is-show{
     display:block;
@@ -45,9 +55,28 @@
     word-wrap: break-word;
   }
 
-  .panel-group .panel_table{
+  .panel-group{
     margin: 0 auto !important;
     width: 70vw;
+  }
+
+  .panel_table {
+    border: .5px solid #27816A;
+    padding: 15px 50px;
+  }
+
+  #tables {
+    margin: 0 auto !important;
+    width: 70vw;
+  }
+
+  #container_wrapper{
+    border: .5px solid #27816A;
+    padding: 15px 50px;
+  }
+
+  #container{
+    width: 100% !important;
 }
 
 .panel-group .title{
@@ -82,4 +111,27 @@
 .panel-group td .over{
     background-color: #ff6262!important;
     color:  #fff; 
+}
+
+.book_img,.th_img {
+  height: 80px;
+}
+
+a{
+  color: blue;
+}
+a:hover{
+  color: rgb(100, 100, 255) 
+}
+
+.pagination{
+  background-color: black;
+}
+
+#chatbot-eyecatch-div{
+  display: none !important;
+}
+
+::-webkit-scrollbar {
+  display: none !important;
 }

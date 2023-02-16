@@ -1,8 +1,11 @@
 #h1 {
-    margin-top: 150px;
+    width: 80vw;
     height: 50px;
     text-align: center;
     position: relative;
+    margin: 150px auto 50px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #333;
 }
 
 #h1>h1 {
@@ -50,10 +53,39 @@
 }
 
 #atags {
-    width: 30vw;
-    margin: 10px auto;
     text-align: center;
+    margin-top: 25px;
 }
+
+#atags>a {
+    padding: 15px 5vw;
+    margin: 25px;
+    text-align: center;
+    min-width: 110px;
+    border-radius: 28px;
+    font-size: 18px;
+    text-decoration: none;
+    cursor: pointer;
+    color: white;
+    background-color: #2e93e6;
+    transition: .2s;
+}
+
+#atags>a:hover {
+    background-color: #2e93e6;
+    padding: 17.5px calc(5vw + 2.5px);
+    margin: 22.5px;
+    transition: .2s;
+}
+
+#atags>a:active {
+    background-color: #2e93e6dd;
+}
+
+.tab-group {
+    margin-top: 50px;
+}
+
 
 @keyframes rotate {
     0%{transform: translateY(-50%) scale(1.0);}
