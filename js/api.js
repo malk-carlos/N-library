@@ -44,6 +44,7 @@ function send(mode, key1, key2, key3, key4, key5, key6, key7, key8, key9, key10,
                         }
                         if (mode == "register") {
                                 if (jsonObj == "success!!") {
+                                        new Audio("./audio/button02.mp3").play()
                                         Swal.fire({
                                                 position: 'top-end',
                                                 icon: 'success',
@@ -56,6 +57,7 @@ function send(mode, key1, key2, key3, key4, key5, key6, key7, key8, key9, key10,
                                         })
                                         //book_autocomplete(document.getElementById('keyview').value)
                                 } else if (jsonObj == "changed") {
+                                        new Audio("./audio/button03.mp3").play()
                                         Swal.fire({
                                                 position: 'top-end',
                                                 icon: 'info',
@@ -67,6 +69,7 @@ function send(mode, key1, key2, key3, key4, key5, key6, key7, key8, key9, key10,
                                                 timer: 1500
                                         })
                                 } else {
+                                        new Audio("./audio/button19.mp3").play()
                                         Swal.fire({
                                                 position: 'top-end',
                                                 icon: 'error',
@@ -152,6 +155,7 @@ function send(mode, key1, key2, key3, key4, key5, key6, key7, key8, key9, key10,
                         } else if (mode == "user_cheak") {
                                 userDatas = jsonObj
                                 if (userDatas[0] == 'notmatch') {
+                                        new Audio("./audio/button19.mp3").play()
                                         Swal.fire({
                                                 position: 'top-end',
                                                 icon: 'question',
@@ -167,6 +171,7 @@ function send(mode, key1, key2, key3, key4, key5, key6, key7, key8, key9, key10,
                                                 console.log(namedata)
 
                                         } else {
+                                                new Audio("./audio/button19.mp3").play()
                                                 Swal.fire({
                                                         position: 'top-end',
                                                         icon: 'warning',
@@ -191,6 +196,7 @@ function send(mode, key1, key2, key3, key4, key5, key6, key7, key8, key9, key10,
                         } else if (mode == "retrun" || mode == "retrun2") {
                                 if (jsonObj == "完了") {
                                         console.log(jsonObj)
+                                        new Audio("./audio/button28.mp3").play()
                                         Swal.fire({
                                                 position: 'top-end',
                                                 icon: 'success',
@@ -200,6 +206,7 @@ function send(mode, key1, key2, key3, key4, key5, key6, key7, key8, key9, key10,
                                                 timer: 1500
                                         })
                                 } else if (jsonObj == "貸出記録なし") {
+                                        new Audio("./audio/button29.mp3").play()
                                         Swal.fire({
                                                 position: 'top-end',
                                                 icon: 'warning',
@@ -209,6 +216,7 @@ function send(mode, key1, key2, key3, key4, key5, key6, key7, key8, key9, key10,
                                                 timer: 1500
                                         })
                                 } else {
+                                        new Audio("./audio/button29.mp3").play()
                                         Swal.fire({
                                                 icon: 'warning',
                                                 title: '貸出情報が複数あります。',
