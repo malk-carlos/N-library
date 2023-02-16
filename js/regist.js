@@ -1,6 +1,6 @@
 let Data, flags
 const datas = ["", "", 'Data[0].onix.DescriptiveDetail.TitleDetail.TitleElement.TitleText.content', 'Data[0].onix.DescriptiveDetail.TitleDetail.TitleElement.TitleText.collationkey', 'Data[0].onix.DescriptiveDetail.TitleDetail.TitleElement.Subtitle.content', 'Data[0].onix.DescriptiveDetail.TitleDetail.TitleElement.Subtitle.collationkey', 'Data[0].onix.DescriptiveDetail.Collection.TitleDetail.TitleElement[0].TitleText.content', 'Data[0].onix.DescriptiveDetail.Collection.TitleDetail.TitleElement[0].TitleText.collationkey', 'Data[0].onix.DescriptiveDetail.Contributor[0].PersonName.content', 'Data[0].onix.DescriptiveDetail.Contributor[0].PersonName.collationkey', 'Data[0].onix.PublishingDetail.Publisher.PublisherName', 'Data[0].onix.PublishingDetail.PublishingDate[0].Date', '(Number(Data[0].onix.DescriptiveDetail.Extent[0].ExtentType) + Number(Data[0].onix.DescriptiveDetail.Extent[0].ExtentUnit) + Number(Data[0].onix.DescriptiveDetail.Extent[0].ExtentValue))', 'Data[0].onix.DescriptiveDetail.Subject[0].SubjectCode', 'Data[0].onix.CollateralDetail.TextContent[1].Text', 'Data[0].onix.DescriptiveDetail.Contributor[0].BiographicalNote', 'Data[0].onix.DescriptiveDetail.Subject[2].SubjectHeadingText', 'Data[0].onix.ProductSupply.SupplyDetail.Price[0].PriceAmount', 'Data[0].onix.RecordReference']
-const subject = ["", "", "タイトル", "タイトルカナ", "サブタイトル", "サブタイトルかな", "シリーズ", "シリーズかな", "著者", "著者かな", "出版社", "出版日", "ページ数", "分類", "内容紹介", "著者紹介", "キーワード", "価格", "ISBN"]
+const subject = ["", "", "タイトル", "タイトルカナ", "サブタイトル", "サブタイトルかな", "シリーズ", "シリーズかな", "著者", "著者かな", "出版社", "出版日", "ページ数", "分類", "内容紹介", "著者紹介", "キーワード", "価格", "ISBN","貸出許可","画像"]
 let datas_arry = []
 
 function book_autocomplete(isbns) {
@@ -78,7 +78,19 @@ function register() {
         datas_arry[i] = encodeURIComponent(document.getElementById("books" + i).innerHTML)
        // console.log(datas_arry[i])
     }
-    send("register", datas_arry[18], datas_arry[2], datas_arry[3], datas_arry[4], datas_arry[5], datas_arry[6], datas_arry[7], datas_arry[8], datas_arry[9], datas_arry[10], datas_arry[11], datas_arry[12], datas_arry[13], datas_arry[14], datas_arry[15], datas_arry[16], datas_arry[17], document.img.src, encodeURIComponent(document.getElementById("options").value))
+
+    if(datas_arry[18]&&datas_arry[2]){
+    send("register", datas_arry[18], datas_arry[2], datas_arry[3], datas_arry[4], datas_arry[5], datas_arry[6], datas_arry[7], datas_arry[8], datas_arry[9], datas_arry[10], datas_arry[11], datas_arry[12], datas_arry[13], datas_arry[14], datas_arry[15], datas_arry[16], datas_arry[17], document.img.src, encodeURIComponent(document.getElementById("options").value))}else{
+        Swal.fire({
+            position: 'top-end',
+            icon: 'warning',
+            title: '必要事項未入力',
+            html:
+            'タイトル・ISBNが入力されていません。もう一度登録してください',
+            showConfirmButton: false,
+            timer: 2500
+          })
+    }
 }
 
 let texts
@@ -107,4 +119,54 @@ function keypress_ivent(e) {
     }
     document.getElementById("keyview").innerHTML = texts
     return false;
+}
+
+function manual_regi(){
+    try{
+        for(let i=2; i<19; i++){
+            if(document.getElementById(`books${i}`).innerHTML){
+                Swal.fire({
+                    title: '確認',
+                    text: "入力内容を破棄しますか？",
+                    footer: "元には戻せません",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: '破棄',cancelButtonText:'キャンセル'
+                }).then((result) => {
+                    if (!result.isConfirmed) {
+                        return
+                    }else{
+                        manual_reset()
+                    }
+                })
+            }
+        }
+    } catch(error){
+        manual_reset()
+    }
+
+}
+
+function manual_reset(){
+    $("#img").css("display","block")
+    $(".table_regi").css("display","inline-block")
+
+    for (i = 2; i < 21; i++) {
+        
+            if(i ==20){
+                document.getElementById("books_tbl").rows[i - 2].cells[1].innerHTML = `<div id="books${i}" class="auto"></div><textarea class="box" id="mu_books${i}" type="text" oninput="document.img.src=document.getElementById('mu_books${i}').value" placeholder="${subject[i]}"></textarea>`
+            }else if(i==19){
+            }else{
+                document.getElementById("books_tbl").rows[i - 2].cells[1].innerHTML = `<div id="books${i}" class="auto"></div><textarea class="box" id="mu_books${i}" type="text" oninput="document.getElementById('books${i}').innerHTML=document.getElementById('mu_books${i}').value" placeholder="${subject[i]}" ></textarea>`
+            }
+
+        document.getElementById("books_tbl").rows[i - 2].cells[0].innerHTML = subject[i]
+    }
+    try {
+        document.getElementById("img").innerHTML = "<img name='img'  src=" + Data[0].onix.CollateralDetail.SupportingResource[0].ResourceVersion[0].ResourceLink + ">"
+    } catch (e) {
+        document.getElementById("img").innerHTML = "<img name='img' src=/img/noimage.png>"
+    }
 }

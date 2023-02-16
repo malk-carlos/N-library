@@ -31,6 +31,7 @@ cursor: help;
   right: 0; /*位置：画面右からの距離*/
   background-color: rgb(255,255,255,0.9); /*中の色*/
   overflow:hidden;
+  z-index: 100;
 }
 /*チャット窓を開くときのアニメーション*/
 .chat-open-r {
