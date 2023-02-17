@@ -13,7 +13,7 @@
     <link rel="shortcut icon" href="./favicon/favicon.ico">
     <meta name="msapplication-TileColor" content="#00aba9">
     <meta name="msapplication-config" content="./favicon/browserconfig.xml">
-    <meta name="theme-color" content="#c9ffc7">
+    <meta name="theme-color" content="#27816A">
 
     <!--CSS-->
     <link rel="stylesheet" href="./css/mypage.css">
@@ -31,7 +31,9 @@
 <body>
     <header>
         <script src="./js/header.js"></script>
-        <script>header();</script>
+        <script>
+            header();
+        </script>
     </header>
     <div class="mypage-frame flex">
         <div id="myModal" class="modal">
@@ -73,8 +75,7 @@
                     </div>
                 </div>
                 <div class="right-container">
-                    <a href="https://myaccount.google.com/" class="acount-google" target="_blank"
-                        rel="noopener noreferrer">編集</a>
+                    <a href="https://myaccount.google.com/" class="acount-google" target="_blank" rel="noopener noreferrer">編集</a>
                     <input id="mybtn" type="button" value="バーコード提示" onclick="barcode()">
                     <a href="./mypage_smartphone.html">でバック用</a>
                 </div>
@@ -99,7 +100,7 @@
         document.getElementById("name").innerHTML = logindata.name
         document.getElementById("mail").innerHTML = logindata.email
         document.getElementById("icom").innerHTML = `<img src="${logindata.picture}">`
-        //貸出予約履歴照会
+            //貸出予約履歴照会
         send("LendingData", logindata.sub);
         // ひとこと用 
         var modal = document.getElementById("myModal");
@@ -110,9 +111,12 @@
 
         // ひとことcokie
         Editcall()
+
         function Editcall() {
-            inputhitokoto.addEventListener("input", function (event) {
-                Cookies.set("input", event.target.value, { expires: 30 });
+            inputhitokoto.addEventListener("input", function(event) {
+                Cookies.set("input", event.target.value, {
+                    expires: 30
+                });
             });
             // 保存されたCookieを呼び出して、textContentに設定する
             document.getElementById("output").textContent = Cookies.get("input");
@@ -121,12 +125,12 @@
         function Edit() {
             // テスト
             modal.style.display = "block";
-            span.onclick = function () {
+            span.onclick = function() {
                 modal.style.display = "none";
                 inputhitokoto.value = ""
                 Editcall();
             }
-            window.onclick = function (event) {
+            window.onclick = function(event) {
                 if (event.target == modal) {
                     modal.style.display = "none";
                     inputhitokoto.value = ""
@@ -134,12 +138,13 @@
                 }
             }
         }
+
         function barcode() {
             modal2.style.display = "block";
-            span.onclick = function () {
+            span.onclick = function() {
                 modal2.style.display = "none";
             }
-            window.onclick = function (event) {
+            window.onclick = function(event) {
                 if (event.target == modal2) {
                     modal2.style.display = "none";
                 }

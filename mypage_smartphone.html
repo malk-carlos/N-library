@@ -2,156 +2,158 @@
 <html lang="ja">
 
 <head>
-  <title>マイページ</title>
-  <!-- 外部css -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"/>
-  <!--CSS-->
-  <link rel="stylesheet" href="./css/mypage-s.css">
-  <!--外部JS-->
-  <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
-  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
-  
-  <!--自作JS-->
-  <script src="./js/google-login.js"></script>
-  <script src="./js/api.js"></script>
-  <script src="./js/jquery-barcode.js"></script>
+    <title>マイページ</title>
+    <!-- 外部css -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
+    <!--CSS-->
+    <link rel="stylesheet" href="./css/mypage-s.css">
+    <!--外部JS-->
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
 
-  <title>【マイページ】Borrow a book</title>
-  
-  <!--favicon-->
-  <link rel="apple-touch-icon" sizes="180x180" href="./favicon/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="./favicon/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="./favicon/favicon-16x16.png">
-  <link rel="manifest" href="./favicon/site.webmanifest">
-  <link rel="mask-icon" href="./favicon/safari-pinned-tab.svg" color="#5bbad5">
-  <link rel="shortcut icon" href="./favicon/favicon.ico">
-  <meta name="msapplication-TileColor" content="#00aba9">
-  <meta name="msapplication-config" content="./favicon/browserconfig.xml">
-  <meta name="theme-color" content="#c9ffc7">
+    <!--自作JS-->
+    <script src="./js/google-login.js"></script>
+    <script src="./js/api.js"></script>
+    <script src="./js/jquery-barcode.js"></script>
+
+    <title>【マイページ】Borrow a book</title>
+
+    <!--favicon-->
+    <link rel="apple-touch-icon" sizes="180x180" href="./favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./favicon/favicon-16x16.png">
+    <link rel="manifest" href="./favicon/site.webmanifest">
+    <link rel="mask-icon" href="./favicon/safari-pinned-tab.svg" color="#5bbad5">
+    <link rel="shortcut icon" href="./favicon/favicon.ico">
+    <meta name="msapplication-TileColor" content="#00aba9">
+    <meta name="msapplication-config" content="./favicon/browserconfig.xml">
+    <meta name="theme-color" content="#27816A">
 
 
 </head>
 
 <body>
-  <header>
-    <script src="./js/header.js"></script>
-    <script>header();</script>
-  </header>
+    <header>
+        <script src="./js/header.js"></script>
+        <script>
+            header();
+        </script>
+    </header>
     <div id="tabs">
-      <button class="tab-btn" data-tab="tab1">Tab 1</button>
-      <button class="tab-btn" data-tab="tab2">Tab 2</button>
-      <button class="tab-btn" data-tab="tab3">Tab 3</button>
-      <button class="tab-btn" data-tab="tab4">Tab 4</button>
-      <button class="tab-btn" data-tab="tab5">Tab 5</button>
-      <div id="tab1" class="tab-content">
-        <div id="icom"></div>
-          <div class="right-container center">
-            <div class="profile-frame flex">
-                <div style="padding: 1.4%;">表示名</div>
-                <div id="name"></div>
+        <button class="tab-btn" data-tab="tab1">Tab 1</button>
+        <button class="tab-btn" data-tab="tab2">Tab 2</button>
+        <button class="tab-btn" data-tab="tab3">Tab 3</button>
+        <button class="tab-btn" data-tab="tab4">Tab 4</button>
+        <button class="tab-btn" data-tab="tab5">Tab 5</button>
+        <div id="tab1" class="tab-content">
+            <div id="icom"></div>
+            <div class="right-container center">
+                <div class="profile-frame flex">
+                    <div style="padding: 1.4%;">表示名</div>
+                    <div id="name"></div>
+                </div>
+                <div id="mail"></div>
             </div>
-            <div id="mail"></div>
-        </div>
-        <div class="right-container center">
-            <div class="profile-frame flex">
-                <div style="padding: 1.4%;">ひとこと</div>
+            <div class="right-container center">
+                <div class="profile-frame flex">
+                    <div style="padding: 1.4%;">ひとこと</div>
                     <p id="output"></p>
-                <input id="hitokotoEdit" type="image" src="img/pencil.png" onclick="Edit()">
+                    <input id="hitokotoEdit" type="image" src="img/pencil.png" onclick="Edit()">
+                </div>
+            </div>
+            <div class="right-container">
+                <a href="https://myaccount.google.com/" class="acount-google">編集</a>
+                <input id="mybtn" type="button" value="バーコード提示" onclick="barcode()">
+                <a href="mypage_smartphone.html">でバック用</a>
             </div>
         </div>
-        <div class="right-container">
-            <a href="https://myaccount.google.com/" class="acount-google">編集</a>
-            <input id="mybtn" type="button" value="バーコード提示" onclick="barcode()">
-            <a href="mypage_smartphone.html">でバック用</a>
-        </div>
-      </div>
-      <div id="tab2" class="tab-content">
-        <p>貸出中</p>
-        <div class="tab-mypage-content" id="content-02">
-          <div class="borrowing-swiper">
-            <div class="borrowing swiper-wrapper">
-              <!-- スライド -->
+        <div id="tab2" class="tab-content">
+            <p>貸出中</p>
+            <div class="tab-mypage-content" id="content-02">
+                <div class="borrowing-swiper">
+                    <div class="borrowing swiper-wrapper">
+                        <!-- スライド -->
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
-      <div id="tab3" class="tab-content">
-        <p>借りた本の履歴</p>
-        <div class="tab-mypage-content" id="content-03">
-          <div class="history-swiper">
-            <div class="history swiper-wrapper">
-              <!-- スライド -->
+        <div id="tab3" class="tab-content">
+            <p>借りた本の履歴</p>
+            <div class="tab-mypage-content" id="content-03">
+                <div class="history-swiper">
+                    <div class="history swiper-wrapper">
+                        <!-- スライド -->
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
-      <div id="tab4" class="tab-content">
-        <p>返却日が近い本</p>
-        <div class="tab-mypage-content" id="content-04">
-          <div class="return flex-wrap">
+        <div id="tab4" class="tab-content">
+            <p>返却日が近い本</p>
+            <div class="tab-mypage-content" id="content-04">
+                <div class="return flex-wrap">
 
-          </div>
+                </div>
+            </div>
         </div>
-      </div>
-      <div id="tab5" class="tab-content">
-        <p>予約した本</p>
-        <div class="tab-mypage-content"  id="content-05">
-          <div class="reserve flex-wrap"></div>
+        <div id="tab5" class="tab-content">
+            <p>予約した本</p>
+            <div class="tab-mypage-content" id="content-05">
+                <div class="reserve flex-wrap"></div>
+            </div>
         </div>
-      </div>
     </div>
-      <script>
-    //ログイン情報取得
-    const logindata = cheak() //データ取得
-    document.getElementById("name").innerHTML = logindata.name 
-    document.getElementById("mail").innerHTML = logindata.email
-    document.getElementById("icom").innerHTML = `<img src="${logindata.picture}">`
-    //貸出予約履歴照会
-    send("LendingData",logindata.sub);
-    // slider
-    const borrowingswiper = new Swiper(".borrowing-swiper", {
-      slidesPerView: 3 /* 何個表示するか */,
-      spaceBetween: 25,
-      slidesPerColumn: 2,
-      loop: true,
-      // ナビボタンが必要なら追加
-      navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev',
-    },
-    });
-    const historyswiper = new Swiper(".history-swiper", {
-      slidesPerView: 3 /* 何個表示するか */,
-      spaceBetween: 25,
-      slidesPerColumn: 2,
-      loop: true,
-      // ナビボタンが必要なら追加
-      navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev',
-    },
-    });
+    <script>
+        //ログイン情報取得
+        const logindata = cheak() //データ取得
+        document.getElementById("name").innerHTML = logindata.name
+        document.getElementById("mail").innerHTML = logindata.email
+        document.getElementById("icom").innerHTML = `<img src="${logindata.picture}">`
+            //貸出予約履歴照会
+        send("LendingData", logindata.sub);
+        // slider
+        const borrowingswiper = new Swiper(".borrowing-swiper", {
+            slidesPerView: 3 /* 何個表示するか */ ,
+            spaceBetween: 25,
+            slidesPerColumn: 2,
+            loop: true,
+            // ナビボタンが必要なら追加
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+        });
+        const historyswiper = new Swiper(".history-swiper", {
+            slidesPerView: 3 /* 何個表示するか */ ,
+            spaceBetween: 25,
+            slidesPerColumn: 2,
+            loop: true,
+            // ナビボタンが必要なら追加
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+        });
 
-    const tabs = document.querySelector('#tabs');
-    const tabBtns = tabs.querySelectorAll('.tab-btn');
-    const tabContents = tabs.querySelectorAll('.tab-content');
+        const tabs = document.querySelector('#tabs');
+        const tabBtns = tabs.querySelectorAll('.tab-btn');
+        const tabContents = tabs.querySelectorAll('.tab-content');
 
-    // 最初に表示するタブを指定
-    tabs.querySelector('#tab1').style.display = 'block';
-    // タブがクリックされた時の処理
-    tabBtns.forEach(function(btn) {
-    btn.addEventListener('click', function() {
-    const tab = btn.dataset.tab;
-    tabContents.forEach(function(content) {
-    content.style.display = 'none';
-    });
-    tabs.querySelector('#' + tab).style.display = 'block';
-    });
+        // 最初に表示するタブを指定
+        tabs.querySelector('#tab1').style.display = 'block';
+        // タブがクリックされた時の処理
+        tabBtns.forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                const tab = btn.dataset.tab;
+                tabContents.forEach(function(content) {
+                    content.style.display = 'none';
+                });
+                tabs.querySelector('#' + tab).style.display = 'block';
+            });
 
-    });
+        });
 
-    function mydata(datas) {
+        function mydata(datas) {
             let datasBorrow = datas.filter(value => value[5] === '貸出中')
             let datasReserve = datas.filter(value => value[5] === '予約中')
             let datasHistory = datas.filter(value => value[5] === '返却済み')
@@ -162,7 +164,7 @@
             for (let i = 0; i < datasBorrow.length; i++) {
                 const borrowDate = new Date(datasBorrow[i][3])
                 returnDate = new Date(borrowDate.getTime() + 7 * 24 * 60 * 60 * 1000)
-                difference = returnDate - date 
+                difference = returnDate - date
                 if (datasBorrow[i][5] === '貸出中' && difference <= 86400000 && difference >= 0) {
                     datasReturn.push(datasBorrow[i]);
                 }
@@ -172,18 +174,18 @@
             console.log(datasHistory);
             console.log(datasReturn);
             // 貸出中の本
-            if (datasBorrow.length === 0 ) {
+            if (datasBorrow.length === 0) {
                 const $div = $('<div class="void-mypage"></div>')
                 const $fight = $('<p>貸出中の本はありません！<br>本を借りましょう！</p>')
                 $div.append($fight)
                 $(".borrowing").append($div)
-            }else{
+            } else {
                 for (let i = 0; i < datasBorrow.length; i++) {
                     const $div = $(`<div id='borrowingbook${String(i)}' class='swiper-slide'></div>`)
                     const $cover = $(`<img src='${datasBorrow[i][8]}' class='coverimg' alt="${datasBorrow[i][7]}">`) // 表紙
                     const $title = $(`<p class='title'>${datasBorrow[i][7]}</p>`) // タイトル
                     $div.append($cover).append($title);
-                    
+
                     $(".borrowing").append($div)
                 }
             }
@@ -193,7 +195,7 @@
                 const $fight = $('<p>まだ履歴がありません！<br>本を借りましょう！</p>')
                 $div.append($fight)
                 $(".history").append($div)
-            }else{
+            } else {
                 for (let i = 0; i < datasHistory.length; i++) {
                     const $div1 = $(`<div id='bookhistory${String(i)}' class='swiper-slide'></div>`)
                     const $cover1 = $(`<img src='${datasHistory[i][8]}' class='coverimg' alt="${datasHistory[i][7]}">`) // 表紙
@@ -208,7 +210,7 @@
                 const $fight = $('<p>返却日が近い本はありません！<br>読書を楽しみましょう！</p>')
                 $div.append($fight)
                 $(".return").append($div)
-            }else{
+            } else {
                 for (let i = 0; i < datasReturn.length; i++) {
                     const $div = $(`<div id='reservebook${String(i)}' class='swiper-slide'></div>`)
                     const $cover = $(`<img src='${datasReturn[i][8]}' class='coverimg' alt="${datasReturn[i][7]}">`) // 表紙
@@ -232,7 +234,7 @@
                     $(".reserve").append($div)
                 }
             }
-    }
+        }
     </script>
 </body>
 
