@@ -34,6 +34,7 @@
         <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
 
         <!--自作JS-->
+        <script src="./js/headermove.js"></script>
         <script src="./chatbot/chatbot.js"></script>
         <script src="./js/platform.js"></script>
         <script src="./js/google-login.js"></script>
@@ -51,57 +52,59 @@
         </script>
 
         <!--ナビゲーション左側（ロゴ・検索）-->
-        <ul id="navs">
-            <li> <img src="./img/logo.png" alt=""></li>
-            <li>
-                <div id="search">
-                    <input id="keyword" type="text" placeholder="検索ワードを入力">
-                    <button onclick="path_check()"><i class="fa-solid fa-magnifying-glass"></i></button>
-                </div>
-            </li>
-        </ul>
-        <!--ナビゲーション左側（ロゴ・検索）ここまで-->
+        <div id="header">
+            <ul id="navs">
+                <li> <img src="./img/logo.png" alt=""></li>
+                <li>
+                    <div id="search">
+                        <input id="keyword" type="text" placeholder="検索ワードを入力">
+                        <button onclick="path_check()"><i class="fa-solid fa-magnifying-glass"></i></button>
+                    </div>
+                </li>
+            </ul>
+            <!--ナビゲーション左側（ロゴ・検索）ここまで-->
 
-        <!--ナビゲーション右側（ページボタン・ログアウト・管理者）-->
-        <ul id="nav">
-            <div id="nav1">
-                <li><a href="./library.html" title="蔵書一覧"><i class="fa-solid fa-book"></i>蔵書一覧</a></li>
-                <li><a href="./mypage.html" title="マイページ"><i class="fa-solid fa-user"></i>マイページ</a></li>
-            </div>
-            <div id="nav2">
-                <li><a href="https://forms.gle/9AVs49UbYAHnwWdp7" target="_blank" rel="noopener noreferrer" class="connect" title="お問い合せ（外部:GoogleForms）"><i
-                            class="fa-solid fa-circle-question"></i></i>お問い合わせ<i
-                            class="fa-solid fa-arrow-up-right-from-square"></i></a></li>
-                <li><button onclick="logout()" class="logout" title="ログアウト"><img src="" name="icom">ログアウト</button></li>
-            </div>
-            <div id="admin_group">
-                <li><a href="./admin.html" title="管理者向け｜トップ"><i class="fa-solid fa-hammer"></i>管理者TOP</a></li>
-                <li><a href="./lar.html" title="管理者向け｜貸出・返却"><i class="fa-solid fa-right-left"></i>貸出・返却</a></li>
-                <li><a href="./regist.html" title="管理者向け｜登録処理"><i class="fa-solid fa-cash-register"></i>登録処理</a></li>
-            </div>
-        </ul>
-        <!--ナビゲーション右側（ページボタン・ログアウト・管理者）ここまで-->
-
-        <!--管理者チェックボタン-->
-        <button id="admin" onclick="toAdmin()"></button>
-
-        <!--ハンバーガーメニュー-->
-        <div class="hamburger-menu">
-            <input type="checkbox" id="menu-btn-check">
-            <label for="menu-btn-check" class="menu-btn"><span></span></label>
-            <!--ここからメニュー-->
-            <div class="menu-content">
-                <ul>
-
+            <!--ナビゲーション右側（ページボタン・ログアウト・管理者）-->
+            <ul id="nav">
+                <div id="nav1">
                     <li><a href="./library.html" title="蔵書一覧"><i class="fa-solid fa-book"></i>蔵書一覧</a></li>
                     <li><a href="./mypage.html" title="マイページ"><i class="fa-solid fa-user"></i>マイページ</a></li>
-                    <li><a href="https://forms.gle/9AVs49UbYAHnwWdp7" target="_blank" rel="noopener noreferrer" title="お問い合せ（外部:GoogleForms）"><i class="fa-solid fa-circle-question"></i>お問い合わせ<i
+                </div>
+                <div id="nav2">
+                    <li><a href="https://forms.gle/9AVs49UbYAHnwWdp7" target="_blank" rel="noopener noreferrer" class="connect" title="お問い合せ（外部:GoogleForms）"><i
+                            class="fa-solid fa-circle-question"></i></i>お問い合わせ<i
+                            class="fa-solid fa-arrow-up-right-from-square"></i></a></li>
+                    <li><button onclick="logout()" class="logout" title="ログアウト"><img src="" name="icom">ログアウト</button></li>
+                </div>
+                <div id="admin_group">
+                    <li><a href="./admin.html" title="管理者向け｜トップ"><i class="fa-solid fa-hammer"></i>管理者TOP</a></li>
+                    <li><a href="./lar.html" title="管理者向け｜貸出・返却"><i class="fa-solid fa-right-left"></i>貸出・返却</a></li>
+                    <li><a href="./regist.html" title="管理者向け｜登録処理"><i class="fa-solid fa-cash-register"></i>登録処理</a></li>
+                </div>
+            </ul>
+            <!--ナビゲーション右側（ページボタン・ログアウト・管理者）ここまで-->
+
+            <!--管理者チェックボタン-->
+            <button id="admin" onclick="toAdmin()"></button>
+
+            <!--ハンバーガーメニュー-->
+            <div class="hamburger-menu">
+                <input type="checkbox" id="menu-btn-check">
+                <label for="menu-btn-check" class="menu-btn"><span></span></label>
+                <!--ここからメニュー-->
+                <div class="menu-content">
+                    <ul>
+
+                        <li><a href="./library.html" title="蔵書一覧"><i class="fa-solid fa-book"></i>蔵書一覧</a></li>
+                        <li><a href="./mypage.html" title="マイページ"><i class="fa-solid fa-user"></i>マイページ</a></li>
+                        <li><a href="https://forms.gle/9AVs49UbYAHnwWdp7" target="_blank" rel="noopener noreferrer" title="お問い合せ（外部:GoogleForms）"><i class="fa-solid fa-circle-question"></i>お問い合わせ<i
                                 class="fa-solid fa-arrow-up-right-from-square"></i></a></li>
-                </ul>
+                    </ul>
+                </div>
+                <!--ここまでメニュー-->
             </div>
-            <!--ここまでメニュー-->
+            <!--ハンバーガーメニューここまで-->
         </div>
-        <!--ハンバーガーメニューここまで-->
 
         <!--ローディング画面-->
         <div id="overlay">

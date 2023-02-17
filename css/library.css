@@ -169,6 +169,9 @@ h1 {
 }
 
 #mbContainer {
+    background-image: url("../img/backsp.png");
+    background-size: contain;
+    text-align: center;
     display: none;
 }
 
@@ -177,9 +180,9 @@ h1 {
 }
 
 .mb-book-div {
-    width: 45%;
+    width: 40%;
     height: 70vw;
-    margin: calc(2.5vw - 1px);
+    margin: calc(3.5vw - 1px);
     display: inline-block;
 }
 
@@ -237,6 +240,14 @@ h1 {
 @media screen and (max-width:670px) {
     #mbContainer {
         display: block;
+    }
+    .icom {
+        top: auto !important;
+        left: auto !important;
+        height: auto !important;
+        width: 30%;
+        margin: 2px 0 0 3px;
+        text-align: left;
     }
     #container {
         display: none;
