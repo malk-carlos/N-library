@@ -5,7 +5,7 @@ window.addEventListener('load', function () {
     if (cheak()) {  //ログイン確認済み
         console.log("Cookieログイン情報確認済み")
         if (localStorage.getItem('debug')  ) {
-            Swal.fire("デバックモード", "一時停止中").then((result) => {
+            Swal.fire("デバッグモード", "一時停止中").then((result) => {
                 systems()
             })
         }
@@ -15,7 +15,7 @@ window.addEventListener('load', function () {
     }
     if (localStorage.getItem('debug')  ) {
         let element = document.querySelector('body');;
-        element.insertAdjacentHTML('afterbegin', `<h1>デバッグモード</h1> <button onclick="localStorage.removeItem('debug');location.reload()">デバックモード解除</button>`);
+        element.insertAdjacentHTML('afterbegin', `<h1>デバッグモード</h1> <button onclick="localStorage.removeItem('debug');location.reload()">デバッグモード解除</button>`);
     }
    console.log("＝＝＝初期設定ここまで＝＝＝")
 })
@@ -30,7 +30,7 @@ function handleCredentialResponse(response) {
     if (localStorage.getItem('agree') == 1) {//利用規約同意確認
         console.log("規約同意済み")
         if (localStorage.getItem('debug')  ) {
-            Swal.fire("デバックモード", "一時停止中").then((result) => {
+            Swal.fire("デバッグモード", "一時停止中").then((result) => {
                 systems()
             })
         } else {
@@ -60,7 +60,7 @@ function handleCredentialResponse(response) {
                 console.log("同意")
                 localStorage.setItem('agree', 1);
                 if (localStorage.getItem('debug')  ) {
-                    Swal.fire("デバックモード", "一時停止中").then((result) => {
+                    Swal.fire("デバッグモード", "一時停止中").then((result) => {
                         systems()
                     })
                 } else {
@@ -95,7 +95,7 @@ function testa() {
 }
 /*リキャプチャ判定後ここまで*/
 
-/*デバックアラート表示*/
+/*デバッグアラート表示*/
 function debugalert() {
     Swal.fire({
         title: '開発者用モード',
@@ -109,25 +109,25 @@ function debugalert() {
         footer: `<div onclick="a()">　　　　　　　</div>`
     })
 }
-/*デバックアラート表示ここまで*/
+/*デバッグアラート表示ここまで*/
 
-/*デバックモード*/
+/*デバッグモード*/
 function a(){
     Swal.fire({title: '開発者用モード',html: "<button onclick='debug(2)'>ログコンソール表示</div><button onclick='debug(1)'>ログ画面表示</div>"})
 }
 function debug(n) {
-    console.log("＝＝＝デバック開始＝＝＝")
+    console.log("＝＝＝デバッグ開始＝＝＝")
     if (localStorage.getItem('debug')  ) {
 
-        console.log("デバックモードオフ")
-        localStorage.removeItem('debug') //デバックモードOFF)
+        console.log("デバッグモードオフ")
+        localStorage.removeItem('debug') //デバッグモードOFF)
     } else {
         localStorage.removeItem('agree')
         localStorage.setItem('debug', n);
-        console.log("利用規約初期化....デバックモードオン")
+        console.log("利用規約初期化....デバッグモードオン")
         location.reload()
     }
     Swal.close()
-    console.log("＝＝＝デバック開始ここまで＝＝＝")
+    console.log("＝＝＝デバッグ開始ここまで＝＝＝")
 }
-/*デバックモードここまで*/
+/*デバッグモードここまで*/

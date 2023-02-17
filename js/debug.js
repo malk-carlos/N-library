@@ -1,3 +1,6 @@
+//1 画面表示
+//2 コンソール表示
+
 function log(data){
     if(localStorage.getItem('debug')=="1" || localStorage.getItem('debug') == "2"){
         console.log(data)
@@ -5,14 +8,14 @@ function log(data){
     return
 }
 
-
-setTimeout(() => {
-  if (localStorage.getItem('debug') == "1" ||localStorage.getItem('debug') == "2") {
-    let element = document.querySelector('body');;
-    element.insertAdjacentHTML('afterbegin', `<br><br><br><br><h2>デバッグモード</h2> <button onclick="localStorage.removeItem('debug');location.reload()">デバックモード解除</button>`);
+function warn(data){
+  if(localStorage.getItem('debug')=="1"){
+    console.log(`⚠️${data}⚠️`)
+  }else if(localStorage.getItem('debug') == "2"){
+      console.warn(data)
   }
-}, 2000);
-
+  return
+}
 
 //console.logイベントが発火した時に処理を実行
 if(localStorage.getItem('debug')==1){
@@ -39,3 +42,20 @@ if(localStorage.getItem('debug')==1){
       $('#console').prepend(`${text}<br>`);
     };
 }
+
+
+
+  if (localStorage.getItem('debug')) { //デバッグモード中かどうか
+    let element = document.querySelector('body');
+    element.insertAdjacentHTML('afterbegin', `<div class="air"><div id="debug_title">デバッグモード</div><div class="debug"><div id="debug_ip">IPアドレス</div><div id="debug_name">ユーザー名</div><div id="debug_id">ユーザーID</div></div><div><button onclick="localStorage.removeItem('debug');location.reload()">デバッグモードOFF</button></div></div>`);
+    setTimeout(() => {
+      document.getElementById("debug_ip").innerHTML = Cookies.get("IP");
+      document.getElementById("debug_name").innerHTML = loginData.name;
+      document.getElementById("debug_id").innerHTML = loginData.sub;
+      document.getElementById("debug_ip").innerHTML = Cookies.get("IP");
+    }, 3000);
+  }
+
+
+
+  
