@@ -134,7 +134,6 @@
 
         //api.jsからの呼び出し（データが返ってきたら）
         function mydata(datas) {
-
             let datasBorrow = datas.filter(value => value[5] === '貸出中')
             let datasReserve = datas.filter(value => value[5] === '予約中')
             let datasHistory = datas.filter(value => value[5] === '返却済み')
