@@ -1,3 +1,14 @@
+#contents{
+    margin-top: 130px;
+}
+#discprit{
+    width: 70%;
+}
+
+.auto{
+    display: none;
+}
+
 table {
     
     background-color: #ffe;
@@ -39,9 +50,13 @@ table td {
     background-color: rgba(0, 0, 0, 0.265);
 }
 
-#img {
-    display: none;
-    height: 200px;
+#img{
+    position: fixed;
+    bottom: 0;
+    right: 0;
+}#img img{
+ 
+    height: 250px;
 }
 #keyview {
     visibility: hidden
@@ -52,4 +67,8 @@ table td {
 }
 .alertTitle{
     font-size: 2vw;
+}
+
+#chatbot-eyecatch-div{
+    display: none !important;
 }

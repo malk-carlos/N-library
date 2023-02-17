@@ -44,7 +44,7 @@ https://pg-happy.jp/chatbot/
 
 HTMLファイルの</head>タグ直前に以下のコードを追記
 
-<script type="text/javascript" src="https://pg-happy.jp/chatbot/chatbot.js"></script>
+<script  src="https://pg-happy.jp/chatbot/chatbot.js"></script>
 
 
 

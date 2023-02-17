@@ -2,23 +2,34 @@
 <html lang="ja">
 
 <head>
-    <title>書籍検索</title>
+    <title>【管-書籍検索】Borrow a book</title>
+
+    <!--favicon-->
+    <link rel="apple-touch-icon" sizes="180x180" href="./favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./favicon/favicon-16x16.png">
+    <link rel="manifest" href="./favicon/site.webmanifest">
+    <link rel="mask-icon" href="./favicon/safari-pinned-tab.svg" color="#5bbad5">
+    <link rel="shortcut icon" href="./favicon/favicon.ico">
+    <meta name="msapplication-TileColor" content="#00aba9">
+    <meta name="msapplication-config" content="./favicon/browserconfig.xml">
+    <meta name="theme-color" content="#c9ffc7">
 
     <!--CSS-->
-    <link rel="stylesheet" href="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.css" />
-    <link rel="stylesheet" href="./css/karisystem_db.css" /> 
-    <link rel="stylesheet" href="./css/library.css">
+    <link rel="stylesheet" href="./css/tabmenu.css">
+    <link rel="stylesheet" href="./css/admin.css">
 
     <!--外部JS-->
 
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.js"></script>
-    
+
     <!--自作JS-->
     <script src="./js/api.js"></script>
     <script src="./js/karisystem_db.js"></script>
     <script src="./js/google-login.js"></script>
+    <script src="./js/tabmenu.js"></script>
 
 </head>
 
@@ -28,61 +39,116 @@
         <script>header();</script>
     </header>
 
-    <h1>管理者様</h1>
-    <a href="./regist.html">蔵書を追加</a>
-    <a href="./lar.html">貸出・返却</a>
-    
-    <div id="tables">
-        <table id="container" class="table table-bordered">
-            <thead>
-                <tr>
-                    <th class="th_img">本の画像</th>
-                    <th class="th_text">一覧</th>
-                    <th>ISBN</th>
-                    <th>タイトル</th>
-                    <th>タイトルかな</th>
-                    <th>サブタイトル</th>
-                    <th>サブタイトルかな</th>
-                    <th>シリーズ</th>
-                    <th>シリーズかな</th>
-                    <th>著者</th>
-                    <th>著者かな</th>
-                    <th>出版社</th>
-                    <th>出版日</th>
-                    <th>ページ数</th>
-                    <th>分類</th>
-                    <th>内容紹介</th>
-                    <th>著者紹介</th>
-                    <th>キーワード</th>
-                    <th>価格</th>
-                    <th>画像</th>
-                    <th>登録数</th>
-                    <th>予約数</th>
-                    <th>貸出数</th>
-                    <th>在庫数</th>
-                    <th>貸出許可</th>
-                    <th> </th>
-                </tr>
-            </thead>
-            <tbody>
-
-                <tr>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                </tr>
-            </tbody>
-        </table>
+    <div id="h1">
+        <h1>管理者様</h1>
+        <button id="update" onclick='send("admin_book_cheak")'><h1>更新</h1><i id="#ud_i" class="fa-solid fa-rotate-right"></i></button>
     </div>
+    <div id="atags">
+        <a href="./regist.html">蔵書を追加</a>
+        <a href="./lar.html">貸出・返却</a>
+    </div>
+
+    <div class="tab-panel">
+        <!--タブ-->
+        <ul class="tab-group">
+            <li class="tab tab-A is-active">貸出中</li>
+            <li class="tab tab-B">予約中</li>
+            <li class="tab tab-C">全蔵書データ</li>
+        </ul>
+
+        <!--タブを切り替えて表示するコンテンツ-->
+        <div class="panel-group">
+            <div class="panel tab-A is-show">
+                <table id="container2" class="panel_table">
+                    <thead>
+                        <tr>
+                            <th class="book_img">本の画像</th>
+                            <th class="title">タイトル</th>
+                            <th class="name">利用者</th>
+                            <th class="date">貸出期限</th>
+                            <th class="system_no">処理番号</th>
+                            <th> </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+            <div class="panel tab-B">
+                <table id="container3" class="panel_table">
+                    <thead>
+                        <tr>
+                            <th class="book_img">本の画像</th>
+                            <th class="title">タイトル</th>
+                            <th class="name">利用者</th>
+                            <th class="date">返却期限</th>
+                            <th class="system_no">処理番号</th>
+                            <th> </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+            <div class="panel tab-C">
+                <div id="tables">
+                    <table id="container" class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th class="th_img">本の画像</th>
+                                <th class="th_text">一覧</th>
+                                <th>ISBN</th>
+                                <th>タイトル</th>
+                                <th>タイトルかな</th>
+                                <th>サブタイトル</th>
+                                <th>サブタイトルかな</th>
+                                <th>シリーズ</th>
+                                <th>シリーズかな</th>
+                                <th>著者</th>
+                                <th>著者かな</th>
+                                <th>出版社</th>
+                                <th>出版日</th>
+                                <th>ページ数</th>
+                                <th>分類</th>
+                                <th>内容紹介</th>
+                                <th>著者紹介</th>
+                                <th>キーワード</th>
+                                <th>価格</th>
+                                <th>画像</th>
+                                <th>登録数</th>
+                                <th>予約数</th>
+                                <th>貸出数</th>
+                                <th>在庫数</th>
+                                <th>貸出許可</th>
+                                <th> </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <tr>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
     <script>
         //ページ読み込み後　DBへ蔵書DBの照会
-            admin_cheak()
-            send("admin_book_cheak")
-            console.log("読み込み完了")
-</script>
+        admin_cheak()
+        send("admin_book_cheak")
+        console.log("読み込み完了")
+    </script>
 </body>
 
 </html>

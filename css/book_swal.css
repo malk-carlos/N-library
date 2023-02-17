@@ -1,8 +1,17 @@
+/* library.html内共通 */
+.swal2-confirm {
+    background-color: #27816A !important;
+}
+
 /* 書籍詳細表示のswal */
 .swal2-container.swal2-center>.bookDetails {
     width: 60vw !important;
-    height: 80vh !important;
+    /* height: 80vh !important; */
     display: block !important;
+}
+
+.bookSwalWriter a{
+    color: inherit;
 }
 
 .bookDetails h2.swal2-title {
@@ -11,9 +20,14 @@
     background-color: #0000;
 }
 
-.bookDetails #swal2-html-container {
-    height: 75%;
+.title{
+    white-space: pre-wrap;
+    word-wrap: break-word;
 }
+/* 
+.bookDetails #swal2-html-container {
+    height: 80%;
+} */
 
 .bookDetails .bookSwalName {
     margin: 10px auto 45px;
@@ -41,17 +55,63 @@
 }
 
 .bookDetails .bookSwalCoverP {
-    height: 55% !important;
+    height: 250px !important;
     margin-bottom: 20px;
 }
 
 .bookDetails img.bookSwalCover {
-    height: 100%;
+    height: 250px;
     width: auto;
 }
 
-.bookDetails .swal2-confirm {
-    background-color: #150971 !important;
+
+.bookSwalPoint i {
+    text-align: center;
+    width: 20px;
+}
+
+
+@media screen and (max-width:670px) {
+    .swal2-container.swal2-center>.bookDetails {
+        width: 90vw !important;
+        height: 80vh !important;
+        display: block !important;
+    }
+    
+    .bookDetails h2.swal2-title {
+        margin-bottom: 30px;
+        height: 30px;
+        background-color: #0000;
+    }
+    
+    .bookDetails #swal2-html-container {
+        height: 75%;
+    }
+    
+    .bookDetails .bookSwalName {
+        margin: 10px auto 45px;
+        width: 100%;
+        height: 5%;
+        font-size: .8em;
+    }
+    
+    .bookDetails .bookSwalCoverP {
+        height: 65% !important;
+        margin-bottom: 20px;
+    }
+    
+    .bookDetails img.bookSwalCover {
+        height: 100%;
+        width: auto;
+    }
+
+    .BSP {
+        font-size: .65em;
+    }
+
+    .bookSwalData {
+        font-size: .65em;
+    }
 }
 
 /* 予約確認時のswal */
@@ -94,7 +154,6 @@
 }
 
 .finalConfirmation .swal2-confirm {
-    background-color: #150971 !important;
     height: 45px;
     width: 90px;
     border-radius: 10px;
@@ -106,11 +165,54 @@
     border-radius: 10px;
 }
 
+.bookSwalViwe{
+    margin-top: 80px;
+    display: flex;
+    justify-content: center;
+}
+
+.bookSwalViwes2{
+    max-height: 200px;
+    padding: 0px 5px;
+    text-align: left;
+}
+
+.bookSwaltext{
+    padding-left: 20px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+.bookSwalPoint {
+    text-align: left;
+	display: inline-block;
+}
+
 /* 予約操作キャンセル時のswal */
 .canceled .swal2-container.swal2-center>.swal2-popup {
     width: 60vw;
     height: 10vh;
 }
-.canceled .swal2-confirm {
-    background-color: #150971 !important;
+
+@media screen and (max-width:670px) {
+    .canceled .swal2-container.swal2-center>.swal2-popup {
+        width: 90vw;
+        height: 30vh;
+    }
+    .canceled h2 {
+        font-size: 25px;
+    }
+}
+
+/* 予約完了時のswal */
+.reserveSuccess{
+    width: 50vw;
+    height: 50vh;
+}
+
+@media screen and (max-width:670px) {
+    .reserveSuccess{
+        width: 90vw;
+        height: 50vh;
+    }
 }

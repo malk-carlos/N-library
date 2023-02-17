@@ -2,7 +2,18 @@
 <html lang="ja">
 
 <head>
-    <title>書籍検索</title>
+    <title>【書籍検索】Borrow a book</title>
+
+    <!--favicon-->
+    <link rel="apple-touch-icon" sizes="180x180" href="./favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./favicon/favicon-16x16.png">
+    <link rel="manifest" href="./favicon/site.webmanifest">
+    <link rel="mask-icon" href="./favicon/safari-pinned-tab.svg" color="#5bbad5">
+    <link rel="shortcut icon" href="./favicon/favicon.ico">
+    <meta name="msapplication-TileColor" content="#00aba9">
+    <meta name="msapplication-config" content="./favicon/browserconfig.xml">
+    <meta name="theme-color" content="#c9ffc7">
 
     <!--CSS-->
     <link rel="stylesheet" href="./css/library.css" />
@@ -13,6 +24,7 @@
 
     <!--自作JS-->
     <script src="./js/library.js"></script>
+    <script src="./js/mb-swals.js"></script>
 </head>
 
 <body>
@@ -23,21 +35,22 @@
 
     <h1>蔵書一覧</h1>
     <div id="container"></div>
+    <div id="mbContainer"></div>
 
     <script>
 
-window.addEventListener('load', function() {
-    setTimeout(() => {
-        const query = location.search.split('=');
-        const flag = decodeURIComponent(query[2]);
+        window.addEventListener('load', function () {
+            setTimeout(() => {
+                const query = location.search.split('=');
+                const flag = decodeURIComponent(query[2]);
 
-        if(query[0]==""){
-            send("book_cheak")
-        } else {
-            send("book_cheak",flag)
-        }
-    }, 1000);
-})
+                if (query[0] == "") {
+                    send("book_cheak")
+                } else {
+                    send("book_cheak", flag)
+                }
+            }, 1000);
+        })
     </script>
 </body>
 

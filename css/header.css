@@ -1,15 +1,24 @@
 * {
+    cursor: default;
     margin: 0;
-    box-sizing: content-box!important;
+    box-sizing: content-box !important;
+}
+
+img {
+    -webkit-user-drag: none;
 }
 
 header {
     font-size: 18px;
-    height: 12.5vh;
-    background-color: #150971;
+    width: 100vw;
+    height: 100px;
+    background-color: #27816A;
     color: #fff;
     vertical-align: middle;
-    position: relative;
+    position: fixed;
+    top: 0;
+    opacity: .9;
+    z-index: 99;
 }
 
 #navs img {
@@ -17,13 +26,13 @@ header {
 }
 
 #search {
-    width: 120%;
-    height: calc(100vw * 0.03);
+    width: 350px;
+    height: 50px;
     display: flex;
     flex-wrap: nowrap;
 }
 
-#search i{
+#search i {
     margin: 0 auto 0 -6px;
 }
 
@@ -32,17 +41,16 @@ header {
     border: none;
     border-radius: 50px;
     display: inline-block;
-    padding: 20px 10px;
+    padding: 0 10px;
     color: #333;
 }
 
 #search button {
     width: 20%;
-    height: 100%;
     border: none;
     border-radius: 50px;
     display: inline-block;
-    color: #150971;
+    color: #27816A;
     background-color: #fff;
     margin-left: 10px;
 }
@@ -60,12 +68,12 @@ header ul#navs {
     transform: translateY(-50%);
 }
 
-header ul#nav  {
+header ul#nav {
     position: absolute;
     right: 2%;
     top: 50%;
     transform: translateY(-50%);
-   
+
 }
 
 
@@ -78,13 +86,14 @@ ul li a {
     color: #fff;
     text-decoration: none;
 }
-ul li a:hover{
+
+ul li a:hover {
     color: #fff;
 }
 
 ul li button {
     background-color: #fff;
-    color: #150971;
+    color: #27816A;
     border: 1px solid #fff;
     font-size: large;
     transition: .2s;
@@ -96,7 +105,7 @@ ul li button:hover {
 }
 
 ul li button:active {
-    background-color: #150971;
+    background-color: #27816A;
     color: #fff;
 }
 
@@ -114,18 +123,21 @@ ul li button:active {
 
 #admin_group {
     margin-left: 10px;
-    list-style:none;
+    list-style: none;
     display: none;
 }
-#admin_group li{
-    margin: 5px 0;
+
+#admin_group li {
+    display: inline-grid;
+    margin: 2px 0;
 }
-#admin_group a{
+
+#admin_group a {
     text-align: center;
     min-width: 110px;
     border-radius: 28px;
     font-size: 15px;
-    padding: 5px 15px;
+    padding: 2px 15px;
     text-decoration: none;
     cursor: pointer;
     color: white;
@@ -174,21 +186,36 @@ ul li button:active {
     margin-right: 5px;
     height: 30px;
     border-radius: 20px;
-    border-color: #150971;
+    border-color: #27816A;
     border: solid .5px;
 }
 
-.air{
-    height: 300px;
+.air {
+    background-color: #27816A;
+    opacity: .9;
+    color: #fff;
+    margin-top: 100px;
+    margin-bottom: -120px;
+    text-align: center;
+    height: 100px;
 }
 
-i{
+.debug{
+    display:inline-flex;
+}
+
+.debug div{
+    margin: 0 20px;
+}
+
+i {
     margin: 0 5px;
 }
 
-.hamburger-menu{
+.hamburger-menu {
     display: none;
 }
+
 .menu-btn {
     position: fixed;
     top: 18px;
@@ -199,8 +226,9 @@ i{
     justify-content: center;
     align-items: center;
     z-index: 90;
-    background-color: #3584bb;
+    background-color: #27816A;
 }
+
 .menu-btn span,
 .menu-btn span:before,
 .menu-btn span:after {
@@ -212,23 +240,28 @@ i{
     background-color: #ffffff;
     position: absolute;
 }
+
 .menu-btn span:before {
     bottom: 8px;
 }
+
 .menu-btn span:after {
     top: 8px;
 }
 
-#menu-btn-check:checked ~ .menu-btn span {
-    background-color: rgba(255, 255, 255, 0);/*メニューオープン時は真ん中の線を透明にする*/
+#menu-btn-check:checked~.menu-btn span {
+    background-color: rgba(255, 255, 255, 0);
+    /*メニューオープン時は真ん中の線を透明にする*/
     animation: fadeIn 0.7s cubic-bezier(0.33, 1, 0.68, 1) 1 forwards;
 }
-#menu-btn-check:checked ~ .menu-btn span::before {
+
+#menu-btn-check:checked~.menu-btn span::before {
     bottom: 0;
     transform: rotate(45deg);
     animation: fadeIn 0.7s cubic-bezier(0.33, 1, 0.68, 1) 1 forwards;
 }
-#menu-btn-check:checked ~ .menu-btn span::after {
+
+#menu-btn-check:checked~.menu-btn span::after {
     top: 0;
     transform: rotate(-45deg);
     animation: fadeIn 0.7s cubic-bezier(0.33, 1, 0.68, 1) 1 forwards;
@@ -238,17 +271,18 @@ i{
     display: none;
 }
 
-   
-  @keyframes fadeIn {
-    0% {
-      opacity: 0;
-    }
-    100% {
-      opacity: 1;
-    }
-  }
 
-  .menu-content {
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.menu-content {
     width: 100%;
     height: 100%;
     position: fixed;
@@ -257,24 +291,28 @@ i{
     z-index: 80;
     background-color: #3584bb;
 }
+
 .menu-content ul {
     padding: 70px 10px 0;
 }
+
 .menu-content ul li {
     border-bottom: solid 1px #ffffff;
     list-style: none;
 }
+
 .menu-content ul li a {
     display: block;
     width: 100%;
     font-size: 6vw;
     box-sizing: border-box;
-    color:#ffffff;
+    color: #ffffff;
     text-decoration: none;
     padding: 9px 15px 10px 0;
     position: relative;
     margin-top: 40px;
 }
+
 .menu-content ul li a::before {
     content: "";
     width: 7px;
@@ -292,90 +330,158 @@ i{
     height: 100%;
     position: fixed;
     top: 0;
-    left: 100%;/*leftの値を変更してメニューを画面外へ*/
+    left: 100%;
+    /*leftの値を変更してメニューを画面外へ*/
     z-index: 80;
-    background-color: #3584bb;
-    transition: all 0.5s;/*アニメーション設定*/
+    background-color: #27816A;
+    transition: all 0.5s;
+    /*アニメーション設定*/
 }
 
-#menu-btn-check:checked ~ .menu-content {
-    left: 0;/*メニューを画面内へ*/
+#menu-btn-check:checked~.menu-content {
+    left: 0;
+    /*メニューを画面内へ*/
 }
 
-.menu-content ul{
+.menu-content ul {
     width: 90vw;
     display: inline-grid;
 }
 
-@media screen and (min-width:951px) {
+.fa-arrow-up-right-from-square {
+    font-size: 2px;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+    height: 20px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: #27816b51;
+
+}
+
+::-webkit-scrollbar-thumb {
+    background: #27816b73;
+    box-shadow: 1px 1px 3px 3px rgba(0, 67, 100, 0);
+    width: 130px;
+}
+
+@media screen and (min-width:1175px) {
     .logout,
-#nav,#nav2,#nav1,#navs {
-    /*コレ*/
-    display: flex;
-    /*コレ*/
-    align-items: center;
-    /*コレ*/
-    justify-content: center;
+    #nav,
+    #nav2,
+    #nav1,
+    #navs {
+        /*コレ*/
+        display: flex;
+        /*コレ*/
+        align-items: center;
+        /*コレ*/
+        justify-content: center;
+    }
 }
-    
+
+@media screen and (max-width:1175px) {
+    .logout,
+    #nav,
+    #nav2,
+    #nav1,
+    #navs {
+        /*コレ*/
+        display: flex;
+        /*コレ*/
+        align-items: center;
+        /*コレ*/
+        justify-content: center;
+    }
+
+    #admin_group,
+    .connect,
+    #admin {
+        display: none !important;
+    }
 }
+
 
 /* 画面幅960px"以下"の時に読み込むスタイル */
-@media screen and (max-width:960px) {
-    .logout,#navs {
-    /*コレ*/
-    display: flex;
-    /*コレ*/
-    align-items: center;
-    /*コレ*/
-    justify-content: center;
-}
+@media screen and (max-width:1000px) {
 
-#admin_group{
-    display: none!important;
-}
-#admin{
-    display: none!important;
-}
-
-  }
-
-
-  /* 画面幅960px"以下"の時に読み込むスタイル */
-@media screen and (max-width:760px) {
     .logout,
-#nav,#nav2,#nav1,#navs {
-    /*コレ*/
-    display: flex;
-    /*コレ*/
-    align-items: center;
-    /*コレ*/
-    justify-content: center;
-}
-
-#admin_group{
-    display: none!important;
-}
-#admin{
-    display: none!important;
-}
-
-#search {
-    display: none;
+    #navs {
+        /*コレ*/
+        display: flex;
+        /*コレ*/
+        align-items: center;
+        /*コレ*/
+        justify-content: center;
     }
 
-  }
-
-  /* 画面幅670px"以下"の時に読み込むスタイル */
-  @media screen and (max-width:670px) {
-    #nav,#search {
-    display: none;
+    #nav1{
+        display: grid;
     }
-    .hamburger-menu{
+
+    #admin_group,
+    .connect,
+    #admin {
+        display: none !important;
+    }
+}
+
+
+
+/* 画面幅960px"以下"の時に読み込むスタイル */
+@media screen and (max-width:850px) {
+
+    .logout,
+    #nav,
+    #nav2,
+    #navs {
+        /*コレ*/
+        display: flex;
+        /*コレ*/
+        align-items: center;
+        /*コレ*/
+        justify-content: center;
+    }
+
+    #nav1{
+        display: grid !important;
+    }
+
+    #admin_group {
+        display: none !important;
+    }
+
+    .connect{
+        display: block !important;
+    }
+
+    #admin {
+        display: none !important;
+    }
+
+    #search {
+        display: none;
+    }
+
+}
+
+/* 画面幅670px"以下"の時に読み込むスタイル */
+@media screen and (max-width:670px) {
+
+    #nav,
+    #search {
+        display: none;
+    }
+
+    .hamburger-menu {
         display: block;
     }
+
     ul li {
         display: inline-block;
         margin-left: 6.5vw;
     }
-  }
+}

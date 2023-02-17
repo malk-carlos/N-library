@@ -6,12 +6,13 @@
   bottom: 0; /*アイキャッチの場所下からの距離*/
   right: 0; /*アイキャッチの場所右からの距離*/
   overflow:visible;
-  width: 400px;
+  width: 293px;
   height: 100px;
   background-image: url(eyecatch.png);
   background-position:right;
   background-size: contain;
 background-repeat: no-repeat;
+cursor: help;
 }
 
 #chatbot-eyecatch-img {
@@ -30,6 +31,7 @@ background-repeat: no-repeat;
   right: 0; /*位置：画面右からの距離*/
   background-color: rgb(255,255,255,0.9); /*中の色*/
   overflow:hidden;
+  z-index: 100;
 }
 /*チャット窓を開くときのアニメーション*/
 .chat-open-r {
@@ -87,6 +89,7 @@ background-repeat: no-repeat;
 #chatbot-profile-img {
   float: left;
   margin-right: 8px;
+  height: auto;
 }
 
 #chatbot-name-div{
