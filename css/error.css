@@ -38,7 +38,7 @@ background-size: 100%;
 }
 @font-face {
     font-family: fui;
-    src: url(../HuiFontP29.ttf)format(truetype);
+    src: url(../fonts/HuiFontP29.ttf)format(truetype);
 }
 #errorsecond{
     margin-top: 20px;

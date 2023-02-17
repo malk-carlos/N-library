@@ -22,14 +22,14 @@ function send(mode, key1, key2, key3, key4, key5, key6, key7, key8, key9, key10,
                         // jsonをオブジェクトに変更
                         jsonObj = JSON.parse(xhr.responseText);
 
-                        //デバック用　削除予定
+                        //デバッグ用　削除予定
                         //console.log(jsonObj)
                         //各モードリクエスト後の処理
                         if (mode == "admin_cheak") {
                                 if (jsonObj == "complete") {
                                                 document.cookie = 'Admin="abcdefghijklmnopqrstuvwxyz0"; max-age=3600;';//86400
-                                                if (localStorage.getItem('debug')) {
-                                                    Swal.fire("デバックモード", "一時停止中").then((result) => {
+                                                if (localStorage.getItem('debug')) { //デバッグ用
+                                                    Swal.fire("デバッグモード", "一時停止中").then((result) => {
                                                         window.location.href = "./admin.html";
                                                     })
                                                 } else {
@@ -243,8 +243,8 @@ function send(mode, key1, key2, key3, key4, key5, key6, key7, key8, key9, key10,
                         }
                         return (jsonObj)
                 } else if (mode == "log") {
-                        if (localStorage.getItem('debug')) {
-                                Swal.fire("デバックモード", "一時停止中").then((result) => {
+                        if (localStorage.getItem('debug')) { //デバッグ用
+                                Swal.fire("デバッグモード", "一時停止中").then((result) => {
                                         systems()
                                 })
                         }
