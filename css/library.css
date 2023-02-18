@@ -54,7 +54,7 @@ h1 {
 }
 
 .reserve_btn,
-.limit,
+.limit,.userlimit,
 .standby,
 .reserved {
     height: 30px;
@@ -76,6 +76,7 @@ h1 {
 }
 
 .reserve_btn i,
+.userlimit i,
 .limit i,
 .standby i,
 .reserved i {

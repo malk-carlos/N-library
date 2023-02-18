@@ -23,7 +23,7 @@ function pcBookRow() {
         const $row = $(`<div id='row${String(i+1)}' class='book-row'></div>`) // 各書籍の表紙, タイトル, 著者を記載する要素
         for (let j = 1; j < 5; j++) {
             const $n = i * 4 + j; //toReserve(${bookDB[$n][0]},${$n})
-            const $btn = $(`<button id='btn${String($n)}' class='standby' name='${bookDB[$n][21]}' onClick="toReserve(${bookDB[$n][0]},${$n})"><i class="fa-solid fa-ban"></i><div class='status'> 予約不可 </div></button>`) //予約ボタン
+            const $btn = $(`<button id='btn${String($n)}' class='standby' name='${bookDB[$n][21]}' onClick="toReserve(${bookDB[$n][0]},${$n})">予約不可</button>`) //予約ボタン
             const $div = $(`<div id='book${String($n)}' class='book ${bookDB[$n][0]}'></div>`) // 各書籍の表紙, タイトル, 著者を記載する要素
             const $div2 = $(`<div id='bookData${String($n)}' class='bookData' onClick='popup(${$n})'></div>`)
             const $ps = $(`<div class='ps'><div>`)
