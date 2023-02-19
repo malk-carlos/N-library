@@ -4,15 +4,51 @@
     box-sizing: content-box !important;
 }
 
+
+/*　上に上がる動き　*/
+
+#header.UpMove {
+    animation: UpAnime 0.5s forwards;
+}
+
+@keyframes UpAnime {
+    from {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+}
+
+
+/*　下に下がる動き　*/
+
+#header.DownMove {
+    animation: DownAnime 0.5s forwards;
+}
+
+@keyframes DownAnime {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+
 img {
     -webkit-user-drag: none;
 }
 
-header {
+#header {
+    background-color: #27816A;
     font-size: 18px;
     width: 100vw;
     height: 100px;
-    background-color: #27816A;
     color: #fff;
     vertical-align: middle;
     position: fixed;
@@ -55,7 +91,6 @@ header {
     margin-left: 10px;
 }
 
-
 #search button i {
     width: 12px;
     height: 12px;
@@ -73,9 +108,7 @@ header ul#nav {
     right: 2%;
     top: 50%;
     transform: translateY(-50%);
-
 }
-
 
 ul li {
     display: inline-block;
@@ -83,6 +116,7 @@ ul li {
 }
 
 ul li a {
+    cursor: pointer;
     color: #fff;
     text-decoration: none;
 }
@@ -180,8 +214,6 @@ ul li button:active {
     display: none;
 }
 
-
-
 .logout img {
     margin-right: 5px;
     height: 30px;
@@ -200,11 +232,11 @@ ul li button:active {
     height: 100px;
 }
 
-.debug{
-    display:inline-flex;
+.debug {
+    display: inline-flex;
 }
 
-.debug div{
+.debug div {
     margin: 0 20px;
 }
 
@@ -271,26 +303,16 @@ i {
     display: none;
 }
 
-
 @keyframes fadeIn {
     0% {
         opacity: 0;
     }
-
     100% {
         opacity: 1;
     }
 }
 
-.menu-content {
-    width: 100%;
-    height: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 80;
-    background-color: #3584bb;
-}
+
 
 .menu-content ul {
     padding: 70px 10px 0;
@@ -326,13 +348,14 @@ i {
 }
 
 .menu-content {
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
     position: fixed;
     top: 0;
     left: 100%;
     /*leftの値を変更してメニューを画面外へ*/
     z-index: 80;
+    opacity: 1;
     background-color: #27816A;
     transition: all 0.5s;
     /*アニメーション設定*/
@@ -359,7 +382,6 @@ i {
 
 ::-webkit-scrollbar-track {
     background-color: #27816b51;
-
 }
 
 ::-webkit-scrollbar-thumb {
@@ -396,7 +418,6 @@ i {
         /*コレ*/
         justify-content: center;
     }
-
     #admin_group,
     .connect,
     #admin {
@@ -406,8 +427,8 @@ i {
 
 
 /* 画面幅960px"以下"の時に読み込むスタイル */
-@media screen and (max-width:1000px) {
 
+@media screen and (max-width:1000px) {
     .logout,
     #navs {
         /*コレ*/
@@ -417,11 +438,9 @@ i {
         /*コレ*/
         justify-content: center;
     }
-
-    #nav1{
+    #nav1 {
         display: grid;
     }
-
     #admin_group,
     .connect,
     #admin {
@@ -430,10 +449,9 @@ i {
 }
 
 
-
 /* 画面幅960px"以下"の時に読み込むスタイル */
-@media screen and (max-width:850px) {
 
+@media screen and (max-width:850px) {
     .logout,
     #nav,
     #nav2,
@@ -445,43 +463,40 @@ i {
         /*コレ*/
         justify-content: center;
     }
-
-    #nav1{
+    #nav1 {
         display: grid !important;
     }
-
     #admin_group {
         display: none !important;
     }
-
-    .connect{
+    .connect {
         display: block !important;
     }
-
     #admin {
         display: none !important;
     }
-
     #search {
         display: none;
     }
-
 }
 
-/* 画面幅670px"以下"の時に読み込むスタイル */
-@media screen and (max-width:670px) {
 
+/* 画面幅670px"以下"の時に読み込むスタイル */
+
+@media screen and (max-width:670px) {
     #nav,
     #search {
         display: none;
     }
-
     .hamburger-menu {
         display: block;
     }
-
     ul li {
         display: inline-block;
         margin-left: 6.5vw;
+    }
+
+    .fa-arrow-up-right-from-square {
+        font-size: .5em;
     }
 }
