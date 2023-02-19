@@ -217,3 +217,7 @@ img{
     text-decoration: none;
     cursor: pointer;
   }
+
+  #bcTarget{
+    margin: 0 auto ;
+  }

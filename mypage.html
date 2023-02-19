@@ -96,6 +96,7 @@
     </div>
     <script>
 
+
         //670以下スマホへ
 
         //ログイン情報取得
@@ -152,6 +153,8 @@
                     modal2.style.display = "none";
                 }
             }
+            $("#bcTarget").barcode(logindata.sub, "code39", { barWidth: 1, barHeight: 90 });
+
         }
 
         //api.jsからの呼び出し（データが返ってきたら）
