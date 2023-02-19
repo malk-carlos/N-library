@@ -75,7 +75,6 @@
                     </div>
                 </div>
                 <div class="right-container">
-                    <a href="https://myaccount.google.com/" class="acount-google" target="_blank" rel="noopener noreferrer">編集</a>
                     <input id="mybtn" type="button" value="バーコード提示" onclick="barcode()">
                     <a href="./mypage_smartphone.html">でバック用</a>
                 </div>
@@ -84,6 +83,7 @@
                 <div class="borrowing flex-wrap"></div>
             </div>
             <div class="tab-mypage-content" id="content-03">
+                aa
                 <div class="history flex-wrap"></div>
             </div>
             <div class="tab-mypage-content" id="content-04">
@@ -95,6 +95,9 @@
         </div>
     </div>
     <script>
+
+        //670以下スマホへ
+
         //ログイン情報取得
         const logindata = cheak() //データ取得
         document.getElementById("name").innerHTML = logindata.name

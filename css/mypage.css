@@ -28,16 +28,18 @@ img{
 }
 .mypage-frame{
     padding: 1em 1.4em;
-    margin: 150px 2em 2em;
+    margin: 120px auto 0 auto ;
     font-weight: bold;
     background: #FFF;
     border: solid 3px #333;/*線*/
     border-radius: 10px;/*角の丸み*/
     min-width: 80vw;
+    max-width: 80vw;
 }
 .tab-mypage{
-    padding: 1em 1.4em;
-    margin: 2vw 2vw;
+    padding:3px 0;
+    height: 40vh;
+    margin: 2vw 2vw 0 2vh;
     width: 20vw;
     font-weight: bold;
     background: #FFF;
@@ -66,11 +68,12 @@ img{
   min-width: 260px;
 }
 .tab-mypage_item{
-    margin: 8% 5% 8% 5%;
+    padding:0;
+    height: calc(39vh/5);
     display: inline;
     white-space: nowrap;
     color: #333;
-    font-size:max(2vw,20px);
+    font-size:max(1.9vw,20px);
     font-weight: 600;
     cursor: pointer;
     border: none;
@@ -89,21 +92,12 @@ img{
     display: none;
     position: relative;
     width: 100%;
-    margin: 2vw;
 
 }
 .is-show{
     display: block !important;
 }
-.acount-google{
-    padding:max(1vw,10px);
-    background-color: #27816A;
-    color: #FFF;
-    font-size:max(3.5vw,30px);
-    border-radius: 10px;
-    text-decoration: none;
-    
-}
+
 .center{
     text-align: center;
 }
@@ -133,13 +127,12 @@ img{
 .book {
     display: inline-block;
     width: 15vw;
-    height: 20vw;
-    max-width: 150px;
+    max-width: 110px;
     margin: 2%;
+    text-align: center;
 }
 .coverimg {
-    width: 80%;
-    height: 80%;
+    width: 90%;
     object-fit: contain;
 }
 .void-mypage{
@@ -152,6 +145,7 @@ img{
 #hitokoto{
     width: 100%;
     border: 0px;
+    background-color: #000;
 }
 #hitokotoEdit{
     width: 3.5vw;

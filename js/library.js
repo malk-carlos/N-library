@@ -131,7 +131,8 @@ function limit(delCheck) {
 
 function mydata(logDB) {
     console.log("＝＝＝mydata()開始＝＝＝")
-    console.log(logDB, "mydata");
+    console.table(logDB);
+    console.log("mydata")
 
     const book_length = Number($(".book:last").attr("id").replace("book", ""));
     console.log(book_length, "Blen")
