@@ -312,15 +312,7 @@ i {
     }
 }
 
-.menu-content {
-    width: 100%;
-    height: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 80;
-    background-color: #3584bb;
-}
+
 
 .menu-content ul {
     padding: 70px 10px 0;
@@ -356,13 +348,14 @@ i {
 }
 
 .menu-content {
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
     position: fixed;
     top: 0;
     left: 100%;
     /*leftの値を変更してメニューを画面外へ*/
     z-index: 80;
+    opacity: 1;
     background-color: #27816A;
     transition: all 0.5s;
     /*アニメーション設定*/
@@ -501,5 +494,9 @@ i {
     ul li {
         display: inline-block;
         margin-left: 6.5vw;
+    }
+
+    .fa-arrow-up-right-from-square {
+        font-size: .5em;
     }
 }
