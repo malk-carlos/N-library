@@ -62,10 +62,14 @@ h1 {
 }
 
 .status {
+
+    cursor: pointer;
     margin-left: 20px;
 }
 
 .icom {
+
+    cursor: pointer;
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
     position: absolute;
@@ -73,6 +77,9 @@ h1 {
     left: 0;
     height: 100%;
     width: 30%;
+}
+.limit,.limit .icom,.limit .status{
+    cursor: not-allowed	;
 }
 
 .reserve_btn i,

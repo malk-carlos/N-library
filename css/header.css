@@ -116,6 +116,7 @@ ul li {
 }
 
 ul li a {
+    cursor: pointer;
     color: #fff;
     text-decoration: none;
 }
