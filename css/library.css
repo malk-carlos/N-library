@@ -26,6 +26,7 @@ h1 {
 .book {
     background: -webkit-repeating-linear-gradient(-45deg, #f0f8ff, #f0f8ff 3px, #e9f4ff 3px, #e9f4ff 7px);
     background: repeating-linear-gradient(-45deg, #f0f8ff, #f0f8ff 3px, #e9f4ff 3px, #e9f4ff 7px);
+    border-radius: 20px;    
     display: inline-block;
     width: 20vw;
     height: 100%;
@@ -44,13 +45,17 @@ h1 {
 }
 
 .coverimg {
-    width: 70%;
-    height: 50%;
+    max-width: 70%;
+    max-height: 50%;
     object-fit: contain;
     position: absolute;
     top: 30px;
     left: 50%;
     transform: translateX(-50%);
+}
+
+.coverimg {
+    border: solid 5px white !important;
 }
 
 .reserve_btn,
