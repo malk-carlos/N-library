@@ -190,11 +190,11 @@
                 $(".history").append($div)
             } else {
                 for (let i = 0; i < datasHistory.length; i++) {
-                    const $div1 = $(`<div id='bookhistory${String(i)}' class='book'></div>`)
-                    const $cover1 = $(`<img src='${datasHistory[i][8]}' class='coverimg' alt="${datasHistory[i][7]}">`) // 表紙
-                    const $title1 = $(`<p class='title'>${datasHistory[i][7]}</p>`) // タイトル
-                    $div1.append($cover1).append($title1);
-                    $(".history").append($div1)
+                    const $div = $(`<div id='bookhistory${String(i)}' class='book'></div>`)
+                    const $cover = $(`<img src='${datasHistory[i][8]}' class='coverimg' alt="${datasHistory[i][7]}">`) // 表紙
+                    const $title = $(`<p class='title'>${datasHistory[i][7]}</p>`) // タイトル
+                    $div.append($cover).append($title);
+                    $(".history").append($div)
                 }
             }
             // 返却日が近い本
