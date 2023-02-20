@@ -13,7 +13,7 @@
     <link rel="shortcut icon" href="./favicon/favicon.ico">
     <meta name="msapplication-TileColor" content="#00aba9">
     <meta name="msapplication-config" content="./favicon/browserconfig.xml">
-    <meta name="theme-color" content="#c9ffc7">
+    <meta name="theme-color" content="#27816A">
 
     <!--CSS-->
     <link rel="stylesheet" href="./css/oi.css" />
@@ -30,7 +30,9 @@
 <body>
     <header>
         <script src="./js/header.js"></script>
-        <script>header();</script>
+        <script>
+            header();
+        </script>
     </header>
     <textarea id="keyview"></textarea>
     <h2>書籍情報変更</h2>
@@ -123,7 +125,7 @@
 
     <script>
         //ページ読み込み後　DBへ蔵書DBの照会
-        window.addEventListener('load', function () {
+        window.addEventListener('load', function() {
             send("db_cheak", (new URL(window.location.href).search).replace("?", ""))
         })
     </script>

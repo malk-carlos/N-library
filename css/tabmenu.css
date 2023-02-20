@@ -63,12 +63,9 @@
   .panel_table {
     border: .5px solid #27816A;
     padding: 15px 50px;
+    width: 60vw;
   }
 
-  #tables {
-    margin: 0 auto !important;
-    width: 70vw;
-  }
 
   #container_wrapper{
     border: .5px solid #27816A;
