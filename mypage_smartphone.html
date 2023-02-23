@@ -5,6 +5,7 @@
   <title>マイページ</title>
   <!-- 外部css -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"/>
+  <link rel="stylesheet" type="text/css" href="css/5-4-1.css">
   <!--CSS-->
   <link rel="stylesheet" href="./css/mypage-s.css">
   <!--外部JS-->
@@ -40,13 +41,17 @@
   </header>
     <div class="margin"></div>
     <div id="tabs">
-      <button class="tab-btn" data-tab="tab1">Tab 1</button>
-      <button class="tab-btn" data-tab="tab2">Tab 2</button>
-      <button class="tab-btn" data-tab="tab3">Tab 3</button>
-      <button class="tab-btn" data-tab="tab4">Tab 4</button>
-      <button class="tab-btn" data-tab="tab5">Tab 5</button>
-      <button class="tab-btn" data-tab="tab6">Tab 6</button>
-      <div id="tab1" class="tab-content">
+      <div>
+
+      </div>
+        <ul class="tab">
+          <li><a href="#tab-profile">プロフィール</a></li>
+          <li><a href="#tab-borrow">貸出中</a></li>
+          <li><a href="#tab-history">貸本履歴</a></li>
+          <li><a href="#tab-return">返却日間近</a></li>
+          <li><a href="#tab-reserve">予約済み</a></li>
+        </ul>
+      <div id="tab-profile" class="area">
         <div id="icom"></div>
           <div class="right-container center">
             <div class="profile-frame flex">
@@ -68,7 +73,7 @@
             <a href="mypage_smartphone.html">でバック用</a>
         </div>
       </div>
-      <div id="tab2" class="tab-content">
+      <div id="tab-borrow" class="area">
         <p>貸出中</p>
         <div class="tab-mypage-content" id="content-02">
           <div class="borrowing-swiper swiper-hide">
@@ -78,8 +83,8 @@
           </div>
         </div>
       </div>
-      <div id="tab3" class="tab-content">
-        <p>借りた本の履歴</p>
+      <div id="tab-history" class="area">
+        <p>貸本履歴</p>
         <div class="tab-mypage-content" id="content-03">
           <div class="history-swiper swiper-hide">
             <div class="history swiper-wrapper">
@@ -88,28 +93,18 @@
           </div>
         </div>
       </div>
-      <div id="tab4" class="tab-content">
-        <p>返却日が近い本</p>
+      <div id="tab-return" class="area">
+        <p>返却日間近</p>
         <div class="tab-mypage-content" id="content-04">
           <div class="return flex-wrap">
 
           </div>
         </div>
       </div>
-      <div id="tab5" class="tab-content">
-        <p>予約した本</p>
+      <div id="tab-reserve" class="area">
+        <p>予約済み</p>
         <div class="tab-mypage-content"  id="content-05">
           <div class="reserve flex-wrap"></div>
-        </div>
-      </div>
-      <div>
-        <p>確認用</p>
-        <div class="tab-mypage-content">
-          <div class="result-swiper swiper-hide">
-            <div class="result swiper-wrapper">
-              <!-- スライド -->
-            </div>
-          </div>
         </div>
       </div>
     </div>
@@ -153,51 +148,45 @@
       prevEl: '.swiper-button-prev',
     },
     });
+    // タブ切り替え
+    function GethashID (hashIDName){
+      if(hashIDName){
+        //タブ設定
+        $('.tab li').find('a').each(function() { //タブ内のaタグ全てを取得
+          var idName = $(this).attr('href'); //タブ内のaタグのリンク名（例）#lunchの値を取得 
+          if(idName == hashIDName){ //リンク元の指定されたURLのハッシュタグ（例）http://example.com/#lunch←この#の値とタブ内のリンク名（例）#lunchが同じかをチェック
+            var parentElm = $(this).parent(); //タブ内のaタグの親要素（li）を取得
+            $('.tab li').removeClass("active"); //タブ内のliについているactiveクラスを取り除き
+            $(parentElm).addClass("active"); //リンク元の指定されたURLのハッシュタグとタブ内のリンク名が同じであれば、liにactiveクラスを追加
+            //表示させるエリア設定
+            $(".area").removeClass("is-active"); //もともとついているis-activeクラスを取り除き
+            $(hashIDName).addClass("is-active"); //表示させたいエリアのタブリンク名をクリックしたら、表示エリアにis-activeクラスを追加 
+          }
+        });
+      }
+    }
 
-    const tabs = document.querySelector('#tabs');
-    const tabBtns = tabs.querySelectorAll('.tab-btn');
-    const tabContents = tabs.querySelectorAll('.tab-content');
-
-    // 最初に表示するタブを指定
-    tabs.querySelector('#tab1').style.display = 'block';
-    // タブがクリックされた時の処理
-    tabBtns.forEach(function(btn) {
-    btn.addEventListener('click', function() {
-      const tab = btn.dataset.tab;
-      tabContents.forEach(function(content) {
-      content.style.display = 'none';
-      });
-      tabs.querySelector('#' + tab).style.display = 'block';
-      });
-
+    //タブをクリックしたら
+    $('.tab a').on('click', function() {
+      var idName = $(this).attr('href'); //タブ内のリンク名を取得  
+      GethashID (idName);//設定したタブの読み込みと
+      return false;//aタグを無効にする
     });
 
-    function mydata(datas) {
-      // テスト入力
-      // const n = 3; // 3つごとに分割する
-      // const result = [];
-      // for (let i = 0; i < datas.length; i += n) {
-      //   const chunk = datas.slice(i, i + n);
-      //   result.push(chunk);
-      // }
-      // console.log(result);
-      // for (let i = 0; i < result.length; i++) {
-      //   const $slide = $(`<div id='result${String(i)}' class='swiper-slide'></div>`)
-      //   for (let o = 0; o < result[i].length; o++) {
-      //     const $divs = $(`<div id='result-content${String(o)}' class='book'></div>`)
-      //     const $covers = $(`<img src='${result[i][o][8]}' class='coverimg' alt="${result[i][o][7]}">`) // 表紙
-      //     const $titles = $(`<p class='title'>${result[i][o][7]}</p>`) // タイトル
-      //     $divs.append($covers).append($titles);
-      //     $slide.append($divs)
-      //     $(".result").append($slide)
-      //   }
-      // }
 
-      // テスト入力ここまで
+      // 上記の動きをページが読み込まれたらすぐに動かす
+      $(window).on('load', function () {
+          $('.tab li:first-of-type').addClass("active"); //最初のliにactiveクラスを追加
+          $('.area:first-of-type').addClass("is-active"); //最初の.areaにis-activeクラスを追加
+        var hashName = location.hash; //リンク元の指定されたURLのハッシュタグを取得
+        GethashID (hashName);//設定したタブの読み込み
+      });
+
+    function mydata(datas) {
             let datasBorrow = datas.filter(value => value[5] === '貸出中')
             let datasReserve = datas.filter(value => value[5] === '予約中')
             let datasHistory = datas.filter(value => value[5] === '返却済み')
-            const date = new Date();
+            let date = new Date();
             var returnDate;
             var difference;
             let datasReturn = [];
@@ -246,9 +235,9 @@
                 for (let i = 0; i < datasBorrowslide.length; i++) {
                   const $slide = $(`<div id='borrowingbook${String(i)}' class='swiper-slide'></div>`)
                   for (let o = 0; o < datasBorrowslide[i].length; o++) {
-                    const $div = $(`<div id='borrowingbook-content${String(o)}' class=''></div>`)
-                    const $cover = $(`<img src='${datasBorrow[i][o][8]}' class='coverimg' alt="${datasBorrow[i][o][7]}">`) // 表紙
-                    const $title = $(`<p class='title'>${datasBorrow[i][o][7]}</p>`) // タイトル
+                    const $div = $(`<div id='borrowingbook-content${String(o)}' class='book'></div>`)
+                    const $cover = $(`<img src='${datasBorrowslide[i][o][8]}' class='coverimg' alt="${datasBorrowslide[i][o][7]}">`) // 表紙
+                    const $title = $(`<p class='title'>${datasBorrowslide[i][o][7]}</p>`) // タイトル
                     $div.append($cover).append($title);
                     $slide.append($div)
                     $(".borrowing").append($slide)
@@ -263,12 +252,16 @@
                 $div.append($fight)
                 $(".history").append($div)
             }else{
-                for (let i = 0; i < datasHistory.length; i++) {
-                    const $div = $(`<div id='bookhistory${String(i)}' class='swiper-slide'></div>`)
-                    const $cover = $(`<img src='${datasHistory[i][8]}' class='coverimg' alt="${datasHistory[i][7]}">`) // 表紙
-                    const $title = $(`<p class='title'>${datasHistory[i][7]}</p>`) // タイトル
+                for (let i = 0; i < datasHistoryslide.length; i++) {
+                  const $slide = $(`<div id='bookhistory${String(i)}' class='swiper-slide'></div>`)
+                  for (let o = 0; o < datasHistoryslide[i].length; o++) {
+                    const $div = $(`<div id='bookhistory-content${String(o)}' class='book'></div>`)
+                    const $cover = $(`<img src='${datasHistoryslide[i][o][8]}' class='coverimg' alt="${datasHistoryslide[i][o][7]}">`) // 表紙
+                    const $title = $(`<p class='title'>${datasHistory[i][o][7]}</p>`) // タイトル
                     $div.append($cover).append($title);
-                    $(".history").append($div)
+                    $slide.append($div)
+                    $(".history").append($slide)
+                  }
                 }
             }
             // 返却日が近い本
@@ -278,12 +271,16 @@
                 $div.append($fight)
                 $(".return").append($div)
             }else{
-                for (let i = 0; i < datasReturn.length; i++) {
-                    const $div = $(`<div id='reservebook${String(i)}' class='swiper-slide'></div>`)
-                    const $cover = $(`<img src='${datasReturn[i][8]}' class='coverimg' alt="${datasReturn[i][7]}">`) // 表紙
-                    const $title = $(`<p class='title'>${datasReturn[i][7]}</p>`) // タイトル
+                for (let i = 0; i < datasReturnslide.length; i++) {
+                  const $slide = $(`<div id = 'returnbook${String(i)}' class='swiper-slide'></div>` )
+                  for (let o = 0; o < datasReturnslide.length; o++) {
+                    const $div = $(`<div id='reservebook${String(o)}' class='book'></div>`)
+                    const $cover = $(`<img src='${datasReturnslide[i][o][8]}' class='coverimg' alt="${datasReturnslide[i][o][7]}">`) // 表紙
+                    const $title = $(`<p class='title'>${datasReturnslide[i][o][7]}</p>`) // タイトル
                     $div.append($cover).append($title);
-                    $(".return").append($div)
+                    $slide.append($div);
+                    $(".return").append($slide)
+                  }
                 }
             }
             // 予約した本
@@ -293,12 +290,16 @@
                 $div.append($fight)
                 $(".reserve").append($div)
             } else {
-                for (let i = 0; i < datasReserve.length; i++) {
-                    const $div = $(`<div id='reservebook${String(i)}' class='book'></div>`)
-                    const $cover = $(`<img src='${datasReserve[i][8]}' class='coverimg' alt="${datasReserve[i][7]}">`) // 表紙
-                    const $title = $(`<p class='title'>${datasReserve[i][7]}</p>`) // タイトル
+                for (let i = 0; i < datasReserveslide.length; i++) {
+                  const $slide = $(`<div id='reservebook${String(i)}' class='swiper-slide'></div>`)
+                  for (let o = 0; o < datasReserveslide.length; o++) {
+                    const $div = $(`<div id='reservebook-content${String(o)}' class='book'></div>`)
+                    const $cover = $(`<img src='${datasReserveslide[i][o][8]}' class='coverimg' alt="${datasReserveslide[i][o][7]}">`) // 表紙
+                    const $title = $(`<p class='title'>${datasReserveslide[i][o][7]}</p>`) // タイトル
                     $div.append($cover).append($title);
-                    $(".reserve").append($div)
+                    $slide.append($div)
+                    $(".reserve").append($slide)
+                  }
                 }
             }
     }
