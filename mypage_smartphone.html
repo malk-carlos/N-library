@@ -4,32 +4,32 @@
 <head>
   <title>マイページ</title>
   <!-- 外部css -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
   <link rel="stylesheet" type="text/css" href="css/5-4-1.css">
-  <!--CSS-->
-  <link rel="stylesheet" href="./css/mypage-s.css">
-  <!--外部JS-->
-  <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
-  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
-  
-  <!--自作JS-->
-  <script src="./js/google-login.js"></script>
-  <script src="./js/api.js"></script>
-  <script src="./js/jquery-barcode.js"></script>
+    <!--CSS-->
+    <link rel="stylesheet" href="./css/mypage-s.css">
+    <!--外部JS-->
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
 
-  <title>【マイページ】Borrow a book</title>
-  
-  <!--favicon-->
-  <link rel="apple-touch-icon" sizes="180x180" href="./favicon/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="./favicon/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="./favicon/favicon-16x16.png">
-  <link rel="manifest" href="./favicon/site.webmanifest">
-  <link rel="mask-icon" href="./favicon/safari-pinned-tab.svg" color="#5bbad5">
-  <link rel="shortcut icon" href="./favicon/favicon.ico">
-  <meta name="msapplication-TileColor" content="#00aba9">
-  <meta name="msapplication-config" content="./favicon/browserconfig.xml">
-  <meta name="theme-color" content="#c9ffc7">
+    <!--自作JS-->
+    <script src="./js/google-login.js"></script>
+    <script src="./js/api.js"></script>
+    <script src="./js/jquery-barcode.js"></script>
+
+    <title>【マイページ】Borrow a book</title>
+
+    <!--favicon-->
+    <link rel="apple-touch-icon" sizes="180x180" href="./favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./favicon/favicon-16x16.png">
+    <link rel="manifest" href="./favicon/site.webmanifest">
+    <link rel="mask-icon" href="./favicon/safari-pinned-tab.svg" color="#5bbad5">
+    <link rel="shortcut icon" href="./favicon/favicon.ico">
+    <meta name="msapplication-TileColor" content="#00aba9">
+    <meta name="msapplication-config" content="./favicon/browserconfig.xml">
+    <meta name="theme-color" content="#27816A">
 
 
 </head>
@@ -58,13 +58,17 @@
                 <div style="padding: 1.4%;">表示名</div>
                 <div id="name"></div>
             </div>
-            <div id="mail"></div>
-        </div>
-        <div class="right-container center">
-            <div class="profile-frame flex">
-                <div style="padding: 1.4%;">ひとこと</div>
+            <div class="right-container center">
+                <div class="profile-frame flex">
+                    <div style="padding: 1.4%;">ひとこと</div>
                     <p id="output"></p>
-                <input id="hitokotoEdit" type="image" src="img/pencil.png" onclick="Edit()">
+                    <input id="hitokotoEdit" type="image" src="img/pencil.png" onclick="Edit()">
+                </div>
+            </div>
+            <div class="right-container">
+                <a href="https://myaccount.google.com/" class="acount-google">編集</a>
+                <input id="mybtn" type="button" value="バーコード提示" onclick="barcode()">
+                <a href="mypage_smartphone.html">でバック用</a>
             </div>
         </div>
         <div class="right-container">
@@ -79,8 +83,8 @@
           <div class="borrowing-swiper swiper-hide">
             <div class="borrowing swiper-wrapper">
               <!-- スライド -->
+
             </div>
-          </div>
         </div>
       </div>
       <div id="tab-history" class="area">
@@ -97,7 +101,6 @@
         <p>返却日間近</p>
         <div class="tab-mypage-content" id="content-04">
           <div class="return flex-wrap">
-
           </div>
         </div>
       </div>
@@ -105,7 +108,6 @@
         <p>予約済み</p>
         <div class="tab-mypage-content"  id="content-05">
           <div class="reserve flex-wrap"></div>
-        </div>
       </div>
     </div>
       <script>
@@ -193,7 +195,7 @@
             for (let i = 0; i < datasBorrow.length; i++) {
                 const borrowDate = new Date(datasBorrow[i][3])
                 returnDate = new Date(borrowDate.getTime() + 7 * 24 * 60 * 60 * 1000)
-                difference = returnDate - date 
+                difference = returnDate - date
                 if (datasBorrow[i][5] === '貸出中' && difference <= 86400000 && difference >= 0) {
                     datasReturn.push(datasBorrow[i]);
                 }
@@ -226,7 +228,7 @@
             }
             
             // 貸出中の本
-            if (datasBorrow.length === 0 ) {
+            if (datasBorrow.length === 0) {
                 const $div = $('<div class="void-mypage"></div>')
                 const $fight = $('<p>貸出中の本はありません！<br>本を借りましょう！</p>')
                 $div.append($fight)
@@ -302,7 +304,7 @@
                   }
                 }
             }
-    }
+        }
     </script>
 </body>
 

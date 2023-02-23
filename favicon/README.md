@@ -18,6 +18,6 @@ Insert the following code in the `head` section of your pages:
     <link rel="shortcut icon" href="./favicon/favicon.ico">
     <meta name="msapplication-TileColor" content="#00aba9">
     <meta name="msapplication-config" content="./favicon/browserconfig.xml">
-    <meta name="theme-color" content="#c9ffc7">
+    <meta name="theme-color" content="#27816A">
 
 *Optional* - Check your favicon with the [favicon checker](https://realfavicongenerator.net/favicon_checker)
