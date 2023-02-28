@@ -1,39 +1,25 @@
-table {
-  width: 80vw;
-  background-color: #ffe;
-  border-collapse: collapse;
-}
-
-table th {
-  width: 10px;
-  background-color: #eee;
-}
-
-table th,
-table td {
-  border: solid 1px #aaa;
-
-}
-img{
-  height: 120px;       
-}
 .margin{
   margin-top: 100px;
 }
+#container{
+  background-image: url(../img/backsp.png);
+  background-size: cover;
+  text-align: center;
+}
+#icom{
+  text-align: center;
+}
 #icom > img{
-  width:  17vw;       
-  height: 17vw;       
-  min-width: 150px;
-  min-height: 150px;
+  width:  30vw;       
+  height: 30vw;       
   border-radius: 50%;
-  border: solid 3px #333;
+  border: solid 5px #27816A;
   position: relative;
 }
 .mypage-frame{
   padding: 1em 1.4em;
   margin: 2em 2em;
   font-weight: bold;
-  background: #FFF;
   border: solid 3px #333;/*線*/
   border-radius: 10px;/*角の丸み*/
   min-width: 850px;
@@ -43,7 +29,6 @@ img{
   margin: 2vw 2vw;
   width: 20vw;
   font-weight: bold;
-  background: #FFF;
   border: solid 3px #333;/*線*/
   border-radius: 10px;/*角の丸み*/
   min-width: 190px;
@@ -51,53 +36,23 @@ img{
 .flex{
   display: flex;
 }
-.flex-wrap{
-  display: flex;
-  flex-wrap: wrap;
-}
 #name{
-  font-size:max(2vw,50px);
+  font-size:max(2vw,60px);
+  font-weight: bold;
   margin: 0 auto;
-}
-.frame_right{
-  margin: 0 auto;
-  width:max(66vw,420px);
-}
-.frame_left{
-width: 27vw;
-text-align: center;
-min-width: 260px;
-}
-.tab-mypage_item{
-  margin: 8% 5% 8% 5%;
-  display: inline;
-  white-space: nowrap;
-  color: #333;
-  font-size:max(2vw,20px);
-  font-weight: 600;
-  cursor: pointer;
-  border: none;
-  background-color: transparent;
-  }
-.tab-mypage_item:hover{
-  color: #000;
-}
-.tab-mypage_item:focus{
-  color: #000;
-  font-size:max(2.3vw,25px);
-  border-bottom: 0.1em solid #000;
-
 }
 .tab-mypage-content{
   position: relative;
   width: 100%;
+  height: 120vw;
 
 }
 .acount-google{
   padding:max(1vw,10px);
-  background-color: #150971;
+  background-color: #27816A;
   color: #FFF;
   font-size:max(3.5vw,30px);
+  font-weight: bold;
   border-radius: 10px;
   text-decoration: none;
   
@@ -105,47 +60,21 @@ min-width: 260px;
 .center{
   text-align: center;
 }
-.relative{
-  position: relative;
-
-}
 .profile-frame{
   align-items: flex-end;
-  border-bottom: 3px solid ;
+  color: #27816A;
+  background-color: #ffffffa7;
+  border-radius: 10px 10px 0 0;
+  border-bottom: 3px solid #27816A;
   white-space: nowrap;
   position: relative;
 }
 .right-container{
   margin: 3vw;
 }
-.bottom{
-  bottom: 5;
-}
 .title{
   font-size: 1.2vw;
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-}
-.book {
-  display: inline-block;
-  width: 15vw;
-  height: 20vw;
-  max-width: 150px;
-  margin: 2%;
-}
-.coverimg {
-  width: 80%;
-  height: 80%;
-  object-fit: contain;
-}
-.void-mypage{
-  display: inline;
-  margin: auto 0;
-}
-.void-mypage > p {
-  vertical-align: middle;
+
 }
 #hitokoto{
   width: 100%;
@@ -163,135 +92,94 @@ min-width: 260px;
 #mybtn{
   border: none;
   border-radius: 10px;
-  background-color: #150971;
+  background-color: #27816A;
   color: white;
   font-size:max(3.5vw,30px);
   font-weight: bold;
-}
-/* test */
-.modal {
-  display: none;
-  position: fixed;
-  z-index: 1;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgb(0, 0, 0);
-  background-color: rgba(0, 0, 0, 0.4);
-}
-
-.modal-content {
-  background-color: #fefefe;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  padding: 20px;
-  border: 3px solid #333;
-  border-radius: 10px;
-  width: 80%;
-  height: 50%;
-  min-width: 400px;
-}
-.modal-content2{
-  background-color: #fefefe;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  padding: 20px;
-  border: 3px solid #333;
-  border-radius: 10px;
-  min-width: 400px;
-}
-
-.close {
-  color: #aaa;
-  float: right;
-  font-size: 30px;
-  font-weight: bold;
-
-}
-
-.close:hover,
-.close:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
 }
 /* スライダーテスト */
 .swiper-hide{
   overflow: hidden;
 }
-.swiper--wrapper {
+.swiper-wrapper {
   /* wrapperのサイズを調整 */
-  width: 100%;
-  height: 300px;
+  width: 80%;
 }
 
 .swiper-slide {
   /* スライドのサイズを調整、中身のテキスト配置調整、背景色 */
-  color: #000000;
-  width: 100%;
-  height: 100%;
   text-align: center;
-  line-height: 300px;
+  display: flex;
+  flex-wrap: wrap;
+}
+.swiper-pagination{
+  float: none;
+  color: #27816A;
+  font-size: 5vw;
 }
 
-/* btn */
-#menubtn{
-  display: inline-block;
-  width: 100%;
- }
- .upper-row{
-  text-align: center;
- }
- .lower-row{
-  text-align: center;
- }
- .tab-btn{
-  width: 25vw;
-  font-size: 3vw;
-  white-space:nowrap;
-  padding: 1vw;
-  border: solid 1vw #27816A;
- }
- .active-btn{
-  color: rgb(255, 255, 255);
-  background-color: #27816A;
- }
- .margin-right{
- }
-/* cssリセット */
-button{
-  margin: 0%;
-  padding: 0;
-  border: none;
-  outline: none;
+/* スライド総数 */
+.book {
+  display: flex;
+  width: 40vw;
+  margin-bottom: 1%;
 }
-
+.coverimg {
+  border: solid 5px #27816A;
+  width: 95%;
+}
+.void-mypage{
+ text-align: center;
+ vertical-align: middle;
+}
+.void-mypage > p {
+  vertical-align: middle;
+  color: rgba(51, 51, 51, 0.801);
+  font-size: 6.5vw;
+}
+.swiper-button{
+  --swiper-theme-color: #27816A;
+}
+#borrowingbook0{
+  margin-left: 11%;
+}
+#bookhistory0{
+  margin-left: 11%;
+}
+#returnbook0{
+  margin-left: 11%;
+}
+#reservebook0{
+  margin-left: 11%;
+}
 /* テスト */
 .tab{
-	display: flex;
+  display: flex;
+  justify-content: center;
+  list-style-type: none;
+	padding-left: 0;
 	flex-wrap: wrap;
+}
+.tab li{
+  margin: 0 !important;
+  float: left;
+  border: solid 1px #27816A;
 }
 .tab li a{
 	display: block;
-	background:#ddd;
-	margin:0 2px;
+  color: #27816A;
 	padding:10px 20px;
+  
 }
 /*liにactiveクラスがついた時の形状*/
 .tab li.active a{
-	background:rgb(0, 0, 0);
+	background:#27816A;
+  color: white;
 }
 .area {
 	display: none;/*はじめは非表示*/
 	opacity: 0;/*透過0*/
-	background: #fff;
-	padding:50px 20px;
+	padding:1vw 2vw 2vw 2vw;
 }
 .area.is-active {
   display: block;/*表示*/
@@ -306,4 +194,103 @@ button{
 	to {
 		opacity: 1;
 	}
+}
+.tab-title{
+  text-align: center;
+  color: #27816A;
+  font-size: 6vw;
+  font-weight: bold;
+  border-bottom: solid 2px #27816A;
+  padding-top: 2vw;
+  padding-bottom: 2vw;
+  margin-top: 2vw;
+  margin-bottom: 3vw;
+}
+.array-enpty{
+  text-align: center;
+  vertical-align: middle;
+}
+/* バーコード */
+#bcTarget {
+  transform: scale(-1, -1);
+  width: 92% !important;
+  position:absolute;
+  top: 30%;
+  left: 4%;
+}
+#bcTarget > .bar0{
+  width: 2.8px !important;
+  height: 75px !important;
+}
+#bcTarget > .bar1{
+  border-left: 2.8px solid #27816A !important;
+  height:75px !important;
+}
+#bcTarget > div{
+  color: #27816A !important;
+  background-color: transparent !important;
+  font-size: 20px !important;
+}
+.bcArea{
+  display: none;
+}
+.bcArea.active {
+  display: block;
+  position: absolute;
+  text-align: center;
+  top: -100%;
+  left: 0;
+  width: 100%;
+  height: 20%;
+  background-color: rgb(255, 255, 255);
+  z-index: 3;
+  animation: slide-in 1s forwards;
+}
+@keyframes slide-in {
+  from {
+    top: -100%;
+  }
+  to {
+    top: 100px;
+    
+  }
+}
+.bcArea.none{
+  display: block;
+  position: absolute;
+  text-align: center;
+  top: 100px;
+  left: 0;
+  width: 100%;
+  height: 20%;
+  background-color: rgb(255, 255, 255);
+  z-index: 2;
+  animation: slide-out 1s forwards;
+}
+@keyframes slide-out {
+  from {
+    top: 100px;
+  }
+  to {
+    top: -100%;
+    
+  }
+}
+.barcodeInfo{
+  color: #27816bd3;
+  font-size: 5vw;
+}
+#close{
+  animation-name: displayAnime;
+  animation-duration: 2s;
+  animation-fill-mode: forwards;
+  display: none;
+}
+#close.active{
+  display: block;
+  position: fixed;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(51, 51, 51, 0.411);
 }
