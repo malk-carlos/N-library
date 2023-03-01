@@ -1241,8 +1241,8 @@
       lines = digit.length,
       columns = digit[0].length,
       content = "",
-      bar0 = "<div style=\"float: left; font-size: 0; background-color: " + settings.bgColor + "; height: " + mh + "px; width: &Wpx\"></div>",
-      bar1 = "<div style=\"float: left; font-size: 0; width:0; border-left: &Wpx solid " + settings.color + "; height: " + mh + "px;\"></div>";
+      bar0 = "<div class= 'bar0' style=\"float: left; font-size: 0; background-color: " + settings.bgColor + "; height: " + mh + "px; width: &Wpx\"></div>",
+      bar1 = "<div class= 'bar1' style=\"float: left; font-size: 0; width:0; border-left: &Wpx solid " + settings.color + "; height: " + mh + "px;\"></div>";
     for (y = 0; y < lines; y++) {
       len = 0;
       current = digit[y][0];

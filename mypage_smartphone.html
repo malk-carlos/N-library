@@ -12,7 +12,6 @@
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
-
     <!--自作JS-->
     <script src="./js/google-login.js"></script>
     <script src="./js/api.js"></script>
@@ -40,115 +39,192 @@
     <script>header();</script>
   </header>
     <div class="margin"></div>
+    <div id="bcArea" class="bcArea">
+      <p class="barcodeInfo">この画面のまま提示してください。</p>
+      <div id="bcTarget"></div>
+    </div>
+    <div id="close" onclick="barcodeClose()"></div>
     <div id="tabs">
-      <div>
-
-      </div>
-        <ul class="tab">
-          <li><a href="#tab-profile">プロフィール</a></li>
-          <li><a href="#tab-borrow">貸出中</a></li>
-          <li><a href="#tab-history">貸本履歴</a></li>
-          <li><a href="#tab-return">返却日間近</a></li>
-          <li><a href="#tab-reserve">予約済み</a></li>
-        </ul>
-      <div id="tab-profile" class="area">
-        <div id="icom"></div>
-          <div class="right-container center">
-            <div class="profile-frame flex">
-                <div style="padding: 1.4%;">表示名</div>
-                <div id="name"></div>
-            </div>
-            <div class="right-container center">
+      <ul class="tab">
+        <li><a href="#tab-profile">プロフィール</a></li>
+        <li><a href="#tab-borrow">貸出中</a></li>
+        <li><a href="#tab-history">貸本履歴</a></li>
+        <li><a href="#tab-return">返却日間近の本</a></li>
+        <li><a href="#tab-reserve">予約済み</a></li>
+      </ul>
+      <div id="container">
+        <div id="tab-profile" class="area">
+          <p class="tab-title">プロフィール</p>
+          <div class="tab-mypage-content">
+            <div id="icom"></div>
+              <div class="right-container center">
                 <div class="profile-frame flex">
-                    <div style="padding: 1.4%;">ひとこと</div>
-                    <p id="output"></p>
-                    <input id="hitokotoEdit" type="image" src="img/pencil.png" onclick="Edit()">
+                    <div style="padding: 1.4%;">表示名</div>
+                    <div id="name"></div>
                 </div>
-            </div>
-            <div class="right-container">
-                <a href="https://myaccount.google.com/" class="acount-google">編集</a>
-                <input id="mybtn" type="button" value="バーコード提示" onclick="barcode()">
-                <a href="mypage_smartphone.html">でバック用</a>
-            </div>
-        </div>
-        <div class="right-container">
-            <a href="https://myaccount.google.com/" class="acount-google">編集</a>
-            <input id="mybtn" type="button" value="バーコード提示" onclick="barcode()">
-            <a href="mypage_smartphone.html">でバック用</a>
-        </div>
-      </div>
-      <div id="tab-borrow" class="area">
-        <p>貸出中</p>
-        <div class="tab-mypage-content" id="content-02">
-          <div class="borrowing-swiper swiper-hide">
-            <div class="borrowing swiper-wrapper">
-              <!-- スライド -->
+                <div class="right-container center">
+                    <div class="profile-frame flex">
+                        <div style="padding: 1.4%;">ひとこと</div>
+                        <p id="output"></p>
+                        <input id="hitokotoEdit" type="image" src="img/pencil-mb.png" onclick="Edit()">
+                    </div>
+                </div>
+                <div class="right-container">
+                    <a href="https://myaccount.google.com/" class="acount-google" target="_blank" rel="noopener noreferrer">編集</a>
+                    <input id="mybtn" type="button" value="バーコード提示" onclick="barcode()">
+                  </div>
 
             </div>
-        </div>
-      </div>
-      <div id="tab-history" class="area">
-        <p>貸本履歴</p>
-        <div class="tab-mypage-content" id="content-03">
-          <div class="history-swiper swiper-hide">
-            <div class="history swiper-wrapper">
-              <!-- スライド -->
-            </div>
           </div>
         </div>
-      </div>
-      <div id="tab-return" class="area">
-        <p>返却日間近</p>
-        <div class="tab-mypage-content" id="content-04">
-          <div class="return flex-wrap">
+        <div id="tab-borrow" class="area">
+          <p class="tab-title">貸出中</p>
+          <div class="tab-mypage-content" id="content-02">
+              <div class="borrowing-swiper swiper-hide">
+                <div class="swiper-pagination"></div>
+                <div class="borrowing swiper-wrapper">
+                  <!-- スライド -->
+                </div>
+              </div>
           </div>
         </div>
-      </div>
-      <div id="tab-reserve" class="area">
-        <p>予約済み</p>
-        <div class="tab-mypage-content"  id="content-05">
-          <div class="reserve flex-wrap"></div>
+        
+        <div id="tab-history" class="area">
+          <p class="tab-title">貸本履歴</p>
+          <div class="tab-mypage-content" id="content-03">
+            <div class="history-swiper swiper-hide">
+                <div class="swiper-pagination"></div>
+                <div class="history swiper-wrapper">
+                  <!-- スライド -->
+                </div>
+              </div>
+          </div>
+        </div>
+        
+        <div id="tab-return" class="area">
+          <p class="tab-title">返却日間近</p>
+          <div class="tab-mypage-content" id="content-04">
+              <div class="return-swiper swiper-hide">
+                <div class="swiper-pagination"></div>
+                <div class="return swiper-wrapper">
+                  <!-- スライド -->
+                </div>
+              </div>
+          </div>
+        </div>
+        
+        <div id="tab-reserve" class="area">
+          <p class="tab-title">予約済み</p>
+          <div class="tab-mypage-content" id="content-05">
+              <div class="reserve-swiper swiper-hide">
+                <div class="swiper-pagination"></div>
+                <div class="reserve swiper-wrapper">
+                  <!-- スライド -->
+                </div>
+              </div>
+          </div>
+        </div>
       </div>
     </div>
       <script>
     //ログイン情報取得
     const logindata = cheak() //データ取得
     document.getElementById("name").innerHTML = logindata.name 
-    document.getElementById("mail").innerHTML = logindata.email
+    // document.getElementById("mail").innerHTML = logindata.email
     document.getElementById("icom").innerHTML = `<img src="${logindata.picture}">`
     //貸出予約履歴照会
     send("LendingData",logindata.sub);
+    // バーコード表示
+    let bcArea = document.getElementById('bcArea')
+    let closeBarcode = document.getElementById('close')
+    function barcode(){
+      closeBarcode.classList.add('active')
+      bcArea.classList.add('active')
+      bcArea.classList.remove('none')
+    }
+    function barcodeClose() {
+      closeBarcode.classList.remove('active')
+      bcArea.classList.remove('active')
+      bcArea.classList.add('none')
+    }
+
+    // ひとこと編集
+    var output
+    function Edit() {
+      output = prompt('自由に文章を入れてみましょう！（15文字まで）');
+      if (output === null) {
+        const cancel =  alert("キャンセルしました。")
+      }else{
+        if (output.length > 15) {
+          const cancel =  alert("文字数超過のため変更できません。")
+        }else{
+          Cookies.set("hitokoto", output, {
+            expires: 30
+          });
+          console.log(Cookies.get('hitokoto'));
+          Editcall()
+        }
+      }
+    }
+    // ひとこと表示
+    Editcall()
+    function Editcall() {
+    // 保存されたCookieを呼び出して、textContentに設定する
+    document.getElementById("output").textContent = Cookies.get("hitokoto");
+    }
+
     // slider
     const borrowingswiper = new Swiper(".borrowing-swiper", {
       slidesPerView: 1 /* 何個表示するか */,
-      spaceBetween: 25,
       loop: true,
+      pagination: {
+      el: ".swiper-pagination", // ページネーションのクラス名を指定
+      type: "fraction", // ページネーションのtypeを指定
+      },
       // ナビボタンが必要なら追加
       navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev',
-    },
+      nextEl: '.swiper-button-next swiper-button',
+      prevEl: '.swiper-button-prev swiper-button',
+    }
     });
     const historyswiper = new Swiper(".history-swiper", {
       slidesPerView: 1 /* 何個表示するか */,
-      spaceBetween: 25,
-      slidesPerColumn: 2,
       loop: true,
+      pagination: {
+      el: ".swiper-pagination", // ページネーションのクラス名を指定
+      type: "fraction", // ページネーションのtypeを指定
+      },
       // ナビボタンが必要なら追加
       navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev',
-    },
+      nextEl: '.swiper-button-next swiper-button',
+      prevEl: '.swiper-button-prev swiper-button',
+    }
     });
-    const resultswiper = new Swiper(".result-swiper", {
+    const returnswiper = new Swiper(".return-swiper", {
       slidesPerView: 1 /* 何個表示するか */,
-      spaceBetween: 25,
       loop: true,
+      pagination: {
+      el: ".swiper-pagination", // ページネーションのクラス名を指定
+      type: "fraction", // ページネーションのtypeを指定
+      },
       // ナビボタンが必要なら追加
       navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev',
-    },
+      nextEl: '.swiper-button-next swiper-button',
+      prevEl: '.swiper-button-prev swiper-button',
+    }
+    });
+    const reserveswiper = new Swiper(".reserve-swiper", {
+      slidesPerView: 1 /* 何個表示するか */,
+      loop: true,
+      pagination: {
+      el: ".swiper-pagination", // ページネーションのクラス名を指定
+      type: "fraction", // ページネーションのtypeを指定
+      },
+      // ナビボタンが必要なら追加
+      navigation: {
+      nextEl: '.swiper-button-next swiper-button',
+      prevEl: '.swiper-button-prev swiper-button',
+    }
     });
     // タブ切り替え
     function GethashID (hashIDName){
@@ -167,15 +243,12 @@
         });
       }
     }
-
-    //タブをクリックしたら
+      //タブをクリックしたら
     $('.tab a').on('click', function() {
       var idName = $(this).attr('href'); //タブ内のリンク名を取得  
       GethashID (idName);//設定したタブの読み込みと
       return false;//aタグを無効にする
     });
-
-
       // 上記の動きをページが読み込まれたらすぐに動かす
       $(window).on('load', function () {
           $('.tab li:first-of-type').addClass("active"); //最初のliにactiveクラスを追加
@@ -184,9 +257,14 @@
         GethashID (hashName);//設定したタブの読み込み
       });
 
+    // barcode
+    $("#bcTarget").barcode(logindata.sub, "code39", { barWidth: 1.9, barHeight: 50 });
+
+    // 貸出状況表示
     function mydata(datas) {
             let datasBorrow = datas.filter(value => value[5] === '貸出中')
             let datasReserve = datas.filter(value => value[5] === '予約中')
+            console.log(datasReserve);
             let datasHistory = datas.filter(value => value[5] === '返却済み')
             let date = new Date();
             var returnDate;
@@ -205,7 +283,7 @@
             console.log(datasHistory);
             console.log(datasReturn);
             // 分割
-            const onepage = 3
+            const onepage = 4
             let datasBorrowslide = []
             let datasHistoryslide = []
             let datasReturnslide = []
@@ -226,41 +304,52 @@
               const chunk = datasReserve.slice(i, i + onepage);
               datasReserveslide.push(chunk);
             }
-            
+            console.log(datasBorrowslide);
+            console.log(datasHistoryslide);
+            console.log(datasReserveslide);
             // 貸出中の本
             if (datasBorrow.length === 0) {
                 const $div = $('<div class="void-mypage"></div>')
                 const $fight = $('<p>貸出中の本はありません！<br>本を借りましょう！</p>')
                 $div.append($fight)
-                $(".borrowing").append($div)
+                $("#content-02").append($div)
             }else{
+              if (datasBorrowslide.length >= 2 ) {
+                const $prev = $('<div class="swiper-button-prev swiper-button"></div>')
+                const $next = $('<div class="swiper-button-next swiper-button"></div>')
+                $('#content-02').append($prev).append($next)
+              }
                 for (let i = 0; i < datasBorrowslide.length; i++) {
                   const $slide = $(`<div id='borrowingbook${String(i)}' class='swiper-slide'></div>`)
                   for (let o = 0; o < datasBorrowslide[i].length; o++) {
                     const $div = $(`<div id='borrowingbook-content${String(o)}' class='book'></div>`)
                     const $cover = $(`<img src='${datasBorrowslide[i][o][8]}' class='coverimg' alt="${datasBorrowslide[i][o][7]}">`) // 表紙
-                    const $title = $(`<p class='title'>${datasBorrowslide[i][o][7]}</p>`) // タイトル
-                    $div.append($cover).append($title);
+                    // const $title = $(`<p class='title'>${datasBorrowslide[i][o][7]}</p>`) // タイトル
+                    $div.append($cover);
                     $slide.append($div)
                     $(".borrowing").append($slide)
-                    
                   }
                 }
             }
             // 借りた本の履歴
             if (datasHistory.length === 0) {
-                const $div = $('<div class="void-mypage"></div>')
-                const $fight = $('<p>まだ履歴がありません！<br>本を借りましょう！</p>')
+                const $div = $('<div class="void-mypagevo"></div>')
+                const $fight = $('<p>まだ履歴はありません！<br>本を借りましょう！</p>')
                 $div.append($fight)
-                $(".history").append($div)
+                $("#content-03").append($div)
+                
             }else{
+              if (datasHistoryslide.length >= 2 ) {
+                const $prev = $('<div class="swiper-button-prev swiper-button"></div>')
+                const $next = $('<div class="swiper-button-next swiper-button"></div>')
+                $('#content-03').append($prev).append($next)
+              }
                 for (let i = 0; i < datasHistoryslide.length; i++) {
                   const $slide = $(`<div id='bookhistory${String(i)}' class='swiper-slide'></div>`)
                   for (let o = 0; o < datasHistoryslide[i].length; o++) {
                     const $div = $(`<div id='bookhistory-content${String(o)}' class='book'></div>`)
                     const $cover = $(`<img src='${datasHistoryslide[i][o][8]}' class='coverimg' alt="${datasHistoryslide[i][o][7]}">`) // 表紙
-                    const $title = $(`<p class='title'>${datasHistory[i][o][7]}</p>`) // タイトル
-                    $div.append($cover).append($title);
+                    $div.append($cover);
                     $slide.append($div)
                     $(".history").append($slide)
                   }
@@ -271,15 +360,19 @@
                 const $div = $('<div class="void-mypage"></div>')
                 const $fight = $('<p>返却日が近い本はありません！<br>読書を楽しみましょう！</p>')
                 $div.append($fight)
-                $(".return").append($div)
+                $("#content-04").append($div)
             }else{
+              if (datasRturnslide.length >= 2 ) {
+                const $prev = $('<div class="swiper-button-prev swiper-button"></div>')
+                const $next = $('<div class="swiper-button-next swiper-button"></div>')
+                $('#content-04').append($prev).append($next)
+              }
                 for (let i = 0; i < datasReturnslide.length; i++) {
                   const $slide = $(`<div id = 'returnbook${String(i)}' class='swiper-slide'></div>` )
-                  for (let o = 0; o < datasReturnslide.length; o++) {
-                    const $div = $(`<div id='reservebook${String(o)}' class='book'></div>`)
+                  for (let o = 0; o < datasReturnslide[i].length; o++) {
+                    const $div = $(`<div id='returnbook-content${String(o)}' class='book'></div>`)
                     const $cover = $(`<img src='${datasReturnslide[i][o][8]}' class='coverimg' alt="${datasReturnslide[i][o][7]}">`) // 表紙
-                    const $title = $(`<p class='title'>${datasReturnslide[i][o][7]}</p>`) // タイトル
-                    $div.append($cover).append($title);
+                    $div.append($cover);
                     $slide.append($div);
                     $(".return").append($slide)
                   }
@@ -288,17 +381,21 @@
             // 予約した本
             if (datasReserve.length === 0) {
                 const $div = $('<div class="void-mypage"></div>')
-                const $fight = $('<p>まだ予約履歴がありません！<br>本を予約しましょう！</p>')
+                const $fight = $('<p>まだ予約履歴はありません！<br>本を予約しましょう！</p>')
                 $div.append($fight)
-                $(".reserve").append($div)
+                $("#content-05").append($div)
             } else {
+              if (datasReserveslide.length >= 2 ) {
+                const $prev = $('<div class="swiper-button-prev swiper-button"></div>')
+                const $next = $('<div class="swiper-button-next swiper-button"></div>')
+                $('#content-05').append($prev).append($next)
+              }
                 for (let i = 0; i < datasReserveslide.length; i++) {
                   const $slide = $(`<div id='reservebook${String(i)}' class='swiper-slide'></div>`)
-                  for (let o = 0; o < datasReserveslide.length; o++) {
+                  for (let o = 0; o < datasReserveslide[i].length; o++) {
                     const $div = $(`<div id='reservebook-content${String(o)}' class='book'></div>`)
                     const $cover = $(`<img src='${datasReserveslide[i][o][8]}' class='coverimg' alt="${datasReserveslide[i][o][7]}">`) // 表紙
-                    const $title = $(`<p class='title'>${datasReserveslide[i][o][7]}</p>`) // タイトル
-                    $div.append($cover).append($title);
+                    $div.append($cover);
                     $slide.append($div)
                     $(".reserve").append($slide)
                   }
