@@ -6,4 +6,12 @@ function header() {
             $("header").html(header);
         }
     });
+
+    $.ajax({
+        url: "footer.html",
+        cache: false,
+        success: function (footer) {
+            $("footer").html(footer);
+        }
+    });
 }
