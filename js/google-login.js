@@ -85,7 +85,7 @@ function systems() {
         loginData = JSON.parse(sessionid)
 
         //アカウントがnnn.ed.jpかどうか
-        if (loginData.hd !== "nnn.ed.jp") {
+        if (loginData.hd !== "nnn.ed.jp" || loginData.hd !== "nnn.ac.jp" || loginData.hd !== "nagito.work") {
             //ログ出力
             //モード,日付,IPアドレス,メールアドレス,利用ブラウザ,利用ブラウザバージョン,OS名,ユーザーエージェント,エラー情報(NotSupportAccount)
             send("log", new Date().toLocaleString(), ((document.cookie + ';').match('IP=([^¥S;]*)') || [])[1], loginData.email, platform.name, platform.version, platform.os.toString(), navigator.userAgent, "NotSupportAccount", "", "")
